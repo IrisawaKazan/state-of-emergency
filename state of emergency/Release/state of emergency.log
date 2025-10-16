@@ -1,0 +1,27 @@
+﻿  camera.cpp
+  debugproc.cpp
+  effect.cpp
+  game.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\game.cpp(144,10): warning C4189: 'pSound': ローカル変数が初期化されましたが、参照されていません
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\game.cpp(166,9): warning C4189: 'fPosZ': ローカル変数が初期化されましたが、参照されていません
+  input.cpp
+  light.cpp
+  main.cpp
+  manager.cpp
+  number.cpp
+  object.cpp
+  object2D.cpp
+  object3D.cpp
+  objectBillboard.cpp
+  objectX.cpp
+  pause.cpp
+  renderer.cpp
+  result.cpp
+  score.cpp
+  sound.cpp
+  timer.cpp
+  コンパイル中...
+  title.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\title.cpp(129,8): warning C4189: 'fPosX': ローカル変数が初期化されましたが、参照されていません
+  tutorial.cpp
+LINK : fatal error LNK1104: ファイル 'd3dx9.lib' を開くことができません。

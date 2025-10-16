@@ -1,0 +1,3 @@
+﻿  game.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\game.cpp(166,9): warning C4189: 'fPosZ': ローカル変数が初期化されましたが、参照されていません
+  state of emergency.vcxproj -> C:\Users\student\Documents\Git\state-of-emergency\state of emergency\Debug\state of emergency.exe

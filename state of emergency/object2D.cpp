@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"object2D.h"
 #include"renderer.h"
 #include"manager.h"

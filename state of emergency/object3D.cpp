@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"object3D.h"
 #include"manager.h"
 #include"renderer.h"

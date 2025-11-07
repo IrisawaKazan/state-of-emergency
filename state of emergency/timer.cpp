@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"timer.h"
 #include"number.h"
 #include"renderer.h"

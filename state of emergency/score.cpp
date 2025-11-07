@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"score.h"
 #include"number.h"
 #include"renderer.h"

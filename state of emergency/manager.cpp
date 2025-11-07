@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"manager.h"
 #include"game.h"
 #include"title.h"

@@ -7,6 +7,7 @@
 #ifndef _PAUSE_H_ // このマクロ定義がされてなかったら
 #define _PAUSE_H_ // 2重インクルード防止のマクロ定義
 
+// インクルード
 #include"main.h"
 #include"object2D.h"
 

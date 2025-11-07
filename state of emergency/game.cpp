@@ -170,7 +170,7 @@ void CGame::Update(void)
 
 		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 		{// 決定キー(ENTERキー)が押された
-			CManager::SetMode(MODE_TITLE);
+			CManager::SetMode(MODE_RESULT);
 		}
 
 #endif
@@ -179,7 +179,7 @@ void CGame::Update(void)
 
 		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 		{// 決定キー(ENTERキー)が押された
-			CManager::SetMode(MODE_TITLE);
+			CManager::SetMode(MODE_RESULT);
 		}
 
 #endif

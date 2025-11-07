@@ -63,12 +63,11 @@ HRESULT CGame::Init(void)
 	// スコア
 	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
 
-#ifdef _DEBUG // Debug時のみ
+	// テスト
+	//CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// タイマー
 	CTimer::Create(D3DXVECTOR3(50.0f, 675.0f, 0.0f), 30.0f, 90.0f);
-
-#endif
 
 	// BGM
 	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);

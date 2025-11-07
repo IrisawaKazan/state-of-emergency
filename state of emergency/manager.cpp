@@ -35,7 +35,6 @@ CDebugProc* CManager::m_pDebugProc = nullptr;
 
 CScore* CManager::m_pScore = nullptr;
 CTimer* CManager::m_pTimer = nullptr;
-CBoost* CManager::m_pBoost = nullptr;
 CEffect* CManager::m_pEffect = nullptr;
 CPause* CManager::m_pPause = nullptr;
 
@@ -355,14 +354,6 @@ CScore* CManager::GetScore(void)
 CTimer* CManager::GetTimer(void)
 {
 	return m_pTimer;
-}
-
-//----------------------------------------
-// ブーストUIの取得処理
-//----------------------------------------
-CBoost* CManager::GetBoost(void)
-{
-	return m_pBoost;
 }
 
 //----------------------------------------

@@ -11,7 +11,7 @@
 #include"object.h"
 
 // マクロ定義
-#define MAX_PMOVE (2.0f) // プレーヤーの速さ
+
 
 // オブジェクトXクラス
 class CObjectX : public CObject
@@ -31,25 +31,11 @@ public:
 	void SetPositionOld(D3DXVECTOR3 posOld);
 	void SetRotation(D3DXVECTOR3 rot);
 	void SetSize(D3DXVECTOR3 size);
-	void SetDeadCounter(int DeadCounter);
-	void SetBonus(int bonus);
-
-	void SetEnable(bool enable);
-	void SetSigns(bool signs);
-	void SetPowerUp(bool powerup);
-	void SetScoreBonus(bool scorebonus);
 
 	D3DXVECTOR3 GetPos(void);
 	D3DXVECTOR3 GetPosOld(void);
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
-	int GetDeadCounter(void);
-	int GetBonus(void);
-
-	bool GetEnable(void);
-	bool GetSigns(void);
-	bool GetPowerUp(void);
-	bool GetScoreBonus(void);
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
@@ -65,20 +51,6 @@ private:
 	D3DXVECTOR3 m_size;		  // 大きさ
 	D3DXVECTOR3 m_vtxMin;	  // モデルの最小値
 	D3DXVECTOR3 m_vtxMax;	  // モデルの最大値
-
-	bool m_bUse;			  // 使用しているか
-	bool m_bRetention;		  // アイテムを保持しているか
-	bool m_bPowerUp;		  // パワーアップしているか
-	bool m_bScoreBonus;		  // スコアボーナスタイムか
-
-	int m_nScoreBonus;		  // スコアボーナスの倍率
-
-	int m_nCounter;           // スコアで使うカウンター
-	int m_nDeadCounter;       // 死までのカウンター
-	int m_nPowerUpCounter;    // パワーアップ時に使うカウンター
-	int m_nScoreBonusCounter; // スコアボーナス時に使うカウンター
-
-	float m_fSpeedUp;         // パワーアップ時にプレイヤーの移動速度が速くなる
 };
 
 #endif

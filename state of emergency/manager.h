@@ -22,7 +22,6 @@ class CLight;
 class CDebugProc;
 class CScore;
 class CTimer;
-class CBoost;
 class CEffect;
 class CPause;
 //class CFade;
@@ -85,7 +84,6 @@ public:
 
 	static CScore* GetScore(void);
 	static CTimer* GetTimer(void);
-	static CBoost* GetBoost(void);
 	static CEffect* GetEffect(void);
 	static CPause* GetPause(void);
 
@@ -108,7 +106,6 @@ private:
 
 	static CScore* m_pScore;
 	static CTimer* m_pTimer;
-	static CBoost* m_pBoost;
 	static CEffect* m_pEffect;
 	static CPause* m_pPause;
 

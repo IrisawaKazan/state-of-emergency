@@ -159,20 +159,8 @@ void CGame::Update(void)
 
 	//if (m_bPause == false)
 	{// ポーズ中でなければ
-		// ランダム生成
-		m_nSpawn++;
-		m_nSmallThingsSpawn++;
-
-		float fPosZ = (float)(rand() % 130/* 出てくる範囲 */);
-
 		// 現在の時刻を種として設定
 		srand((unsigned int)time(nullptr));
-
-		// 多段で出ないように制限するカウンター
-		for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
-		{
-			m_nFrameCounter[nCnt]++;
-		}
 
 #ifdef _DEBUG // Debug時のみ
 
@@ -196,15 +184,6 @@ void CGame::Update(void)
 			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 		}
 
-		if (m_pObjectX->GetEnable() == false)
-		{
-			// デバッグ用プレイヤー復活
-			if (pInputKeyboard->GetTrigger(DIK_NUMPADPLUS) == true)
-			{// 10キーの+
-				m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-			}
-		}
-
 		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 		{// 決定キー(ENTERキー)が押された
 			CManager::SetMode(MODE_TITLE);
@@ -214,24 +193,21 @@ void CGame::Update(void)
 
 #ifdef NDEBUG // Release時のみ
 
-		if (m_pObjectX->GetEnable() == false)
+		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+		{// 決定キー(ENTERキー)が押された
+			CManager::SetMode(MODE_TITLE);
+		}
+
+		if (m_nTransition <= 60 * 6)
 		{
-			if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+			m_nTransition++;
+		}
+
+		if (m_nTransition >= 60 * 6)
+		{
+			//if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 			{// 決定キー(ENTERキー)が押された
 				CManager::SetMode(MODE_TITLE);
-			}
-
-			if (m_nTransition <= 60 * 6)
-			{
-				m_nTransition++;
-			}
-
-			if (m_nTransition >= 60 * 6)
-			{
-				//if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
-				{// 決定キー(ENTERキー)が押された
-					CManager::SetMode(MODE_TITLE);
-				}
 			}
 		}
 

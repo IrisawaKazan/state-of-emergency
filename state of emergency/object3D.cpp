@@ -152,14 +152,6 @@ void CObject3D::Draw(void)
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-	//LPDIRECT3DTEXTURE9 pTexMT;
-
-	//// マルチターゲット用のテクスチャの取得
-	//pTexMT = CManager::GetRenderer()->GetTextureMT();
-
-	// テクスチャの設定
-	//pDevice->SetTexture(0, pTexMT);
-
 	// 計算用のマトリックス
 	D3DXMATRIX mtxRot, mtxTrans;
 

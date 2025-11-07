@@ -12,7 +12,7 @@
 #include"manager.h"
 
 // 前方宣言
-class CPause;
+
 
 // マクロ定義
 
@@ -32,9 +32,7 @@ public:
 	static CPause* GetPause(void);
 
 private:
-	bool m_bPause;                         // ポーズしているか否か
 
-	static CPause* m_pPause;
 };
 
 #endif

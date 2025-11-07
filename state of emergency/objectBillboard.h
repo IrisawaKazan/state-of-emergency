@@ -46,8 +46,6 @@ private:
 	float m_fzUV;
 	float m_fxSize;
 	float m_fySize;
-	//float m_fWidth;
-	//float m_fHeight;
 };
 
 #endif

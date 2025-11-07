@@ -57,8 +57,6 @@ CObjectX* CObjectX::Create(D3DXVECTOR3 pos)
 	// ˆÊ’u‚ÌÝ’è
 	pObjectX->SetPosition(pos);
 
-	//pObjectX->SetEnable(true);
-
 	return pObjectX;
 }
 

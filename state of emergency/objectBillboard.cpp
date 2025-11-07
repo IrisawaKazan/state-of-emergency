@@ -25,8 +25,6 @@ CObjectBillboard::CObjectBillboard(int nPriority) : CObject(nPriority)
 	m_fzUV = 0.0f;
 	m_fxSize = 0.0f;
 	m_fySize = 0.0f;
-	//m_fWidth = 0.0f;
-	//m_fHeight = 0.0f;
 }
 
 //----------------------------------------
@@ -50,12 +48,6 @@ CObjectBillboard* CObjectBillboard::Create(void)
 	// 初期化処理
 	pObjectBillboard->Init();
 
-	// 位置の設定
-	//pObjectBillboard->SetPosition(pos);
-
-	//pObjectBillboard->m_fWidth = fWidth;
-	//pObjectBillboard->m_fHeight = fHeight;
-
 	return pObjectBillboard;
 }
 
@@ -68,12 +60,6 @@ HRESULT CObjectBillboard::Init(void)
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	//m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-
-	//// テクスチャの読み込み
-	//D3DXCreateTextureFromFile(pDevice,
-	//	"data\\TEXTURE\\wood.png",
-	//	&m_pTexture);
 
 	pDevice->CreateVertexBuffer(sizeof(VERTEX_3D) * 4,
 		D3DUSAGE_WRITEONLY,
@@ -88,10 +74,6 @@ HRESULT CObjectBillboard::Init(void)
 	m_pVtxBuff->Lock(0, 0, (void**)&pVtx, 0);
 
 	// 頂点座標の設定
-	//pVtx[0].pos = D3DXVECTOR3(m_pos.x - m_fWidth, m_pos.y + m_fHeight, m_pos.z);
-	//pVtx[1].pos = D3DXVECTOR3(m_pos.x + m_fWidth, m_pos.y + m_fHeight, m_pos.z);
-	//pVtx[2].pos = D3DXVECTOR3(m_pos.x - m_fWidth, m_pos.y - m_fHeight, m_pos.z);
-	//pVtx[3].pos = D3DXVECTOR3(m_pos.x + m_fWidth, m_pos.y - m_fHeight, m_pos.z);
 	pVtx[0].pos = D3DXVECTOR3(-100.0f, 100.0f, 0.0f);
 	pVtx[1].pos = D3DXVECTOR3(100.0f, 100.0f, 0.0f);
 	pVtx[2].pos = D3DXVECTOR3(-100.0f, -100.0f, 0.0f);

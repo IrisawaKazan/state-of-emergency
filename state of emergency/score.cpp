@@ -133,13 +133,7 @@ void CScore::Uninit(void)
 //----------------------------------------
 void CScore::Update(void)
 {
-	//for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
-	//{
-	//	if (m_apNumber[nCnt] != nullptr)
-	//	{
-	//		m_apNumber[nCnt]->SetDigit(nCnt);
-	//	}
-	//}
+
 }
 
 //----------------------------------------

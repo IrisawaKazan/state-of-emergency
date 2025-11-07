@@ -22,14 +22,14 @@
 #include"pause.h"
 
 // 静的メンバ変数宣言
-CPause* CGame::m_pPause = nullptr;
+
 
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
 CGame::CGame() : CScene(CScene::MODE_GAME)
 {
-	m_bPause = false;
+
 }
 
 //----------------------------------------
@@ -73,8 +73,6 @@ HRESULT CGame::Init(void)
 	// BGM
 	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
 
-	m_bPause = false; // ポーズ解除
-
 	return S_OK;
 }
 
@@ -96,12 +94,6 @@ void CGame::Uninit(void)
 	CPause::Unload();
 
 	CObject::Release();
-
-	//// プレイヤーの破棄
-	//if (m_pObjectX != nullptr)
-	//{
-	//	m_pObjectX = nullptr;
-	//}
 }
 
 //----------------------------------------
@@ -124,67 +116,50 @@ void CGame::Update(void)
 	// サウンドの取得
 	//CSound* pSound = CManager::GetSound();
 
-	//if (pInputKeyboard->GetTrigger(DIK_TAB) || pInputKeyboard->GetTrigger(DIK_P) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_B) == true)
-	//{// プレイヤーが生きている時にポーズキーが押された
-	//	m_bPause = m_bPause ? false : true;
-	//}
-
-	//if (m_bPause == true)
-	{// ポーズ中
-		//m_pPause = CPause::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f, SCREEN_HEIGHT / 2.0f, 0.0f), SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		//m_pPause->Update();
-
-		//m_pPause->Draw();
-	}
-
-	//if (m_bPause == false)
-	{// ポーズ中でなければ
-		// 現在の時刻を種として設定
-		srand((unsigned int)time(nullptr));
+	// 現在の時刻を種として設定
+	srand((unsigned int)time(nullptr));
 
 #ifdef _DEBUG // Debug時のみ
 
-		// サウンドの取得
-		CSound* pSound = CManager::GetSound();
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
 
-		// 確認用
-		// スコア加算(+1)
-		if (pInputKeyboard->GetTrigger(DIK_1) == true)
-		{
-			// スコア加算
-			CScore::AddScore(1);
+	// 確認用
+	// スコア加算(+1)
+	if (pInputKeyboard->GetTrigger(DIK_1) == true)
+	{
+		// スコア加算
+		CScore::AddScore(1);
 
-			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
-		}
-		// スコア減算(-1)
-		if (pInputKeyboard->GetTrigger(DIK_0) == true)
-		{
-			// スコア加算
-			CScore::AddScore(-1);
+		// SE
+		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+	}
+	// スコア減算(-1)
+	if (pInputKeyboard->GetTrigger(DIK_0) == true)
+	{
+		// スコア加算
+		CScore::AddScore(-1);
 
-			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
-		}
+		// SE
+		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+	}
 
-		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
-		{// 決定キー(ENTERキー)が押された
-			CManager::SetMode(MODE_RESULT);
-		}
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+	{// 決定キー(ENTERキー)が押された
+		CManager::SetMode(MODE_RESULT);
+	}
 
 #endif
 
 #ifdef NDEBUG // Release時のみ
 
-		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
-		{// 決定キー(ENTERキー)が押された
-			CManager::SetMode(MODE_RESULT);
-		}
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+	{// 決定キー(ENTERキー)が押された
+		CManager::SetMode(MODE_RESULT);
+	}
 
 #endif
 
-	}
 }
 
 //----------------------------------------
@@ -193,12 +168,4 @@ void CGame::Update(void)
 void CGame::Draw(void)
 {
 	/* ゲーム画面だけにある特別な描画があるなら記入する */
-}
-
-//----------------------------------------
-// ポーズの取得処理
-//----------------------------------------
-CPause* CGame::GetPause(void)
-{
-	return m_pPause;
 }

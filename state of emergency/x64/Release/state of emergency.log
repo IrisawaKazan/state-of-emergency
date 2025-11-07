@@ -1,0 +1,45 @@
+﻿  camera.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  debugproc.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  effect.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  game.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  input.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  light.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  main.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  manager.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  number.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  object.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  object2D.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  object3D.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  objectBillboard.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  objectX.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  pause.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  renderer.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  result.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  score.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  sound.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  timer.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  コンパイル中...
+  title.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory
+  tutorial.cpp
+C:\Users\student\Documents\Git\state-of-emergency\state of emergency\main.h(16,9): fatal error C1083: include ファイルを開けません。'd3dx9.h':No such file or directory

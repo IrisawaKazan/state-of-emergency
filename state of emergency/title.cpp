@@ -22,26 +22,14 @@
 #include"game.h"
 
 // 静的メンバ変数宣言
-//CObjectX* CTitle::m_pObjectX = nullptr;
+
 
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
 CTitle::CTitle() : CScene(CScene::MODE_TITLE)
 {
-	m_nPlay = NULL;
 
-	for (int nCnt = 0; nCnt < MAX_PLAYER; nCnt++)
-	{
-		m_nCounter[nCnt] = NULL;
-	}
-
-	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER_F; nCnt++)
-	{
-		m_nFrameCounter[nCnt] = NULL;
-	}
-
-	m_nSpawnFloating = NULL;
 }
 
 //----------------------------------------
@@ -61,7 +49,7 @@ HRESULT CTitle::Init(void)
 	CSound* pSound = CManager::GetSound();
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_TITLE_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
 
 	return S_OK;
 }

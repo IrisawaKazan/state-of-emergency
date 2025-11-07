@@ -21,7 +21,6 @@
 #include"pause.h"
 
 // 静的メンバ変数宣言
-CObjectX* CGame::m_pObjectX = nullptr;
 CPause* CGame::m_pPause = nullptr;
 
 //----------------------------------------
@@ -30,20 +29,6 @@ CPause* CGame::m_pPause = nullptr;
 CGame::CGame() : CScene(CScene::MODE_GAME)
 {
 	m_bPause = false;
-	m_nSpawn = NULL;
-
-	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
-	{
-		m_nFrameCounter[nCnt] = NULL;
-	}
-
-	m_nScrapCounter = NULL;
-	m_nSmallThingsCounter = NULL;
-	m_nBlackThingsCounter = NULL;
-
-	m_nSmallThingsSpawn = NULL;
-
-	m_nTransition = NULL;
 }
 
 //----------------------------------------
@@ -74,9 +59,6 @@ HRESULT CGame::Init(void)
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 
-	// オブジェクトXの生成(初期配置)
-	m_pObjectX = CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-
 	// スコア
 	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
 
@@ -88,11 +70,9 @@ HRESULT CGame::Init(void)
 #endif
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_GAME_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
 
 	m_bPause = false; // ポーズ解除
-
-	m_nTransition = 0;
 
 	return S_OK;
 }
@@ -141,7 +121,7 @@ void CGame::Update(void)
 	pInputJoypad = CManager::GetInputJoypad();
 
 	// サウンドの取得
-	CSound* pSound = CManager::GetSound();
+	//CSound* pSound = CManager::GetSound();
 
 	//if (pInputKeyboard->GetTrigger(DIK_TAB) || pInputKeyboard->GetTrigger(DIK_P) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_B) == true)
 	//{// プレイヤーが生きている時にポーズキーが押された
@@ -163,6 +143,9 @@ void CGame::Update(void)
 		srand((unsigned int)time(nullptr));
 
 #ifdef _DEBUG // Debug時のみ
+
+		// サウンドの取得
+		CSound* pSound = CManager::GetSound();
 
 		// 確認用
 		// スコア加算(+1)
@@ -198,19 +181,6 @@ void CGame::Update(void)
 			CManager::SetMode(MODE_TITLE);
 		}
 
-		if (m_nTransition <= 60 * 6)
-		{
-			m_nTransition++;
-		}
-
-		if (m_nTransition >= 60 * 6)
-		{
-			//if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
-			{// 決定キー(ENTERキー)が押された
-				CManager::SetMode(MODE_TITLE);
-			}
-		}
-
 #endif
 
 	}
@@ -225,30 +195,9 @@ void CGame::Draw(void)
 }
 
 //----------------------------------------
-// オブジェクトXの取得処理
-//----------------------------------------
-CObjectX* CGame::GetObjectX(void)
-{
-	return m_pObjectX;
-}
-
-//----------------------------------------
 // ポーズの取得処理
 //----------------------------------------
 CPause* CGame::GetPause(void)
 {
 	return m_pPause;
-}
-
-//----------------------------------------
-// デストロイプレイヤー処理
-//----------------------------------------
-void CGame::DestoryPlayer(void)
-{
-	//if (m_pObjectX->GetEnable() == true)
-	//{
-	//	m_pObjectX->SetEnable(false);
-	//}
-
-	m_pObjectX = nullptr;
 }

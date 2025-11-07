@@ -44,7 +44,7 @@ HRESULT CScore::Load(void)
 
 	// テクスチャの初期化処理
 	D3DXCreateTextureFromFile(pDevice,
-		"data\\TEXTURE\\number000.png",
+		"data\\TEXTURE\\number001.png",
 		&m_pTexture);
 
 	return S_OK;

@@ -12,7 +12,7 @@
 #include"object.h"
 
 // マクロ定義
-
+#define MAX_PLAYER_MOVE (5.0f)
 
 // プレイヤークラス
 class CPlayer : public CObject

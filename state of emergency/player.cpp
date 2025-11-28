@@ -195,7 +195,94 @@ void CPlayer::Uninit(void)
 //----------------------------------------
 void CPlayer::Update(void)
 {
+	// キーボードの取得
+	CInputKeyboard* pInputKeyboard;
+	pInputKeyboard = CManager::GetInputKeyboard();
 
+	// マウスの取得
+	CInputMouse* pInputMouse;
+	pInputMouse = CManager::GetInputMouse();
+
+	// パッドの取得
+	CInputJoypad* pInputJoypad;
+	pInputJoypad = CManager::GetInputJoypad();
+
+	//// サウンドの取得
+	//CSound* pSound = CManager::GetSound();
+
+	// 位置の取得
+	D3DXVECTOR3 pos = GetPos();
+
+	// 前回の位置を保存
+	m_posOld = m_pos;
+
+	//-----------------
+	// プレイヤー移動
+	//-----------------
+	if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
+		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+	{
+		// なし
+	}
+	// 東方向
+	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W)) ||
+		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP)) == true)
+	{// 北東
+		m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2); // 三平方の定理のため√2を割る
+		m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+	}
+	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_S)) ||
+		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+	{// 南東
+		m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
+		m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+	}
+	else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
+	{// 東
+		m_pos.x += MAX_PLAYER_MOVE;
+	}
+	// 西方向
+	else if ((pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_W)) ||
+		(pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_UP)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP)) == true)
+	{// 北西
+		m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
+		m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+	}
+	else if ((pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
+		(pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+	{// 南西
+		m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
+		m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+	}
+	else if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
+	{// 西
+		m_pos.x -= MAX_PLAYER_MOVE;
+	}
+	else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+	{// 南
+		m_pos.z -= MAX_PLAYER_MOVE;
+	}
+	else if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+	{// 北
+		m_pos.z += MAX_PLAYER_MOVE;
+	}
+
+	// 重力
+	if (m_pos.y > 0.0f)
+	{
+		m_pos.y -= 0.98f;
+	}
+
+	// ジャンプ
+	if (pInputKeyboard->GetTrigger(DIK_SPACE) == true)
+	{
+		m_pos.y += 10.0f;
+	}
 }
 
 //----------------------------------------

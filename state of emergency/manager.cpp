@@ -130,7 +130,7 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	// ポーズのテクスチャの読み込み
 	CPause::Load();
 
-	SetMode(CScene::MODE_TITLE);
+	SetMode(CScene::MODE_GAME);
 
 	return S_OK;
 }

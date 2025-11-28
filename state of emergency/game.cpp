@@ -15,11 +15,12 @@
 #include"light.h"
 #include"object3D.h"
 #include"timer.h"
-#include"objectX.h"
+#include"player.h"
 #include"objectBillboard.h"
 #include"debugproc.h"
 #include"effect.h"
 #include"pause.h"
+#include"floorBox.h"
 
 // 静的メンバ変数宣言
 
@@ -57,17 +58,24 @@ HRESULT CGame::Init(void)
 	// ポーズのテクスチャの読み込み
 	CPause::Load();
 
-	// サウンドの取得
-	CSound* pSound = CManager::GetSound();
+
+	// プレイヤー
+	CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	// フロアボックス
+	CFloorBox::Create(D3DXVECTOR3(-200.0f, 0.0f, 100.0f));
+	CFloorBox::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	
 
 	// スコア
 	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
 
-	// テスト
-	//CObjectX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-
 	// タイマー
 	CTimer::Create(D3DXVECTOR3(50.0f, 675.0f, 0.0f), 30.0f, 90.0f);
+
+
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
 
 	// BGM
 	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
@@ -112,9 +120,6 @@ void CGame::Update(void)
 	CInputJoypad* pInputJoypad;
 	pInputJoypad = CManager::GetInputJoypad();
 
-	// サウンドの取得
-	//CSound* pSound = CManager::GetSound();
-
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
@@ -150,7 +155,7 @@ void CGame::Update(void)
 
 #endif
 
-#ifdef NDEBUG // Release時のみ
+#ifdef NDEBUG // Release時のみ(リリースの場合のリザルトの飛び方にバリエーションなどをつけるため)
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 	{// 決定キー(ENTERキー)が押された

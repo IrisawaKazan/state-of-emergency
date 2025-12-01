@@ -52,6 +52,10 @@ private:
 	D3DXVECTOR3 m_size;		  // 大きさ
 	D3DXVECTOR3 m_vtxMin;	  // モデルの最小値
 	D3DXVECTOR3 m_vtxMax;	  // モデルの最大値
+
+	bool m_bJump;             // ジャンプしているかどうか
+	int m_nJumpCnt;           // ジャンプカウンター
+	bool m_bJumpCnt;          // ジャンプカウンターの抑制
 };
 
 #endif

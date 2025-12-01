@@ -28,6 +28,7 @@ public:
 		TYPE_PAUSE,
 		TYPE_PLAYER,
 		TYPE_FLOORBOX,
+		TYPE_BALL,
 
 		TYPE_MAX
 	}TYPE;

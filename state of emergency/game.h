@@ -12,7 +12,7 @@
 #include"manager.h"
 
 // 前方宣言
-
+class CPlayer;
 
 // マクロ定義
 
@@ -29,10 +29,10 @@ public:
 	void Update(void);
 	void Draw(void);
 
-	static CPause* GetPause(void);
+	static CPlayer* GetPlayer(void) { return m_pPlayer; }
 
 private:
-
+	static CPlayer* m_pPlayer;
 };
 
 #endif

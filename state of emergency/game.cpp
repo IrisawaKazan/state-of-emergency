@@ -21,9 +21,10 @@
 #include"effect.h"
 #include"pause.h"
 #include"floorBox.h"
+#include"ball.h"
 
 // 静的メンバ変数宣言
-
+CPlayer* CGame::m_pPlayer = nullptr;
 
 //----------------------------------------
 // コンストラクタ
@@ -63,9 +64,12 @@ HRESULT CGame::Init(void)
 	CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// フロアボックス
-	CFloorBox::Create(D3DXVECTOR3(-200.0f, 0.0f, 100.0f));
-	CFloorBox::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	
+	CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
+	CFloorBox::Create(D3DXVECTOR3(0.0f, -50.0f, 0.0f));
+	CFloorBox::Create(D3DXVECTOR3(250.0f, 0.0f, 0.0f));
+
+	// ボール
+	CBall::Create(D3DXVECTOR3(0.0f, 0.0f, 250.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
@@ -123,6 +127,8 @@ void CGame::Update(void)
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
+
+
 #ifdef _DEBUG // Debug時のみ
 
 	// サウンドの取得
@@ -163,7 +169,6 @@ void CGame::Update(void)
 	}
 
 #endif
-
 }
 
 //----------------------------------------

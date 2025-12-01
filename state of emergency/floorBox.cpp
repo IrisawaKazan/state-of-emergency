@@ -8,6 +8,8 @@
 #include"floorBox.h"
 #include"manager.h"
 #include"renderer.h"
+#include"player.h"
+#include"game.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -193,7 +195,7 @@ void CFloorBox::Uninit(void)
 //----------------------------------------
 void CFloorBox::Update(void)
 {
-
+	
 }
 
 //----------------------------------------
@@ -309,4 +311,45 @@ D3DXVECTOR3 CFloorBox::GetRot(void)
 D3DXVECTOR3 CFloorBox::GetSize(void)
 {
 	return m_size;
+}
+
+//----------------------------------------
+// 当たり判定の処理
+//----------------------------------------
+void CFloorBox::Collision(void)
+{
+	CPlayer* pPlayer = CGame::GetPlayer();
+
+	// プレイヤーの位置の取得
+	D3DXVECTOR3 pos = pPlayer->GetPos();
+
+	// プレイヤーの前回の位置の取得
+	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
+
+	// プレイヤーのサイズの取得
+	D3DXVECTOR3 size = pPlayer->GetSize();
+
+	// 左右のめり込み判定
+	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
+		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+	{
+		// 左から右へ
+		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
+			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+		{
+			pos.x = pos.x / 2.0f + m_pos.x / 2.0f - size.x + m_pos.x / 2.0f + m_vtxMin.x / 2.0f - posOld.x / 2.0f;
+			pos.x = 0.0f;
+
+			return;
+		}
+		// 右から左へ
+		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
+			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+		{
+			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x;
+			pos.x = 0.0f;
+
+			return;
+		}
+	}
 }

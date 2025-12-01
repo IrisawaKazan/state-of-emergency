@@ -28,6 +28,10 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+
+	m_bJump = false;
+	m_nJumpCnt = NULL;
+	m_bJumpCnt = false;
 }
 
 //----------------------------------------
@@ -273,15 +277,39 @@ void CPlayer::Update(void)
 	}
 
 	// 重力
-	if (m_pos.y > 0.0f)
+	if (m_pos.y >= 0.0f)
 	{
-		m_pos.y -= 0.98f;
+		m_pos.y -= 7.5f;
 	}
-
-	// ジャンプ
-	if (pInputKeyboard->GetTrigger(DIK_SPACE) == true)
+	else
 	{
-		m_pos.y += 10.0f;
+		// ジャンプ抑制
+		m_bJump = false;
+	}
+	
+	// ジャンプ
+	if (pInputKeyboard->GetTrigger(DIK_SPACE) == true && m_bJump == false)
+	{
+		m_bJump = true;
+
+		m_bJumpCnt = true;
+	}
+	// ジャンプカウンターの起動
+	if (m_bJumpCnt == true)
+	{
+		m_nJumpCnt++;
+	}
+	// 10フレームジャンプ
+	if (m_nJumpCnt > 0 && m_nJumpCnt <= 5)
+	{
+		m_pos.y += 20.0f;
+	}
+	// 10フレーム過ぎたら
+	if (m_nJumpCnt > 10)
+	{
+		m_nJumpCnt = 0;
+
+		m_bJumpCnt = false;
 	}
 }
 

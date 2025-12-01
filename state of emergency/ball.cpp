@@ -208,6 +208,13 @@ void CBall::Update(void)
 
 	m_rot = D3DXVECTOR3(m_fRotation / 15.0f/* ‰ñ‚é‘¬“x */, 0.0f, 0.0f);
 
+	//if (m_pos.z <= -200.0f)
+	//{
+	//	m_pos.x += 2.0f;
+
+	//	m_pos.z += 2.0f;
+	//}
+
 	// ŠO‚Éo‚é‚ÆÁ‚·
 	if (m_pos.z > 300.0f || m_pos.z < -300.0f)
 	{

@@ -69,7 +69,7 @@ HRESULT CGame::Init(void)
 	CFloorBox::Create(D3DXVECTOR3(250.0f, 0.0f, 0.0f));
 
 	// ボール
-	CBall::Create(D3DXVECTOR3(0.0f, 0.0f, 275.0f));
+	CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
@@ -132,7 +132,7 @@ void CGame::Update(void)
 	if (m_nCnt >= 60 * 5)
 	{
 		// ボール
-		CBall::Create(D3DXVECTOR3(0.0f, 0.0f, 275.0f));
+		CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
 
 		m_nCnt = 0;
 	}

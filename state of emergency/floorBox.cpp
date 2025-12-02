@@ -327,6 +327,9 @@ void CFloorBox::Collision(void)
 	// プレイヤーの前回の位置の取得
 	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
 
+	// プレイヤーの移動量の取得
+	D3DXVECTOR3 move = pPlayer->GetMove();
+
 	// プレイヤーのサイズの取得
 	D3DXVECTOR3 size = pPlayer->GetSize();
 
@@ -339,7 +342,7 @@ void CFloorBox::Collision(void)
 			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
 		{
 			pos.x = pos.x / 2.0f + m_pos.x / 2.0f - size.x + m_pos.x / 2.0f + m_vtxMin.x / 2.0f - posOld.x / 2.0f;
-			pos.x = 0.0f;
+			move.x = 0.0f;
 
 			return;
 		}
@@ -348,7 +351,7 @@ void CFloorBox::Collision(void)
 			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
 		{
 			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x;
-			pos.x = 0.0f;
+			move.x = 0.0f;
 
 			return;
 		}

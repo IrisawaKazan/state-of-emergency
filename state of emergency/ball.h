@@ -10,9 +10,10 @@
 // インクルード
 #include"main.h"
 #include"object.h"
+#include"game.h"
 
 // マクロ定義
-
+#define UNINIT_POS_Z (BALL_POS_Z + 25.0f)
 
 // ボールクラス
 class CBall : public CObject

@@ -15,7 +15,7 @@
 class CPlayer;
 
 // マクロ定義
-
+#define BALL_POS_Z (275.0f)
 
 // ゲーム画面クラス
 class CGame : public CScene

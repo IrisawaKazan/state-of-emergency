@@ -12,7 +12,8 @@
 #include"object.h"
 
 // マクロ定義
-#define MAX_PLAYER_MOVE (1.0f)
+#define MAX_PLAYER_MOVE (1.0f) // プレイヤーの移動量
+#define MAX_PLAYER_JUMP (2.0f) // プレイヤーのキャンプ量
 
 // プレイヤークラス
 class CPlayer : public CObject
@@ -30,6 +31,7 @@ public:
 
 	void SetPosition(D3DXVECTOR3 pos);
 	void SetPositionOld(D3DXVECTOR3 posOld);
+	void SetMove(D3DXVECTOR3 move);
 	void SetRotation(D3DXVECTOR3 rot);
 	void SetSize(D3DXVECTOR3 size);
 
@@ -37,6 +39,7 @@ public:
 
 	D3DXVECTOR3 GetPos(void);
 	D3DXVECTOR3 GetPosOld(void);
+	D3DXVECTOR3 GetMove(void);
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
 

@@ -212,7 +212,7 @@ void CBall::Update(void)
 	m_rot.x = m_fRotation / 15.0f;
 
 	// ŠO‚Éo‚é‚ÆÁ‚·
-	if (m_pos.z > 300.0f || m_pos.z < -300.0f)
+	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z)
 	{
 		Uninit();
 

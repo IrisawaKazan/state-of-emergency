@@ -373,7 +373,7 @@ void CPlayer::Update(void)
 		// 10フレームジャンプ
 		if (m_nJumpCnt > 0 && m_nJumpCnt <= 5)
 		{
-			m_move.y += 2.0f;
+			m_move.y += MAX_PLAYER_JUMP;
 		}
 		// 10フレーム過ぎたら
 		if (m_nJumpCnt > 10)
@@ -468,6 +468,14 @@ void CPlayer::SetPositionOld(D3DXVECTOR3 posOld)
 }
 
 //----------------------------------------
+// 移動量の設定処理
+//----------------------------------------
+void CPlayer::SetMove(D3DXVECTOR3 move)
+{
+	m_move = move;
+}
+
+//----------------------------------------
 // 向きの設定処理
 //----------------------------------------
 void CPlayer::SetRotation(D3DXVECTOR3 rot)
@@ -497,6 +505,14 @@ D3DXVECTOR3 CPlayer::GetPos(void)
 D3DXVECTOR3 CPlayer::GetPosOld(void)
 {
 	return m_posOld;
+}
+
+//----------------------------------------
+// 移動量の取得処理
+//----------------------------------------
+D3DXVECTOR3 CPlayer::GetMove(void)
+{
+	return m_move;
 }
 
 //----------------------------------------

@@ -137,6 +137,11 @@ void CGame::Update(void)
 		m_nCnt = 0;
 	}
 
+	if (m_pPlayer->GetPos().x >= 450.0f)
+	{// 決定キー(ENTERキー)が押された
+		CManager::SetMode(MODE_RESULT);
+	}
+
 #ifdef _DEBUG // Debug時のみ
 
 	// サウンドの取得

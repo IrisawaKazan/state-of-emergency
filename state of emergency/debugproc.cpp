@@ -80,5 +80,5 @@ void CDebugProc::Draw(void)
 {
 	RECT rect = { 5 /* X座標の位置 */,5 /* Y座標の位置 */,SCREEN_WIDTH,SCREEN_HEIGHT };
 
-	m_pFont->DrawTextA(NULL, &m_aStr[0], -1, &rect, DT_LEFT, D3DCOLOR_RGBA(0, 255, 255, 255));
+	m_pFont->DrawTextA(NULL, &m_aStr[0], -1, &rect, DT_LEFT, D3DCOLOR_RGBA(0, 0, 0, 255));
 }

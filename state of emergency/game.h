@@ -33,6 +33,8 @@ public:
 
 private:
 	static CPlayer* m_pPlayer;
+
+	int m_nCnt; // テストカウンター
 };
 
 #endif

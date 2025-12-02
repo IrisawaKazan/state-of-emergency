@@ -38,6 +38,8 @@ public:
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
 
+	void Collision(void);
+
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
 	LPD3DXMESH m_pMesh;       // メッシュ(頂点座標)へのポインタ

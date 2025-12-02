@@ -9,6 +9,7 @@
 #include"manager.h"
 #include"renderer.h"
 #include"input.h"
+#include"debugproc.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -76,7 +77,7 @@ HRESULT CPlayer::Init(void)
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	// Xファイルの読み込み
-	D3DXLoadMeshFromX("data\\MODEL\\sphere.x",
+	D3DXLoadMeshFromX("data\\MODEL\\rot_tester.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -236,10 +237,14 @@ void CPlayer::Update(void)
 		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
 		{// 北
 			m_pos.z += MAX_PLAYER_MOVE;
+
+			m_rot.y = D3DX_PI;
 		}
 		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
 		{// 南
 			m_pos.z -= MAX_PLAYER_MOVE;
+
+			m_rot.y = 0.0f;
 		}
 	}
 	else if ((pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_S)) ||
@@ -249,10 +254,14 @@ void CPlayer::Update(void)
 		if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
 		{// 西
 			m_pos.x -= MAX_PLAYER_MOVE;
+
+			m_rot.y = D3DX_PI / 2.0f;
 		}
 		else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
 		{// 東
 			m_pos.x += MAX_PLAYER_MOVE;
+
+			m_rot.y = -D3DX_PI / 2.0f;
 		}
 	}
 	else if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
@@ -261,15 +270,21 @@ void CPlayer::Update(void)
 		{// 北西
 			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2); // 三平方の定理のため√2を割る
 			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+
+			m_rot.y = D3DX_PI / -0.75f;
 		}
 		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
 		{// 南西
 			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
 			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+
+			m_rot.y = D3DX_PI / 4.0f;
 		}
 		else
 		{// 西
 			m_pos.x -= MAX_PLAYER_MOVE;
+
+			m_rot.y = D3DX_PI / 2.0f;
 		}
 	}
 	else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
@@ -278,24 +293,34 @@ void CPlayer::Update(void)
 		{// 北東
 			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
 			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+
+			m_rot.y = D3DX_PI / 0.75f;
 		}
 		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
 		{// 南東
 			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
 			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+
+			m_rot.y = -D3DX_PI / 4.0f;
 		}
 		else
 		{// 東
 			m_pos.x += MAX_PLAYER_MOVE;
+
+			m_rot.y = -D3DX_PI / 2.0f;
 		}
 	}
 	else if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
 	{// 北方向
 		m_pos.z += MAX_PLAYER_MOVE;
+
+		m_rot.y = D3DX_PI;
 	}
 	else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
 	{// 南方向
 		m_pos.z -= MAX_PLAYER_MOVE;
+
+		m_rot.y = 0.0f;
 	}
 
 
@@ -385,6 +410,17 @@ void CPlayer::Draw(void)
 
 	// 保存していたマテリアルを元に戻す
 	pDevice->SetMaterial(&matDef);
+
+#ifdef _DEBUG // Debug時のみ
+
+	// プレイヤーのpos, rotをデバッグ表示
+	CDebugProc::Print("\nPlayerPos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
+	CDebugProc::Draw();
+
+	CDebugProc::Print("\n\nPlayerRos: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
+	CDebugProc::Draw();
+
+#endif
 }
 
 //----------------------------------------

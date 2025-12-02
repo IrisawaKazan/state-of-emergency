@@ -9,6 +9,8 @@
 #include"manager.h"
 #include"renderer.h"
 #include"input.h"
+#include"player.h"
+#include"game.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -206,14 +208,7 @@ void CBall::Update(void)
 	// ローテーション
 	m_fRotation -= 1.0f;
 
-	m_rot = D3DXVECTOR3(m_fRotation / 15.0f/* 回る速度 */, 0.0f, 0.0f);
-
-	//if (m_pos.z <= -200.0f)
-	//{
-	//	m_pos.x += 2.0f;
-
-	//	m_pos.z += 2.0f;
-	//}
+	m_rot.x = m_fRotation / 15.0f;
 
 	// 外に出ると消す
 	if (m_pos.z > 300.0f || m_pos.z < -300.0f)
@@ -337,4 +332,43 @@ D3DXVECTOR3 CBall::GetRot(void)
 D3DXVECTOR3 CBall::GetSize(void)
 {
 	return m_size;
+}
+
+//----------------------------------------
+// 当たり判定の処理
+//----------------------------------------
+void CBall::Collision(void)
+{
+	CPlayer* pPlayer = CGame::GetPlayer();
+
+	// プレイヤーの位置の取得
+	D3DXVECTOR3 pos = pPlayer->GetPos();
+
+	// プレイヤーの前回の位置の取得
+	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
+
+	// プレイヤーのサイズの取得
+	D3DXVECTOR3 size = pPlayer->GetSize();
+
+	// 左右のめり込み判定
+	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
+		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+	{
+		// 左から右へ
+		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
+			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+		{
+
+
+			return;
+		}
+		// 右から左へ
+		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
+			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+		{
+
+
+			return;
+		}
+	}
 }

@@ -226,55 +226,78 @@ void CPlayer::Update(void)
 	if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
 		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
 		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
-	{
+	{// ‘S•ûŒü‰Ÿ‚µ‚½ê‡
 		// ‚È‚µ
 	}
-	// “Œ•ûŒü
-	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W)) ||
-		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP)) == true)
-	{// –k“Œ
-		m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2); // ŽO•½•û‚Ì’è—‚Ì‚½‚ßã2‚ðŠ„‚é
-		m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_A)) ||
+		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_LEFT)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT)) == true)
+	{// “Œ¼‰Ÿ‚µ‚½ê‡
+		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+		{// –k
+			m_pos.z += MAX_PLAYER_MOVE;
+		}
+		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+		{// “ì
+			m_pos.z -= MAX_PLAYER_MOVE;
+		}
 	}
-	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_S)) ||
-		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
-	{// “ì“Œ
-		m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
-		m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
-	}
-	else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
-	{// “Œ
-		m_pos.x += MAX_PLAYER_MOVE;
-	}
-	// ¼•ûŒü
-	else if ((pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_W)) ||
-		(pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_UP)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP)) == true)
-	{// –k¼
-		m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
-		m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
-	}
-	else if ((pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
-		(pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
-	{// “ì¼
-		m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
-		m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+	else if ((pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_S)) ||
+		(pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+	{// “ì–k‰Ÿ‚µ‚½ê‡
+		if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
+		{// ¼
+			m_pos.x -= MAX_PLAYER_MOVE;
+		}
+		else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
+		{// “Œ
+			m_pos.x += MAX_PLAYER_MOVE;
+		}
 	}
 	else if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
-	{// ¼
-		m_pos.x -= MAX_PLAYER_MOVE;
+	{// ¼•ûŒü
+		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+		{// –k¼
+			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2); // ŽO•½•û‚Ì’è—‚Ì‚½‚ßã2‚ðŠ„‚é
+			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+		}
+		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+		{// “ì¼
+			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
+			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+		}
+		else
+		{// ¼
+			m_pos.x -= MAX_PLAYER_MOVE;
+		}
 	}
-	else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
-	{// “ì
-		m_pos.z -= MAX_PLAYER_MOVE;
+	else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
+	{// “Œ•ûŒü
+		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+		{// –k“Œ
+			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
+			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+		}
+		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+		{// “ì“Œ
+			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
+			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+		}
+		else
+		{// “Œ
+			m_pos.x += MAX_PLAYER_MOVE;
+		}
 	}
 	else if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
-	{// –k
+	{// –k•ûŒü
 		m_pos.z += MAX_PLAYER_MOVE;
 	}
+	else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+	{// “ì•ûŒü
+		m_pos.z -= MAX_PLAYER_MOVE;
+	}
+
 
 	// d—Í
 	if (m_pos.y >= 0.0f)
@@ -286,7 +309,7 @@ void CPlayer::Update(void)
 		// ƒWƒƒƒ“ƒv—}§
 		m_bJump = false;
 	}
-	
+
 	// ƒWƒƒƒ“ƒv
 	if (pInputKeyboard->GetTrigger(DIK_SPACE) == true && m_bJump == false)
 	{

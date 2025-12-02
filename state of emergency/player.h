@@ -13,7 +13,7 @@
 
 // マクロ定義
 #define MAX_PLAYER_MOVE (1.0f) // プレイヤーの移動量
-#define MAX_PLAYER_JUMP (2.0f) // プレイヤーのキャンプ量
+#define MAX_PLAYER_JUMP (2.0f) // プレイヤーのジャンプ量
 
 // プレイヤークラス
 class CPlayer : public CObject

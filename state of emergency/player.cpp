@@ -359,7 +359,7 @@ void CPlayer::Update(void)
 		}
 
 		// ƒWƒƒƒ“ƒv
-		if (pInputKeyboard->GetTrigger(DIK_SPACE) == true && m_bJump == false)
+		if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_A) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON)) && m_bJump == false)
 		{
 			m_bJump = true;
 

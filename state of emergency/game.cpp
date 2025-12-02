@@ -137,6 +137,7 @@ void CGame::Update(void)
 		m_nCnt = 0;
 	}
 
+	// ゴール
 	if (m_pPlayer->GetPos().x >= 450.0f)
 	{// 決定キー(ENTERキー)が押された
 		CManager::SetMode(MODE_RESULT);

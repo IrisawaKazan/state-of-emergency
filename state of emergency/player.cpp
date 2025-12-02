@@ -22,6 +22,7 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_dwNumMat = NULL;
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_posOld = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_move = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_mtxWorld = D3DXMATRIX();
 
@@ -33,6 +34,8 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_bJump = false;
 	m_nJumpCnt = NULL;
 	m_bJumpCnt = false;
+
+	m_bUse = true;
 }
 
 //----------------------------------------
@@ -200,164 +203,185 @@ void CPlayer::Uninit(void)
 //----------------------------------------
 void CPlayer::Update(void)
 {
-	// キーボードの取得
-	CInputKeyboard* pInputKeyboard;
-	pInputKeyboard = CManager::GetInputKeyboard();
+	//m_bUse = GetEnable();
 
-	// マウスの取得
-	CInputMouse* pInputMouse;
-	pInputMouse = CManager::GetInputMouse();
+	if (m_bUse == true)
+	{
+		// キーボードの取得
+		CInputKeyboard* pInputKeyboard;
+		pInputKeyboard = CManager::GetInputKeyboard();
 
-	// パッドの取得
-	CInputJoypad* pInputJoypad;
-	pInputJoypad = CManager::GetInputJoypad();
+		// マウスの取得
+		CInputMouse* pInputMouse;
+		pInputMouse = CManager::GetInputMouse();
 
-	//// サウンドの取得
-	//CSound* pSound = CManager::GetSound();
+		// パッドの取得
+		CInputJoypad* pInputJoypad;
+		pInputJoypad = CManager::GetInputJoypad();
 
-	// 位置の取得
-	D3DXVECTOR3 pos = GetPos();
+		//// サウンドの取得
+		//CSound* pSound = CManager::GetSound();
 
-	// 前回の位置を保存
-	m_posOld = m_pos;
+		// 位置の取得
+		D3DXVECTOR3 pos = GetPos();
 
-	//-----------------
-	// プレイヤー移動
-	//-----------------
-	if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
-		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
-	{// 全方向押した場合
-		// なし
-	}
-	else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_A)) ||
-		(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_LEFT)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT)) == true)
-	{// 東西押した場合
-		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
-		{// 北
-			m_pos.z += MAX_PLAYER_MOVE;
+		// 前回の位置を保存
+		m_posOld = m_pos;
+
+		// 位置を更新
+		m_pos.x += m_move.x; // 左右移動
+		m_pos.y += m_move.y; // 落下
+		m_pos.z += m_move.z; // 奥行移動
+
+		// 移動量を更新(減衰させる)
+		m_move.x += (0.0f - m_move.x) * 0.25f;
+		m_move.z += (0.0f - m_move.z) * 0.25f;
+
+		// 最終的には消す(床)
+		if (m_pos.y <= 0.0f)
+		{
+			m_pos.y = 0.0f;
+			m_move.y = 0.0f;
+			m_bJump = false;
+		}
+
+		//-----------------
+		// プレイヤー移動
+		//-----------------
+		if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_A) && pInputKeyboard->GetPress(DIK_S)) ||
+			(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_LEFT) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+			(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+		{// 全方向押した場合
+			// なし
+		}
+		else if ((pInputKeyboard->GetPress(DIK_D) && pInputKeyboard->GetPress(DIK_A)) ||
+			(pInputKeyboard->GetPress(DIK_RIGHT) && pInputKeyboard->GetPress(DIK_LEFT)) ||
+			(pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT)) == true)
+		{// 東西押した場合
+			if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+			{// 北
+				m_move.z += MAX_PLAYER_MOVE;
+
+				m_rot.y = D3DX_PI;
+			}
+			else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+			{// 南
+				m_move.z -= MAX_PLAYER_MOVE;
+
+				m_rot.y = 0.0f;
+			}
+		}
+		else if ((pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_S)) ||
+			(pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_DOWN)) ||
+			(pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
+		{// 南北押した場合
+			if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
+			{// 西
+				m_move.x -= MAX_PLAYER_MOVE;
+
+				m_rot.y = D3DX_PI / 2.0f;
+			}
+			else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
+			{// 東
+				m_move.x += MAX_PLAYER_MOVE;
+
+				m_rot.y = -D3DX_PI / 2.0f;
+			}
+		}
+		else if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
+		{// 西方向
+			if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+			{// 北西
+				m_move.x -= MAX_PLAYER_MOVE / (float)sqrt(2); // 三平方の定理のため√2を割る
+				m_move.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+
+				m_rot.y = D3DX_PI / -0.75f;
+			}
+			else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+			{// 南西
+				m_move.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
+				m_move.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+
+				m_rot.y = D3DX_PI / 4.0f;
+			}
+			else
+			{// 西
+				m_move.x -= MAX_PLAYER_MOVE;
+
+				m_rot.y = D3DX_PI / 2.0f;
+			}
+		}
+		else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
+		{// 東方向
+			if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+			{// 北東
+				m_move.x += MAX_PLAYER_MOVE / (float)sqrt(2);
+				m_move.z += MAX_PLAYER_MOVE / (float)sqrt(2);
+
+				m_rot.y = D3DX_PI / 0.75f;
+			}
+			else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
+			{// 南東
+				m_move.x += MAX_PLAYER_MOVE / (float)sqrt(2);
+				m_move.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
+
+				m_rot.y = -D3DX_PI / 4.0f;
+			}
+			else
+			{// 東
+				m_move.x += MAX_PLAYER_MOVE;
+
+				m_rot.y = -D3DX_PI / 2.0f;
+			}
+		}
+		else if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
+		{// 北方向
+			m_move.z += MAX_PLAYER_MOVE;
 
 			m_rot.y = D3DX_PI;
 		}
 		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
-		{// 南
-			m_pos.z -= MAX_PLAYER_MOVE;
+		{// 南方向
+			m_move.z -= MAX_PLAYER_MOVE;
 
 			m_rot.y = 0.0f;
 		}
-	}
-	else if ((pInputKeyboard->GetPress(DIK_W) && pInputKeyboard->GetPress(DIK_S)) ||
-		(pInputKeyboard->GetPress(DIK_UP) && pInputKeyboard->GetPress(DIK_DOWN)) ||
-		(pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) && pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN)) == true)
-	{// 南北押した場合
-		if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
-		{// 西
-			m_pos.x -= MAX_PLAYER_MOVE;
 
-			m_rot.y = D3DX_PI / 2.0f;
-		}
-		else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
-		{// 東
-			m_pos.x += MAX_PLAYER_MOVE;
-
-			m_rot.y = -D3DX_PI / 2.0f;
-		}
-	}
-	else if (pInputKeyboard->GetPress(DIK_A) || pInputKeyboard->GetPress(DIK_LEFT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_LEFT) == true)
-	{// 西方向
-		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
-		{// 北西
-			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2); // 三平方の定理のため√2を割る
-			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
-
-			m_rot.y = D3DX_PI / -0.75f;
-		}
-		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
-		{// 南西
-			m_pos.x -= MAX_PLAYER_MOVE / (float)sqrt(2);
-			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
-
-			m_rot.y = D3DX_PI / 4.0f;
+		// 重力
+		if (m_pos.y >= 0.0f)
+		{
+			m_move.y -= 0.98f;
 		}
 		else
-		{// 西
-			m_pos.x -= MAX_PLAYER_MOVE;
-
-			m_rot.y = D3DX_PI / 2.0f;
+		{
+			// ジャンプ抑制
+			m_bJump = false;
 		}
-	}
-	else if (pInputKeyboard->GetPress(DIK_D) || pInputKeyboard->GetPress(DIK_RIGHT) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_RIGHT) == true)
-	{// 東方向
-		if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
-		{// 北東
-			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
-			m_pos.z += MAX_PLAYER_MOVE / (float)sqrt(2);
 
-			m_rot.y = D3DX_PI / 0.75f;
+		// ジャンプ
+		if (pInputKeyboard->GetTrigger(DIK_SPACE) == true && m_bJump == false)
+		{
+			m_bJump = true;
+
+			m_bJumpCnt = true;
 		}
-		else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
-		{// 南東
-			m_pos.x += MAX_PLAYER_MOVE / (float)sqrt(2);
-			m_pos.z -= MAX_PLAYER_MOVE / (float)sqrt(2);
-
-			m_rot.y = -D3DX_PI / 4.0f;
+		// ジャンプカウンターの起動
+		if (m_bJumpCnt == true)
+		{
+			m_nJumpCnt++;
 		}
-		else
-		{// 東
-			m_pos.x += MAX_PLAYER_MOVE;
-
-			m_rot.y = -D3DX_PI / 2.0f;
+		// 10フレームジャンプ
+		if (m_nJumpCnt > 0 && m_nJumpCnt <= 5)
+		{
+			m_move.y += 2.0f;
 		}
-	}
-	else if (pInputKeyboard->GetPress(DIK_W) || pInputKeyboard->GetPress(DIK_UP) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_UP) == true)
-	{// 北方向
-		m_pos.z += MAX_PLAYER_MOVE;
+		// 10フレーム過ぎたら
+		if (m_nJumpCnt > 10)
+		{
+			m_nJumpCnt = 0;
 
-		m_rot.y = D3DX_PI;
-	}
-	else if (pInputKeyboard->GetPress(DIK_S) || pInputKeyboard->GetPress(DIK_DOWN) || pInputJoypad->GetPress(pInputJoypad->JOYKEY_DOWN) == true)
-	{// 南方向
-		m_pos.z -= MAX_PLAYER_MOVE;
-
-		m_rot.y = 0.0f;
-	}
-
-
-	// 重力
-	if (m_pos.y >= 0.0f)
-	{
-		m_pos.y -= 7.5f;
-	}
-	else
-	{
-		// ジャンプ抑制
-		m_bJump = false;
-	}
-
-	// ジャンプ
-	if (pInputKeyboard->GetTrigger(DIK_SPACE) == true && m_bJump == false)
-	{
-		m_bJump = true;
-
-		m_bJumpCnt = true;
-	}
-	// ジャンプカウンターの起動
-	if (m_bJumpCnt == true)
-	{
-		m_nJumpCnt++;
-	}
-	// 10フレームジャンプ
-	if (m_nJumpCnt > 0 && m_nJumpCnt <= 5)
-	{
-		m_pos.y += 20.0f;
-	}
-	// 10フレーム過ぎたら
-	if (m_nJumpCnt > 10)
-	{
-		m_nJumpCnt = 0;
-
-		m_bJumpCnt = false;
+			m_bJumpCnt = false;
+		}
 	}
 }
 
@@ -366,61 +390,65 @@ void CPlayer::Update(void)
 //----------------------------------------
 void CPlayer::Draw(void)
 {
-	// デバイスの取得
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
-
-	// 計算用のマトリックス
-	D3DXMATRIX mtxRot, mtxTrans;
-
-	D3DMATERIAL9 matDef; // 現在のマテリアル保存用
-
-	D3DXMATERIAL* pMat; // マテリアルデータへのポインタ
-
-	// ワールドマトリックスの初期化
-	D3DXMatrixIdentity(&m_mtxWorld);
-
-	// 向きを反映
-	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
-
-	// 位置を反映
-	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
-
-	// ワールドマトリックスの設定
-	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
-
-	// 現在のマテリアルを取得
-	pDevice->GetMaterial(&matDef);
-
-	// マテリアルのデータへのポインタを取得
-	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
-
-	for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+	if (m_bUse == true)
 	{
-		// マテリアルの設定
-		pDevice->SetMaterial(&pMat[nCntMat].MatD3D);
+		// デバイスの取得
+		LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-		// テクスチャの設定
-		pDevice->SetTexture(0, m_pTexture); // 今はNULL
+		// 計算用のマトリックス
+		D3DXMATRIX mtxRot, mtxTrans;
 
-		// モデル(パーツ)の描画
-		m_pMesh->DrawSubset(nCntMat);
-	}
+		D3DMATERIAL9 matDef; // 現在のマテリアル保存用
 
-	// 保存していたマテリアルを元に戻す
-	pDevice->SetMaterial(&matDef);
+		D3DXMATERIAL* pMat; // マテリアルデータへのポインタ
+
+		// ワールドマトリックスの初期化
+		D3DXMatrixIdentity(&m_mtxWorld);
+
+		// 向きを反映
+		D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+		// 位置を反映
+		D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+		// ワールドマトリックスの設定
+		pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+		// 現在のマテリアルを取得
+		pDevice->GetMaterial(&matDef);
+
+		// マテリアルのデータへのポインタを取得
+		pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+		for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+		{
+			// マテリアルの設定
+			pDevice->SetMaterial(&pMat[nCntMat].MatD3D);
+
+			// テクスチャの設定
+			pDevice->SetTexture(0, m_pTexture); // 今はNULL
+
+			// モデル(パーツ)の描画
+			m_pMesh->DrawSubset(nCntMat);
+		}
+
+		// 保存していたマテリアルを元に戻す
+		pDevice->SetMaterial(&matDef);
 
 #ifdef _DEBUG // Debug時のみ
 
-	// プレイヤーのpos, rotをデバッグ表示
-	CDebugProc::Print("\nPlayerPos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
-	CDebugProc::Draw();
+		// プレイヤーのpos, rotをデバッグ表示
+		CDebugProc::Print("\nPlayerPos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
+		CDebugProc::Draw();
 
-	CDebugProc::Print("\n\nPlayerRos: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
-	CDebugProc::Draw();
+		CDebugProc::Print("\n\nPlayerRos: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
+		CDebugProc::Draw();
 
 #endif
+
+	}
 }
 
 //----------------------------------------

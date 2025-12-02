@@ -169,9 +169,10 @@ HRESULT CBall::Init(void)
 //----------------------------------------
 void CBall::Uninit(void)
 {
-	// テクスチャの破棄
+	// テクスチャへのポインタの破棄
 	if (m_pTexture != nullptr)
 	{
+		m_pTexture->Release();
 		m_pTexture = nullptr;
 	}
 
@@ -217,6 +218,9 @@ void CBall::Update(void)
 
 		return;
 	}
+
+	//// 当たり判定
+	//Collision();
 }
 
 //----------------------------------------
@@ -341,34 +345,37 @@ void CBall::Collision(void)
 {
 	CPlayer* pPlayer = CGame::GetPlayer();
 
-	// プレイヤーの位置の取得
-	D3DXVECTOR3 pos = pPlayer->GetPos();
-
-	// プレイヤーの前回の位置の取得
-	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
-
-	// プレイヤーのサイズの取得
-	D3DXVECTOR3 size = pPlayer->GetSize();
-
-	// 左右のめり込み判定
-	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
-		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+	if (pPlayer->GetEnable() == true)
 	{
-		// 左から右へ
-		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
-			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+		// プレイヤーの位置の取得
+		D3DXVECTOR3 pos = pPlayer->GetPos();
+
+		// プレイヤーの前回の位置の取得
+		D3DXVECTOR3 posOld = pPlayer->GetPosOld();
+
+		// プレイヤーのサイズの取得
+		D3DXVECTOR3 size = pPlayer->GetSize();
+
+		// 左右のめり込み判定
+		if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
+			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
 		{
+			// 左から右へ
+			if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
+				pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+			{
 
 
-			return;
-		}
-		// 右から左へ
-		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
-			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
-		{
+				return;
+			}
+			// 右から左へ
+			if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
+				pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+			{
 
 
-			return;
+				return;
+			}
 		}
 	}
 }

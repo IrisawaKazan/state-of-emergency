@@ -12,7 +12,7 @@
 #include"object.h"
 
 // マクロ定義
-#define MAX_PLAYER_MOVE (5.0f)
+#define MAX_PLAYER_MOVE (1.0f)
 
 // プレイヤークラス
 class CPlayer : public CObject
@@ -33,10 +33,14 @@ public:
 	void SetRotation(D3DXVECTOR3 rot);
 	void SetSize(D3DXVECTOR3 size);
 
+	void SetEnable(bool enable) { m_bUse = enable; }
+
 	D3DXVECTOR3 GetPos(void);
 	D3DXVECTOR3 GetPosOld(void);
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
+
+	bool GetEnable(void) { return m_bUse; }
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
@@ -45,6 +49,7 @@ private:
 	DWORD m_dwNumMat;         // マテリアルの数
 	D3DXVECTOR3 m_pos;        // 位置
 	D3DXVECTOR3 m_posOld;     // 前回の位置
+	D3DXVECTOR3 m_move;       // 移動量
 	D3DXVECTOR3 m_rot;        // 向き
 	D3DXMATRIX m_mtxWorld;    // ワールドマトリックス
 
@@ -56,6 +61,8 @@ private:
 	bool m_bJump;             // ジャンプしているかどうか
 	int m_nJumpCnt;           // ジャンプカウンター
 	bool m_bJumpCnt;          // ジャンプカウンターの抑制
+
+	bool m_bUse;			  // 使用しているか
 };
 
 #endif

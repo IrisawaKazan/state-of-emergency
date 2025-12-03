@@ -36,6 +36,8 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_bJumpCnt = false;
 
 	m_bUse = true;
+
+	m_fDash = 0.0f;
 }
 
 //----------------------------------------
@@ -381,6 +383,17 @@ void CPlayer::Update(void)
 			m_nJumpCnt = 0;
 
 			m_bJumpCnt = false;
+		}
+
+		// ƒ_ƒbƒVƒ…
+		if (pInputKeyboard->GetPress(DIK_B) || pInputKeyboard->GetPress(DIK_LSHIFT) ||
+			pInputJoypad->GetPress(pInputJoypad->JOYKEY_B) || pInputMouse->GetPress(pInputMouse->MOUSE_RIGHTBUTTON) == true)
+		{
+			m_fDash = MAX_DASH;
+		}
+		else
+		{
+			m_fDash = 1.0f;
 		}
 	}
 }

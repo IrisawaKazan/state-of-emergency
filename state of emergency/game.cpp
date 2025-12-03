@@ -61,7 +61,7 @@ HRESULT CGame::Init(void)
 
 
 	// プレイヤー
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(0.0f, 10.0f, 0.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-300.0f, 10.0f, 150.0f));
 
 	// フロアボックス
 	CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
@@ -166,6 +166,15 @@ void CGame::Update(void)
 
 		// SE
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+	}
+
+	if (m_pPlayer->GetEnable() == false)
+	{
+		// デバッグ用プレイヤー復活
+		if (pInputKeyboard->GetTrigger(DIK_NUMPADPLUS) == true)
+		{// 10キーの+
+			m_pPlayer = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		}
 	}
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)

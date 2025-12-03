@@ -48,16 +48,23 @@ CBall* CBall::Create(D3DXVECTOR3 pos)
 {
 	CBall* pBall;
 
-	// 生成
-	pBall = new CBall;
+	int nNumAll = CObject::GetNumAll();
 
-	// 初期化処理
-	pBall->Init();
+	if (nNumAll <= MAX_OBJ)
+	{
+		// 生成
+		pBall = new CBall;
 
-	// 位置の設定
-	pBall->SetPosition(pos);
+		// 初期化処理
+		pBall->Init();
 
-	return pBall;
+		// 位置の設定
+		pBall->SetPosition(pos);
+
+		return pBall;
+	}
+
+	return nullptr;
 }
 
 //----------------------------------------
@@ -219,8 +226,8 @@ void CBall::Update(void)
 		return;
 	}
 
-	//// 当たり判定
-	//Collision();
+	// 当たり判定
+	Collision();
 }
 
 //----------------------------------------
@@ -345,37 +352,59 @@ void CBall::Collision(void)
 {
 	CPlayer* pPlayer = CGame::GetPlayer();
 
-	if (pPlayer->GetEnable() == true)
+	// プレイヤーの位置の取得
+	D3DXVECTOR3 pos = pPlayer->GetPos();
+
+	// プレイヤーの前回の位置の取得
+	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
+
+	// プレイヤーの移動量の取得
+	D3DXVECTOR3 move = pPlayer->GetMove();
+
+	// プレイヤーのサイズの取得
+	D3DXVECTOR3 size = pPlayer->GetSize();
+
+	// 左右のめり込み判定
+	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
+		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
 	{
-		// プレイヤーの位置の取得
-		D3DXVECTOR3 pos = pPlayer->GetPos();
-
-		// プレイヤーの前回の位置の取得
-		D3DXVECTOR3 posOld = pPlayer->GetPosOld();
-
-		// プレイヤーのサイズの取得
-		D3DXVECTOR3 size = pPlayer->GetSize();
-
-		// 左右のめり込み判定
-		if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
-			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+		// 左から右へ
+		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
+			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
 		{
-			// 左から右へ
-			if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
-				pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
-			{
+			pPlayer->SetEnable(false);
 
+			return;
+		}
+		// 右から左へ
+		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
+			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+		{
+			pPlayer->SetEnable(false);
 
-				return;
-			}
-			// 右から左へ
-			if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
-				pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
-			{
+			return;
+		}
+	}
 
+	// 奥行のめり込み判定
+	if (pos.x + size.x / 2.0f > m_pos.x + m_vtxMax.x &&
+		pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x * 2.0f)
+	{
+		// 手前から奥へ
+		if (posOld.z + size.z / 2.0f > m_pos.z + m_vtxMin.z &&
+			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z)
+		{
+			pPlayer->SetEnable(false);
 
-				return;
-			}
+			return;
+		}
+		// 奥から手前へ
+		if (posOld.z - size.z / 2.0f < m_pos.z - m_vtxMax.z &&
+			pos.z - size.z / 2.0f > m_pos.z + m_vtxMax.z)
+		{
+			pPlayer->SetEnable(false);
+
+			return;
 		}
 	}
 }

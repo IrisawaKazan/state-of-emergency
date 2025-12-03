@@ -41,3 +41,4 @@
 *.dwo
 /state of emergency/Debug
 /state of emergency/Release
+/state of emergency/.vs

@@ -32,6 +32,7 @@ CPlayer* CGame::m_pPlayer = nullptr;
 CGame::CGame() : CScene(CScene::MODE_GAME)
 {
 	m_nCnt = NULL;
+	//m_nSpawn = NULL;
 }
 
 //----------------------------------------

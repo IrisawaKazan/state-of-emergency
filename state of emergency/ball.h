@@ -43,19 +43,21 @@ public:
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
-	LPD3DXMESH m_pMesh;       // メッシュ(頂点座標)へのポインタ
-	LPD3DXBUFFER m_pBuffMat;  // マテリアルへのポインタ
-	DWORD m_dwNumMat;         // マテリアルの数
-	D3DXVECTOR3 m_pos;        // 位置
-	D3DXVECTOR3 m_posOld;     // 前回の位置
-	D3DXVECTOR3 m_rot;        // 向き
-	D3DXMATRIX m_mtxWorld;    // ワールドマトリックス
+	LPD3DXMESH m_pMesh;			// メッシュ(頂点座標)へのポインタ
+	LPD3DXBUFFER m_pBuffMat;	// マテリアルへのポインタ
+	DWORD m_dwNumMat;			// マテリアルの数
+	D3DXVECTOR3 m_pos;			// 位置
+	D3DXVECTOR3 m_posOld;		// 前回の位置
+	D3DXVECTOR3 m_rot;			// 向き
+	D3DXMATRIX m_mtxWorld;		// ワールドマトリックス
 
-	D3DXVECTOR3 m_size;		  // 大きさ
-	D3DXVECTOR3 m_vtxMin;	  // モデルの最小値
-	D3DXVECTOR3 m_vtxMax;	  // モデルの最大値
+	D3DXVECTOR3 m_size;			// 大きさ
+	D3DXVECTOR3 m_vtxMin;		// モデルの最小値
+	D3DXVECTOR3 m_vtxMax;		// モデルの最大値
 
-	float m_fRotation;        // ローテーション
+	float m_fRotation;			// ローテーション
+
+	//float m_fSlow;				// スローデバフ
 };
 
 #endif

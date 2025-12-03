@@ -34,7 +34,8 @@ public:
 private:
 	static CPlayer* m_pPlayer;
 
-	int m_nCnt; // テストカウンター
+	int m_nCnt;		// テストカウンター
+	//int m_nSpawn;	// 湧くスピード
 };
 
 #endif

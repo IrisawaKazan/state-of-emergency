@@ -31,6 +31,8 @@ CBall::CBall(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_fRotation = 0.0f;
+
+	//m_fSlow = 0.0f;
 }
 
 //----------------------------------------
@@ -80,6 +82,7 @@ HRESULT CBall::Init(void)
 
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	//m_fSlow = 1.0f;
 
 	// Xファイルの読み込み
 	D3DXLoadMeshFromX("data\\MODEL\\ball.x",
@@ -206,15 +209,27 @@ void CBall::Uninit(void)
 //----------------------------------------
 void CBall::Update(void)
 {
+	// キーボードの取得
+	CInputKeyboard* pInputKeyboard;
+	pInputKeyboard = CManager::GetInputKeyboard();
+
+	// マウスの取得
+	CInputMouse* pInputMouse;
+	pInputMouse = CManager::GetInputMouse();
+
+	// パッドの取得
+	CInputJoypad* pInputJoypad;
+	pInputJoypad = CManager::GetInputJoypad();
+
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
 	//float fPosZ = (float)(rand() % 5);
 
-	m_pos.z -= 2.0f;
+	m_pos.z -= 2.0f/* / m_fSlow*/;
 
 	// ローテーション
-	m_fRotation -= 1.0f;
+	m_fRotation -= 1.0f/* / m_fSlow*/;
 
 	m_rot.x = m_fRotation / 15.0f;
 
@@ -225,6 +240,15 @@ void CBall::Update(void)
 
 		return;
 	}
+
+	//if (pInputKeyboard->GetPress(DIK_E) == true)
+	//{
+	//	m_fSlow = 2.0f;
+	//}
+	//else
+	//{
+	//	m_fSlow = 1.0f;
+	//}
 
 	// 当たり判定
 	Collision();

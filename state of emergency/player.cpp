@@ -453,10 +453,10 @@ void CPlayer::Draw(void)
 #ifdef _DEBUG // Debug時のみ
 
 		// プレイヤーのpos, rotをデバッグ表示
-		CDebugProc::Print("\nPlayerPos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
+		CDebugProc::Print("\nPlayer Pos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\nPlayerRos: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
+		CDebugProc::Print("\n\nPlayer Ros: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
 		CDebugProc::Draw();
 
 #endif

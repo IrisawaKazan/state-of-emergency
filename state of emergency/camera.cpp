@@ -9,6 +9,7 @@
 #include"manager.h"
 #include"renderer.h"
 #include"input.h"
+#include"debugproc.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -37,7 +38,7 @@ CCamera::~CCamera()
 //----------------------------------------
 HRESULT CCamera::Init(void)
 {
-	// 視点,注視点,上方向を設定する
+	// 視点, 注視点, 上方向を設定する
 	m_posV = D3DXVECTOR3(0.0f, 500.0f, -300.0f);
 	m_posR = D3DXVECTOR3(0.0f, -120.0f, 0.0f);
 	m_vecU = D3DXVECTOR3(0.0f, 1.0f, 0.0f);

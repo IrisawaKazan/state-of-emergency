@@ -77,11 +77,15 @@ HRESULT CGame::Init(void)
 	CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
 
 	// スコア
-	CScore::Create(D3DXVECTOR3(1100.0f, 50.0f, 0.0f), 30.0f, 90.0f);
+	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
+
+
+#ifdef _DEBUG // Debug時のみ
 
 	// タイマー
 	CTimer::Create(D3DXVECTOR3(50.0f, 675.0f, 0.0f), 30.0f, 90.0f);
 
+#endif
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
@@ -192,10 +196,7 @@ void CGame::Update(void)
 
 #ifdef NDEBUG // Release時のみ(リリースの場合のリザルトの飛び方にバリエーションなどをつけるため)
 
-	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
-	{// 決定キー(ENTERキー)が押された
-		CManager::SetMode(MODE_RESULT);
-	}
+
 
 #endif
 }

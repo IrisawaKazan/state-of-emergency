@@ -30,6 +30,7 @@ public:
 		TYPE_FLOORBOX,
 		TYPE_BALL,
 		TYPE_DOOR,
+		TYPE_BOTTLE,
 
 		TYPE_MAX
 	}TYPE;

@@ -397,11 +397,8 @@ void CPlayer::Update(void)
 		}
 
 		// ローテーション
-		{
-			m_fRotation -= 1.0f;
-
-			m_rot.z = m_fRotation / 50.0f;
-		}
+		m_fRotation -= 1.0f;
+		m_rot.z = m_fRotation / 50.0f;
 	}
 }
 

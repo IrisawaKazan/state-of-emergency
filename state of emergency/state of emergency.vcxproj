@@ -170,6 +170,7 @@
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="title.cpp" />
+    <ClCompile Include="titleOBJ.cpp" />
     <ClCompile Include="tutorial.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +200,7 @@
     <ClInclude Include="sound.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="title.h" />
+    <ClInclude Include="titleOBJ.h" />
     <ClInclude Include="tutorial.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

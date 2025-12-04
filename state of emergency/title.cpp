@@ -21,6 +21,7 @@
 #include"effect.h"
 #include"pause.h"
 #include"game.h"
+#include"titleOBJ.h"
 
 // 静的メンバ変数宣言
 
@@ -46,6 +47,9 @@ CTitle::~CTitle()
 //----------------------------------------
 HRESULT CTitle::Init(void)
 {
+	// タイトルオブジェクトの生成
+	CTitleObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 

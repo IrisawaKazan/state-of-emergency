@@ -31,6 +31,7 @@ public:
 		TYPE_BALL,
 		TYPE_DOOR,
 		TYPE_BOTTLE,
+		TYPE_TITLE_OBJ,
 
 		TYPE_MAX
 	}TYPE;

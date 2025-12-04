@@ -23,6 +23,7 @@
 #include"effect.h"
 #include"pause.h"
 #include"game.h"
+#include"resultOBJ.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -45,6 +46,9 @@ CResult::~CResult()
 //----------------------------------------
 HRESULT CResult::Init(void)
 {
+	// リザルトオブジェクトの生成
+	CResultObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 

@@ -22,6 +22,7 @@
 #include"effect.h"
 #include"pause.h"
 #include"game.h"
+#include"tutorialOBJ.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -44,6 +45,9 @@ CTutorial::~CTutorial()
 //----------------------------------------
 HRESULT CTutorial::Init(void)
 {
+	// チュートリアルオブジェクトの生成
+	CTutorialObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 

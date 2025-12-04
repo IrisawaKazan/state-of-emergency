@@ -201,7 +201,13 @@ void CGame::Update(void)
 
 #ifdef NDEBUG // Release時のみ(リリースの場合のリザルトの飛び方にバリエーションなどをつけるため)
 
-
+	if (m_pPlayer->GetEnable() == false)
+	{
+		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
+		{// 決定キー(ENTERキー)が押された
+			CManager::SetMode(MODE_RESULT);
+		}
+	}
 
 #endif
 }

@@ -12,6 +12,7 @@
 #include"player.h"
 #include"game.h"
 #include"score.h"
+#include"sound.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -338,6 +339,9 @@ D3DXVECTOR3 CBottle::GetSize(void)
 //----------------------------------------
 void CBottle::Collision(void)
 {
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
+
 	CPlayer* pPlayer = CGame::GetPlayer();
 
 	// プレイヤーの位置の取得
@@ -363,7 +367,11 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(10);
 
+			// 消す
 			Uninit();
+
+			// SE
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 
 			return;
 		}
@@ -374,7 +382,11 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(10);
 
+			// 消す
 			Uninit();
+
+			// SE
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 
 			return;
 		}
@@ -391,7 +403,11 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(10);
 
+			// 消す
 			Uninit();
+
+			// SE
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 
 			return;
 		}
@@ -402,7 +418,11 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(10);
 
+			// 消す
 			Uninit();
+
+			// SE
+			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 
 			return;
 		}

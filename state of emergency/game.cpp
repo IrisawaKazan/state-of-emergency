@@ -22,6 +22,7 @@
 #include"pause.h"
 #include"floorBox.h"
 #include"ball.h"
+#include"door.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -68,6 +69,9 @@ HRESULT CGame::Init(void)
 	CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
 	CFloorBox::Create(D3DXVECTOR3(0.0f, -50.0f, 0.0f));
 	CFloorBox::Create(D3DXVECTOR3(250.0f, 0.0f, 0.0f));
+
+	// ドア
+	CDoor::Create(D3DXVECTOR3(GOAL_POS_X, 0.0f, GOAL_POS_Z));
 
 	// ボール
 	CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
@@ -139,7 +143,8 @@ void CGame::Update(void)
 	}
 
 	// ゴール
-	if (m_pPlayer->GetPos().x >= 450.0f)
+	if (m_pPlayer->GetPos().x >= GOAL_POS_X - 25.0f && m_pPlayer->GetPos().x <= GOAL_POS_X + 25.0f &&
+		m_pPlayer->GetPos().z >= GOAL_POS_Z - 25.0f && m_pPlayer->GetPos().z <= GOAL_POS_Z + 25.0f)
 	{// 決定キー(ENTERキー)が押された
 		CManager::SetMode(MODE_RESULT);
 	}

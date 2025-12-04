@@ -15,7 +15,9 @@
 class CPlayer;
 
 // マクロ定義
-#define BALL_POS_Z (275.0f)
+#define BALL_POS_Z (275.0f)	// ボールが生成される位置
+#define GOAL_POS_X (300.0f) // ドアの位置(X)
+#define GOAL_POS_Z (175.0f) // ドアの位置(Z)
 
 // ゲーム画面クラス
 class CGame : public CScene

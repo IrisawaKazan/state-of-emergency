@@ -29,6 +29,7 @@ public:
 		TYPE_PLAYER,
 		TYPE_FLOORBOX,
 		TYPE_BALL,
+		TYPE_DOOR,
 
 		TYPE_MAX
 	}TYPE;

@@ -147,6 +147,7 @@
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
+    <ClCompile Include="door.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="floorBox.cpp" />
     <ClCompile Include="game.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="ball.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
+    <ClInclude Include="door.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="floorBox.h" />
     <ClInclude Include="game.h" />

@@ -1,11 +1,11 @@
 //==============================================================
 //
-// [door.cpp]
+// [wall.cpp]
 // Author: Irisawa Kazan
 //
 //==============================================================
 // インクルード
-#include"door.h"
+#include"wall.h"
 #include"manager.h"
 #include"renderer.h"
 #include"player.h"
@@ -14,7 +14,7 @@
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CDoor::CDoor(int nPriority) : CObject(nPriority)
+CWall::CWall(int nPriority) : CObject(nPriority)
 {
 	m_pTexture = nullptr;
 	m_pMesh = nullptr;
@@ -33,7 +33,7 @@ CDoor::CDoor(int nPriority) : CObject(nPriority)
 //----------------------------------------
 // デストラクタ
 //----------------------------------------
-CDoor::~CDoor()
+CWall::~CWall()
 {
 
 }
@@ -41,38 +41,38 @@ CDoor::~CDoor()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CDoor* CDoor::Create(D3DXVECTOR3 pos)
+CWall* CWall::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
-	CDoor* pDoor;
+	CWall* pWall;
 
 	// 生成
-	pDoor = new CDoor;
+	pWall = new CWall;
 
 	// 初期化処理
-	pDoor->Init();
+	pWall->Init();
 
 	// 位置の設定
-	pDoor->SetPosition(pos);
+	pWall->SetPosition(pos);
 
-	return pDoor;
+	// 向きの設定
+	pWall->SetRotation(rot);
+
+	return pWall;
 }
 
 //----------------------------------------
 // 初期化処理
 //----------------------------------------
-HRESULT CDoor::Init(void)
+HRESULT CWall::Init(void)
 {
 	// 種類の設定処理
-	CObject::SetType(TYPE_DOOR);
+	CObject::SetType(TYPE_WALL);
 
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-
 	// Xファイルの読み込み
-	D3DXLoadMeshFromX("data\\MODEL\\door.x",
+	D3DXLoadMeshFromX("data\\MODEL\\wall.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -164,11 +164,12 @@ HRESULT CDoor::Init(void)
 //----------------------------------------
 // 終了処理
 //----------------------------------------
-void CDoor::Uninit(void)
+void CWall::Uninit(void)
 {
 	// テクスチャの破棄
 	if (m_pTexture != nullptr)
 	{
+		m_pTexture->Release();
 		m_pTexture = nullptr;
 	}
 
@@ -193,7 +194,7 @@ void CDoor::Uninit(void)
 //----------------------------------------
 // 更新処理
 //----------------------------------------
-void CDoor::Update(void)
+void CWall::Update(void)
 {
 
 }
@@ -201,7 +202,7 @@ void CDoor::Update(void)
 //----------------------------------------
 // 描画処理
 //----------------------------------------
-void CDoor::Draw(void)
+void CWall::Draw(void)
 {
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
@@ -252,7 +253,7 @@ void CDoor::Draw(void)
 //----------------------------------------
 // 位置の設定処理
 //----------------------------------------
-void CDoor::SetPosition(D3DXVECTOR3 pos)
+void CWall::SetPosition(D3DXVECTOR3 pos)
 {
 	m_pos = pos;
 }
@@ -260,7 +261,7 @@ void CDoor::SetPosition(D3DXVECTOR3 pos)
 //----------------------------------------
 // 前回の位置の設定処理
 //----------------------------------------
-void CDoor::SetPositionOld(D3DXVECTOR3 posOld)
+void CWall::SetPositionOld(D3DXVECTOR3 posOld)
 {
 	m_posOld = posOld;
 }
@@ -268,7 +269,7 @@ void CDoor::SetPositionOld(D3DXVECTOR3 posOld)
 //----------------------------------------
 // 向きの設定処理
 //----------------------------------------
-void CDoor::SetRotation(D3DXVECTOR3 rot)
+void CWall::SetRotation(D3DXVECTOR3 rot)
 {
 	m_rot = rot;
 }
@@ -276,7 +277,7 @@ void CDoor::SetRotation(D3DXVECTOR3 rot)
 //----------------------------------------
 // サイズの設定処理
 //----------------------------------------
-void CDoor::SetSize(D3DXVECTOR3 size)
+void CWall::SetSize(D3DXVECTOR3 size)
 {
 	m_size = size;
 }
@@ -284,7 +285,7 @@ void CDoor::SetSize(D3DXVECTOR3 size)
 //----------------------------------------
 // 位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CDoor::GetPos(void)
+D3DXVECTOR3 CWall::GetPos(void)
 {
 	return m_pos;
 }
@@ -292,7 +293,7 @@ D3DXVECTOR3 CDoor::GetPos(void)
 //----------------------------------------
 // 前回の位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CDoor::GetPosOld(void)
+D3DXVECTOR3 CWall::GetPosOld(void)
 {
 	return m_posOld;
 }
@@ -300,7 +301,7 @@ D3DXVECTOR3 CDoor::GetPosOld(void)
 //----------------------------------------
 // 向きの取得処理
 //----------------------------------------
-D3DXVECTOR3 CDoor::GetRot(void)
+D3DXVECTOR3 CWall::GetRot(void)
 {
 	return m_rot;
 }
@@ -308,7 +309,7 @@ D3DXVECTOR3 CDoor::GetRot(void)
 //----------------------------------------
 // サイズの取得処理
 //----------------------------------------
-D3DXVECTOR3 CDoor::GetSize(void)
+D3DXVECTOR3 CWall::GetSize(void)
 {
 	return m_size;
 }

@@ -25,6 +25,7 @@
 #include"door.h"
 #include"bottle.h"
 #include"bottle_rare.h"
+#include"wall.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -92,6 +93,9 @@ HRESULT CGame::Init(void)
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
+
+	// 壁
+	//CWall::Create(D3DXVECTOR3(-275.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 
 #ifdef _DEBUG // Debug時のみ

@@ -166,8 +166,8 @@ void CGame::Update(void)
 		// ランダム生成
 		m_nSpawn++;
 
-		float fPosX = (float)(rand() % 300/* 出てくる範囲 */);
-		float fPosZ = (float)(rand() % 100/* 出てくる範囲 */);
+		float fPosX = (float)(rand() % 275/* 出てくる範囲 */);
+		float fPosZ = (float)(rand() % 175/* 出てくる範囲 */);
 
 		// 現在の時刻を種として設定
 		srand((unsigned int)time(nullptr));
@@ -195,14 +195,14 @@ void CGame::Update(void)
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[2] >= NUM_FRAME_CNT)
 		{
-			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ - 100.0f));
+			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[2] = 0;
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[3] >= NUM_FRAME_CNT)
 		{
-			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ - 100.0f));
+			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[3] = 0;
@@ -225,14 +225,14 @@ void CGame::Update(void)
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[6] >= NUM_FRAME_CNT_RARE)
 		{
-			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ - 100.0f));
+			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[6] = 0;
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[7] >= NUM_FRAME_CNT_RARE)
 		{
-			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ - 100.0f));
+			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[7] = 0;

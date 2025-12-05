@@ -258,6 +258,24 @@ void CPlayer::Update(void)
 			m_bJump = false;
 		}
 
+		// ï«
+		if (m_pos.x < -300.0f)
+		{
+			m_pos.x = -300.0f;
+		}
+		if (m_pos.x > 300.0f)
+		{
+			m_pos.x = 300.0f;
+		}
+		if (m_pos.z < -200.0f)
+		{
+			m_pos.z = -200.0f;
+		}
+		if (m_pos.z > 200.0f)
+		{
+			m_pos.z = 200.0f;
+		}
+
 		//-----------------
 		// ÉvÉåÉCÉÑÅ[à⁄ìÆ
 		//-----------------

@@ -70,7 +70,7 @@ HRESULT CGame::Init(void)
 
 
 	// プレイヤー
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-300.0f, 10.0f, 150.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-275.0f, 10.0f, 150.0f));
 
 	// フロアボックス
 	CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));

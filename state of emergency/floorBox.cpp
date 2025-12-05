@@ -350,7 +350,7 @@ void CFloorBox::Collision(void)
 		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
 			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
 		{
-			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x;
+			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x / 2.0f;
 			move.x = 0.0f;
 
 			return;

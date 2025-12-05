@@ -38,6 +38,7 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_bUse = true;
 
 	m_fDash = 0.0f;
+	m_bDash = false;
 }
 
 //----------------------------------------
@@ -235,9 +236,18 @@ void CPlayer::Update(void)
 		m_pos.y += m_move.y; // 落下
 		m_pos.z += m_move.z; // 奥行移動
 
-		// 移動量を更新(減衰させる)
-		m_move.x += (0.0f - m_move.x) * 0.25f;
-		m_move.z += (0.0f - m_move.z) * 0.25f;
+		if (m_bDash == false)
+		{
+			// 移動量を更新(減衰させる)
+			m_move.x += (0.0f - m_move.x) * 0.25f;
+			m_move.z += (0.0f - m_move.z) * 0.25f;
+		}
+		else
+		{
+			// 移動量を更新(減衰させる)
+			m_move.x += (0.0f - m_move.x) * 0.2f;
+			m_move.z += (0.0f - m_move.z) * 0.2f;
+		}
 
 		// 最終的には消す(床)
 		if (m_pos.y <= 0.0f)
@@ -390,10 +400,14 @@ void CPlayer::Update(void)
 			pInputJoypad->GetPress(pInputJoypad->JOYKEY_B) || pInputMouse->GetPress(pInputMouse->MOUSE_RIGHTBUTTON) == true)
 		{
 			m_fDash = MAX_DASH;
+
+			m_bDash = true;
 		}
 		else
 		{
 			m_fDash = 1.0f;
+
+			m_bDash = false;
 		}
 
 		// ローテーション

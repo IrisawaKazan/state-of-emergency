@@ -72,9 +72,10 @@ HRESULT CGame::Init(void)
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-300.0f, 10.0f, 150.0f));
 
 	// フロアボックス
-	CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
-	CFloorBox::Create(D3DXVECTOR3(0.0f, -50.0f, 0.0f));
-	CFloorBox::Create(D3DXVECTOR3(250.0f, 0.0f, 0.0f));
+	CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));
+	//CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
+	//CFloorBox::Create(D3DXVECTOR3(0.0f, -50.0f, 0.0f));
+	
 
 	// ドア
 	CDoor::Create(D3DXVECTOR3(GOAL_POS_X, 0.0f, GOAL_POS_Z));
@@ -162,8 +163,8 @@ void CGame::Update(void)
 		// ランダム生成
 		m_nSpawn++;
 
-		float fPosX = (float)(rand() % 250/* 出てくる範囲 */);
-		float fPosZ = (float)(rand() % 150/* 出てくる範囲 */);
+		float fPosX = (float)(rand() % 300/* 出てくる範囲 */);
+		float fPosZ = (float)(rand() % 100/* 出てくる範囲 */);
 
 		// 現在の時刻を種として設定
 		srand((unsigned int)time(nullptr));
@@ -191,14 +192,14 @@ void CGame::Update(void)
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[2] >= NUM_FRAME_CNT)
 		{
-			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
+			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ - 100.0f));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[2] = 0;
 		}
 		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[3] >= NUM_FRAME_CNT)
 		{
-			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
+			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ - 100.0f));
 
 			m_nSpawn = 0;
 			m_nFrameCounter[3] = 0;

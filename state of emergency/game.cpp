@@ -34,7 +34,12 @@ CPlayer* CGame::m_pPlayer = nullptr;
 CGame::CGame() : CScene(CScene::MODE_GAME)
 {
 	m_nCnt = NULL;
-	//m_nSpawn = NULL;
+	m_nSpawn = NULL;
+
+	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
+	{
+		m_nFrameCounter[nCnt] = NULL;
+	}
 }
 
 //----------------------------------------
@@ -141,14 +146,63 @@ void CGame::Update(void)
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
-	m_nCnt++;
-
-	if (m_nCnt >= 60 * 5)
+	if (m_pPlayer->GetEnable() == true)
 	{
-		// ボール
-		CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
+		// ボール生成用カウンターのインクリメント
+		m_nCnt++;
 
-		m_nCnt = 0;
+		if (m_nCnt >= 60 * 5)
+		{
+			// ボール
+			CBall::Create(D3DXVECTOR3(0.0f, 0.0f, BALL_POS_Z));
+
+			m_nCnt = 0;
+		}
+
+		// ランダム生成
+		m_nSpawn++;
+
+		float fPosX = (float)(rand() % 250/* 出てくる範囲 */);
+		float fPosZ = (float)(rand() % 150/* 出てくる範囲 */);
+
+		// 現在の時刻を種として設定
+		srand((unsigned int)time(nullptr));
+
+		// 多段で出ないように制限するカウンター
+		for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
+		{
+			m_nFrameCounter[nCnt]++;
+		}
+
+		// ボトル
+		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[0] >= NUM_FRAME_CNT)
+		{
+			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[0] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[1] >= NUM_FRAME_CNT)
+		{
+			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[1] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[2] >= NUM_FRAME_CNT)
+		{
+			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[2] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[3] >= NUM_FRAME_CNT)
+		{
+			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[3] = 0;
+		}
 	}
 
 	// ゴール

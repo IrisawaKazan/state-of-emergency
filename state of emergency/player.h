@@ -14,7 +14,7 @@
 // マクロ定義
 #define MAX_PLAYER_MOVE (0.5f * m_fDash) // プレイヤーの移動量
 #define MAX_PLAYER_JUMP (2.0f)           // プレイヤーのジャンプ量
-#define MAX_DASH (2.0f)                  // ダッシュの倍率
+#define MAX_DASH (2.5f)                  // ダッシュの倍率
 
 // プレイヤークラス
 class CPlayer : public CObject

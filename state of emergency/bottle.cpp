@@ -81,7 +81,7 @@ HRESULT CBottle::Init(void)
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	m_rot = D3DXVECTOR3(D3DX_PI - 2.75f, 0.0f, 0.0f);
 
 	// Xファイルの読み込み
 	D3DXLoadMeshFromX("data\\MODEL\\plastic_bottle_000.x",
@@ -207,13 +207,10 @@ void CBottle::Uninit(void)
 //----------------------------------------
 void CBottle::Update(void)
 {
-	// 現在の時刻を種として設定
-	srand((unsigned int)time(nullptr));
-
 	// ローテーション
 	m_fRotation -= 1.0f;
 
-	m_rot.y = m_fRotation / 150.0f;
+	m_rot.y = m_fRotation / 125.0f;
 
 	// 当たり判定
 	Collision();

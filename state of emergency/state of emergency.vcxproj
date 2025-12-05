@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="bottle.cpp" />
+    <ClCompile Include="bottle_rare.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="door.cpp" />
@@ -178,6 +179,7 @@
   <ItemGroup>
     <ClInclude Include="ball.h" />
     <ClInclude Include="bottle.h" />
+    <ClInclude Include="bottle_rare.h" />
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="door.h" />

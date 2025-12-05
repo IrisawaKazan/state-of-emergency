@@ -24,6 +24,7 @@
 #include"ball.h"
 #include"door.h"
 #include"bottle.h"
+#include"bottle_rare.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -86,6 +87,8 @@ HRESULT CGame::Init(void)
 	// ボトル
 	CBottle::Create(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
 
+	// レアボトル
+	CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -204,6 +207,37 @@ void CGame::Update(void)
 			m_nSpawn = 0;
 			m_nFrameCounter[3] = 0;
 		}
+
+		// レアボトル
+		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[4] >= NUM_FRAME_CNT_RARE)
+		{
+			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[4] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[5] >= NUM_FRAME_CNT_RARE)
+		{
+			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[5] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[6] >= NUM_FRAME_CNT_RARE)
+		{
+			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ - 100.0f));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[6] = 0;
+		}
+		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[7] >= NUM_FRAME_CNT_RARE)
+		{
+			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ - 100.0f));
+
+			m_nSpawn = 0;
+			m_nFrameCounter[7] = 0;
+		}
+
 	}
 
 	// ゴール

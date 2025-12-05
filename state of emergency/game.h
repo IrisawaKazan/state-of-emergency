@@ -15,12 +15,14 @@
 class CPlayer;
 
 // マクロ定義
-#define BALL_POS_Z (275.0f)		// ボールが生成される位置
-#define GOAL_POS_X (300.0f)		// ドアの位置(X)
-#define GOAL_POS_Z (175.0f)		// ドアの位置(Z)
-#define MAX_SPAWN (20)			// ボトルの湧く率(数字が小さいと出現しにくくなる)
-#define MAX_FRAMECOUNTER (5)	// フレームカウンターの数
-#define NUM_FRAME_CNT (60 * 6)	// 同じ種類のオブジェクトがどれだけ連続して沸くか
+#define BALL_POS_Z (275.0f)				// ボールが生成される位置
+#define GOAL_POS_X (300.0f)				// ドアの位置(X)
+#define GOAL_POS_Z (175.0f)				// ドアの位置(Z)
+#define MAX_SPAWN (20)					// ボトルの湧く率(数字が小さいと出現しにくくなる)
+#define MAX_SPAWN_RARE (5)				// レアボトルの湧く率(数字が小さいと出現しにくくなる)
+#define MAX_FRAMECOUNTER (12)			// フレームカウンターの数
+#define NUM_FRAME_CNT (60 * 3)			// ボトルがどれだけ連続して沸くか
+#define NUM_FRAME_CNT_RARE (60 * 10)	// レアボトルがどれだけ連続して沸くか
 
 // ゲーム画面クラス
 class CGame : public CScene

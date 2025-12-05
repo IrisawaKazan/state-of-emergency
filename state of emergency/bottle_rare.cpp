@@ -1,11 +1,11 @@
 //==============================================================
 //
-// [bottle.cpp]
+// [bottle_rare.cpp]
 // Author: Irisawa Kazan
 //
 //==============================================================
 // インクルード
-#include"bottle.h"
+#include"bottle_rare.h"
 #include"manager.h"
 #include"renderer.h"
 #include"input.h"
@@ -17,7 +17,7 @@
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CBottle::CBottle(int nPriority) : CObject(nPriority)
+CBottleRare::CBottleRare(int nPriority) : CObject(nPriority)
 {
 	m_pTexture = nullptr;
 	m_pMesh = nullptr;
@@ -33,12 +33,15 @@ CBottle::CBottle(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_fRotation = 0.0f;
+
+	//m_nCnt = NULL;
+	//m_bBlink = false;
 }
 
 //----------------------------------------
 // デストラクタ
 //----------------------------------------
-CBottle::~CBottle()
+CBottleRare::~CBottleRare()
 {
 
 }
@@ -46,24 +49,24 @@ CBottle::~CBottle()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CBottle* CBottle::Create(D3DXVECTOR3 pos)
+CBottleRare* CBottleRare::Create(D3DXVECTOR3 pos)
 {
-	CBottle* pBottle;
+	CBottleRare* pBottleRare;
 
 	int nNumAll = CObject::GetNumAll();
 
 	if (nNumAll <= MAX_OBJ)
 	{
 		// 生成
-		pBottle = new CBottle;
+		pBottleRare = new CBottleRare;
 
 		// 初期化処理
-		pBottle->Init();
+		pBottleRare->Init();
 
 		// 位置の設定
-		pBottle->SetPosition(pos);
+		pBottleRare->SetPosition(pos);
 
-		return pBottle;
+		return pBottleRare;
 	}
 
 	return nullptr;
@@ -72,10 +75,10 @@ CBottle* CBottle::Create(D3DXVECTOR3 pos)
 //----------------------------------------
 // 初期化処理
 //----------------------------------------
-HRESULT CBottle::Init(void)
+HRESULT CBottleRare::Init(void)
 {
 	// 種類の設定処理
-	CObject::SetType(TYPE_BOTTLE);
+	CObject::SetType(TYPE_BOTTLE_RARE);
 
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
@@ -84,7 +87,7 @@ HRESULT CBottle::Init(void)
 	m_rot = D3DXVECTOR3(D3DX_PI - 2.75f, 0.0f, 0.0f);
 
 	// Xファイルの読み込み
-	D3DXLoadMeshFromX("data\\MODEL\\plastic_bottle_000.x",
+	D3DXLoadMeshFromX("data\\MODEL\\plastic_bottle_500.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -176,7 +179,7 @@ HRESULT CBottle::Init(void)
 //----------------------------------------
 // 終了処理
 //----------------------------------------
-void CBottle::Uninit(void)
+void CBottleRare::Uninit(void)
 {
 	// テクスチャへのポインタの破棄
 	if (m_pTexture != nullptr)
@@ -205,7 +208,7 @@ void CBottle::Uninit(void)
 //----------------------------------------
 // 更新処理
 //----------------------------------------
-void CBottle::Update(void)
+void CBottleRare::Update(void)
 {
 	// ローテーション
 	m_fRotation -= 1.0f;
@@ -219,7 +222,7 @@ void CBottle::Update(void)
 //----------------------------------------
 // 描画処理
 //----------------------------------------
-void CBottle::Draw(void)
+void CBottleRare::Draw(void)
 {
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
@@ -270,7 +273,7 @@ void CBottle::Draw(void)
 //----------------------------------------
 // 位置の設定処理
 //----------------------------------------
-void CBottle::SetPosition(D3DXVECTOR3 pos)
+void CBottleRare::SetPosition(D3DXVECTOR3 pos)
 {
 	m_pos = pos;
 }
@@ -278,7 +281,7 @@ void CBottle::SetPosition(D3DXVECTOR3 pos)
 //----------------------------------------
 // 前回の位置の設定処理
 //----------------------------------------
-void CBottle::SetPositionOld(D3DXVECTOR3 posOld)
+void CBottleRare::SetPositionOld(D3DXVECTOR3 posOld)
 {
 	m_posOld = posOld;
 }
@@ -286,7 +289,7 @@ void CBottle::SetPositionOld(D3DXVECTOR3 posOld)
 //----------------------------------------
 // 向きの設定処理
 //----------------------------------------
-void CBottle::SetRotation(D3DXVECTOR3 rot)
+void CBottleRare::SetRotation(D3DXVECTOR3 rot)
 {
 	m_rot = rot;
 }
@@ -294,7 +297,7 @@ void CBottle::SetRotation(D3DXVECTOR3 rot)
 //----------------------------------------
 // サイズの設定処理
 //----------------------------------------
-void CBottle::SetSize(D3DXVECTOR3 size)
+void CBottleRare::SetSize(D3DXVECTOR3 size)
 {
 	m_size = size;
 }
@@ -302,7 +305,7 @@ void CBottle::SetSize(D3DXVECTOR3 size)
 //----------------------------------------
 // 位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CBottle::GetPos(void)
+D3DXVECTOR3 CBottleRare::GetPos(void)
 {
 	return m_pos;
 }
@@ -310,7 +313,7 @@ D3DXVECTOR3 CBottle::GetPos(void)
 //----------------------------------------
 // 前回の位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CBottle::GetPosOld(void)
+D3DXVECTOR3 CBottleRare::GetPosOld(void)
 {
 	return m_posOld;
 }
@@ -318,7 +321,7 @@ D3DXVECTOR3 CBottle::GetPosOld(void)
 //----------------------------------------
 // 向きの取得処理
 //----------------------------------------
-D3DXVECTOR3 CBottle::GetRot(void)
+D3DXVECTOR3 CBottleRare::GetRot(void)
 {
 	return m_rot;
 }
@@ -326,7 +329,7 @@ D3DXVECTOR3 CBottle::GetRot(void)
 //----------------------------------------
 // サイズの取得処理
 //----------------------------------------
-D3DXVECTOR3 CBottle::GetSize(void)
+D3DXVECTOR3 CBottleRare::GetSize(void)
 {
 	return m_size;
 }
@@ -334,7 +337,7 @@ D3DXVECTOR3 CBottle::GetSize(void)
 //----------------------------------------
 // 当たり判定の処理
 //----------------------------------------
-void CBottle::Collision(void)
+void CBottleRare::Collision(void)
 {
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
@@ -362,7 +365,7 @@ void CBottle::Collision(void)
 			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
 		{
 			// スコア加算
-			CScore::AddScore(10);
+			CScore::AddScore(50);
 
 			// 消す
 			Uninit();
@@ -377,7 +380,7 @@ void CBottle::Collision(void)
 			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
 		{
 			// スコア加算
-			CScore::AddScore(10);
+			CScore::AddScore(50);
 
 			// 消す
 			Uninit();
@@ -398,7 +401,7 @@ void CBottle::Collision(void)
 			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z)
 		{
 			// スコア加算
-			CScore::AddScore(10);
+			CScore::AddScore(50);
 
 			// 消す
 			Uninit();
@@ -413,7 +416,7 @@ void CBottle::Collision(void)
 			pos.z - size.z / 2.0f > m_pos.z + m_vtxMax.z)
 		{
 			// スコア加算
-			CScore::AddScore(10);
+			CScore::AddScore(50);
 
 			// 消す
 			Uninit();

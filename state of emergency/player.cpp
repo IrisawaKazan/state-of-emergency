@@ -84,6 +84,7 @@ HRESULT CPlayer::Init(void)
 
 	// XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
 	D3DXLoadMeshFromX("data\\MODEL\\rot_tester.x",
+	//D3DXLoadMeshFromX("data\\MODEL\\floorBox000.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,

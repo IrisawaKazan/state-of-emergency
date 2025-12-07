@@ -93,7 +93,7 @@ HRESULT CGame::Init(void)
 	CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 
 	// ÉXÉRÉA
-	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
+	CScore::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
 
 	//// ï«
 	//CWall::Create(D3DXVECTOR3(0.0f, 0.0f, 225.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));

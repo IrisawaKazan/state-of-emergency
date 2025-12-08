@@ -74,10 +74,8 @@ HRESULT CGame::Init(void)
 	// プレイヤー
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
 
-	// フロアボックス
-	CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));
-	//CFloorBox::Create(D3DXVECTOR3(-200.0f, -50.0f, 100.0f));
-	//CFloorBox::Create(D3DXVECTOR3(0.0f, -50.0f, 0.0f));
+	//// フロアボックス
+	//CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));
 	
 
 	// ドア
@@ -93,12 +91,7 @@ HRESULT CGame::Init(void)
 	CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 
 	// スコア
-	CScore::Create(D3DXVECTOR3(SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
-
-	//// 壁
-	//CWall::Create(D3DXVECTOR3(0.0f, 0.0f, 225.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-	//CWall::Create(D3DXVECTOR3(-325.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, -D3DX_PI / 2.0f, 0.0f));
-	//CWall::Create(D3DXVECTOR3(325.0f, 0.0f, 0.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
 
 	// フィールド
 	CMeshfield::Create(D3DXVECTOR3(0.0f, -25.0f, 0.0f));

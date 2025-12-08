@@ -56,8 +56,7 @@ private:
 
 	float m_fRotation;			// ローテーション
 
-	//int m_nCnt;					// 消えるまでのカウンター
-	//bool m_bBlink;				// 点滅の有無
+	int m_nCnt;					// 消えるまでのカウンター
 };
 
 #endif

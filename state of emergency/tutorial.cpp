@@ -96,5 +96,11 @@ void CTutorial::Update(void)
 //----------------------------------------
 void CTutorial::Draw(void)
 {
+#ifdef _DEBUG // Debug時のみ
 
+	// 現在のモードをデバッグ表示
+	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Tutorial");
+	CDebugProc::Draw();
+
+#endif
 }

@@ -100,7 +100,7 @@ HRESULT CGame::Init(void)
 #ifdef _DEBUG // Debug時のみ
 
 	// タイマー
-	CTimer::Create(D3DXVECTOR3(50.0f, 675.0f, 0.0f), 30.0f, 90.0f);
+	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 200.0f, 675.0f, 0.0f), 30.0f, 90.0f);
 
 #endif
 
@@ -309,5 +309,11 @@ void CGame::Update(void)
 //----------------------------------------
 void CGame::Draw(void)
 {
-	/* ゲーム画面だけにある特別な描画があるなら記入する */
+#ifdef _DEBUG // Debug時のみ
+
+	// 現在のモードをデバッグ表示
+	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Game");
+	CDebugProc::Draw();
+
+#endif
 }

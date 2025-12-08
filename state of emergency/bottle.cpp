@@ -33,6 +33,8 @@ CBottle::CBottle(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_fRotation = 0.0f;
+
+	m_nCnt = NULL;
 }
 
 //----------------------------------------
@@ -212,6 +214,18 @@ void CBottle::Update(void)
 
 	m_rot.y = m_fRotation / 125.0f;
 
+	m_nCnt++;
+
+	// 15秒で消える
+	if (m_nCnt >= 60 * 15)
+	{
+		Uninit();
+
+		m_nCnt = 0;
+
+		return;
+	}
+
 	// 当たり判定
 	Collision();
 }
@@ -221,50 +235,54 @@ void CBottle::Update(void)
 //----------------------------------------
 void CBottle::Draw(void)
 {
-	// デバイスの取得
-	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
-
-	// 計算用のマトリックス
-	D3DXMATRIX mtxRot, mtxTrans;
-
-	D3DMATERIAL9 matDef; // 現在のマテリアル保存用
-
-	D3DXMATERIAL* pMat; // マテリアルデータへのポインタ
-
-	// ワールドマトリックスの初期化
-	D3DXMatrixIdentity(&m_mtxWorld);
-
-	// 向きを反映
-	D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
-
-	// 位置を反映
-	D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
-	D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
-
-	// ワールドマトリックスの設定
-	pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
-
-	// 現在のマテリアルを取得
-	pDevice->GetMaterial(&matDef);
-
-	// マテリアルのデータへのポインタを取得
-	pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
-
-	for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+	// 0秒から13秒まで表示 & 13秒から15秒まで点滅
+	if (m_nCnt <= 60 * 13 || m_nCnt % 5 == 0)
 	{
-		// マテリアルの設定
-		pDevice->SetMaterial(&pMat[nCntMat].MatD3D);
+		// デバイスの取得
+		LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-		// テクスチャの設定
-		pDevice->SetTexture(0, m_pTexture); // 今はNULL
+		// 計算用のマトリックス
+		D3DXMATRIX mtxRot, mtxTrans;
 
-		// モデル(パーツ)の描画
-		m_pMesh->DrawSubset(nCntMat);
+		D3DMATERIAL9 matDef; // 現在のマテリアル保存用
+
+		D3DXMATERIAL* pMat; // マテリアルデータへのポインタ
+
+		// ワールドマトリックスの初期化
+		D3DXMatrixIdentity(&m_mtxWorld);
+
+		// 向きを反映
+		D3DXMatrixRotationYawPitchRoll(&mtxRot, m_rot.y, m_rot.x, m_rot.z);
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxRot);
+
+		// 位置を反映
+		D3DXMatrixTranslation(&mtxTrans, m_pos.x, m_pos.y, m_pos.z);
+		D3DXMatrixMultiply(&m_mtxWorld, &m_mtxWorld, &mtxTrans);
+
+		// ワールドマトリックスの設定
+		pDevice->SetTransform(D3DTS_WORLD, &m_mtxWorld);
+
+		// 現在のマテリアルを取得
+		pDevice->GetMaterial(&matDef);
+
+		// マテリアルのデータへのポインタを取得
+		pMat = (D3DXMATERIAL*)m_pBuffMat->GetBufferPointer();
+
+		for (int nCntMat = 0; nCntMat < (int)m_dwNumMat; nCntMat++)
+		{
+			// マテリアルの設定
+			pDevice->SetMaterial(&pMat[nCntMat].MatD3D);
+
+			// テクスチャの設定
+			pDevice->SetTexture(0, m_pTexture); // 今はNULL
+
+			// モデル(パーツ)の描画
+			m_pMesh->DrawSubset(nCntMat);
+		}
+
+		// 保存していたマテリアルを元に戻す
+		pDevice->SetMaterial(&matDef);
 	}
-
-	// 保存していたマテリアルを元に戻す
-	pDevice->SetMaterial(&matDef);
 }
 
 //----------------------------------------

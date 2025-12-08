@@ -97,5 +97,11 @@ void CResult::Update(void)
 //----------------------------------------
 void CResult::Draw(void)
 {
+#ifdef _DEBUG // Debug時のみ
 
+	// 現在のモードをデバッグ表示
+	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Result");
+	CDebugProc::Draw();
+
+#endif
 }

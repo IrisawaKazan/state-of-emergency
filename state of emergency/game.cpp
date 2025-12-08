@@ -72,7 +72,7 @@ HRESULT CGame::Init(void)
 
 
 	// プレイヤー
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-275.0f, 10.0f, 150.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
 
 	// フロアボックス
 	CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));
@@ -176,8 +176,8 @@ void CGame::Update(void)
 		// ランダム生成
 		m_nSpawn++;
 
-		float fPosX = (float)(rand() % 275/* 出てくる範囲 */);
-		float fPosZ = (float)(rand() % 175/* 出てくる範囲 */);
+		float fPosX = (float)(rand() % (int)NUM_WALL_X - 25/* 出てくる範囲 */);
+		float fPosZ = (float)(rand() % (int)NUM_WALL_Z - 25/* 出てくる範囲 */);
 
 		// 現在の時刻を種として設定
 		srand((unsigned int)time(nullptr));

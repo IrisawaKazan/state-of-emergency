@@ -10,10 +10,11 @@
 // インクルード
 #include"main.h"
 #include"object.h"
+#include"game.h"
 
 // マクロ定義
-#define MAX_POLYGONPOS_X (325.0f)
-#define MAX_POLYGONPOS_Z (225.0f)
+#define MAX_POLYGONPOS_X (NUM_WALL_X + 25.0f)
+#define MAX_POLYGONPOS_Z (NUM_WALL_Z + 25.0f)
 
 // メッシュフィールドクラス
 class CMeshfield : public CObject

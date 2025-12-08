@@ -10,6 +10,7 @@
 #include"renderer.h"
 #include"input.h"
 #include"debugproc.h"
+#include"game.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -259,21 +260,21 @@ void CPlayer::Update(void)
 		}
 
 		// 壁
-		if (m_pos.x < -300.0f)
+		if (m_pos.x < -NUM_WALL_X)
 		{
-			m_pos.x = -300.0f;
+			m_pos.x = -NUM_WALL_X;
 		}
-		if (m_pos.x > 300.0f)
+		if (m_pos.x > NUM_WALL_X)
 		{
-			m_pos.x = 300.0f;
+			m_pos.x = NUM_WALL_X;
 		}
-		if (m_pos.z < -200.0f)
+		if (m_pos.z < -NUM_WALL_Z)
 		{
-			m_pos.z = -200.0f;
+			m_pos.z = -NUM_WALL_Z;
 		}
-		if (m_pos.z > 200.0f)
+		if (m_pos.z > NUM_WALL_Z)
 		{
-			m_pos.z = 200.0f;
+			m_pos.z = NUM_WALL_Z;
 		}
 
 		//-----------------

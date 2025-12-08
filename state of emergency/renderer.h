@@ -29,12 +29,12 @@ private:
 	LPDIRECT3DDEVICE9 m_pD3DDevice;
 	static int m_nCntFPS;
 
-	LPDIRECT3DTEXTURE9 m_apTextureMT[2];  // レンダリングターゲット用テクスチャ
-	LPDIRECT3DSURFACE9 m_apRenderMT[2];   // テクスチャレンダリング用インターフェース
-	LPDIRECT3DSURFACE9 m_pZBuffMT;        // テクスチャレンダリング用Zバッファ
-	D3DVIEWPORT9 m_viewportMT;            // テクスチャレンダリング用ビューポート
+	LPDIRECT3DTEXTURE9 m_apTextureMT[2];	// レンダリングターゲット用テクスチャ
+	LPDIRECT3DSURFACE9 m_apRenderMT[2];		// テクスチャレンダリング用インターフェース
+	LPDIRECT3DSURFACE9 m_pZBuffMT;			// テクスチャレンダリング用Zバッファ
+	D3DVIEWPORT9 m_viewportMT;				// テクスチャレンダリング用ビューポート
 
-	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuffMT; // フィードバック用ポリゴンの頂点バッファ
+	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuffMT;	// フィードバック用ポリゴンの頂点バッファ
 };
 
 #endif

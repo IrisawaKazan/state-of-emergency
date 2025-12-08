@@ -43,8 +43,8 @@ private:
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;
 	D3DXVECTOR3 m_pos;
 	D3DXVECTOR3 m_rot;
-	int m_nCounterAnim; // アニメーションカウンター
-	int m_nPatternAnim; // アニメーションパターンNo.
+	int m_nCounterAnim;	// アニメーションカウンター
+	int m_nPatternAnim;	// アニメーションパターンNo.
 	float m_fLength;
 	float m_fAngle;
 	float m_faUV;

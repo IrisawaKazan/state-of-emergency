@@ -58,9 +58,9 @@ public:
 	// マウスの種類
 	typedef enum
 	{
-		MOUSE_LEFTBUTTON = 0, // 左クリック
-		MOUSE_RIGHTBUTTON,    // 右クリック
-		MOUSE_WHEELBUTTON,    // ホイール
+		MOUSE_LEFTBUTTON = 0,	// 左クリック
+		MOUSE_RIGHTBUTTON,		// 右クリック
+		MOUSE_WHEELBUTTON,		// ホイール
 
 		MOUSE_MAX
 	}MOUSE;
@@ -93,22 +93,22 @@ class CInputJoypad : public CInput
 public:
 	typedef enum
 	{
-		JOYKEY_UP = 0,        // 十字キー(上)
-		JOYKEY_DOWN,          // 十字キー(下)
-		JOYKEY_LEFT,          // 十字キー(左)
-		JOYKEY_RIGHT,         // 十字キー(右)
-		JOYKEY_START,         // スタートキー
-		JOYKEY_BACK,          // バックキー
-		JOYKEY_LS,            // Lスティック押し込み
-		JOYKEY_RS,            // Rスティック押し込み
-		JOYKEY_LEFT_B,        // LBキー
-		JOYKEY_RIGHT_B,       // RBキー
-		JOYKEY_LEFT_TRIGGER,  // LTキー
-		JOYKEY_RIGHT_TRIGGER, // RTキー
-		JOYKEY_A,             // Aボタン
-		JOYKEY_B,             // Bボタン
-		JOYKEY_X,             // Xボタン
-		JOYKEY_Y,             // Yボタン
+		JOYKEY_UP = 0,			// 十字キー(上)
+		JOYKEY_DOWN,			// 十字キー(下)
+		JOYKEY_LEFT,			// 十字キー(左)
+		JOYKEY_RIGHT,			// 十字キー(右)
+		JOYKEY_START,			// スタートキー
+		JOYKEY_BACK,			// バックキー
+		JOYKEY_LS,				// Lスティック押し込み
+		JOYKEY_RS,				// Rスティック押し込み
+		JOYKEY_LEFT_B,			// LBキー
+		JOYKEY_RIGHT_B,			// RBキー
+		JOYKEY_LEFT_TRIGGER,	// LTキー
+		JOYKEY_RIGHT_TRIGGER,	// RTキー
+		JOYKEY_A,				// Aボタン
+		JOYKEY_B,				// Bボタン
+		JOYKEY_X,				// Xボタン
+		JOYKEY_Y,				// Yボタン
 
 		JOYKEY_MAX
 	}JOYKEY;

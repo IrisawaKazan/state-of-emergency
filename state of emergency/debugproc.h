@@ -26,8 +26,8 @@ public:
 	static void Draw(void);
 
 private:
-	static LPD3DXFONT m_pFont;         // フォントへのポインタ
-	static char m_aStr[MAX_CHARACTER]; // 文字列を格納するバッファ
+	static LPD3DXFONT m_pFont;			// フォントへのポインタ
+	static char m_aStr[MAX_CHARACTER];	// 文字列を格納するバッファ
 };
 
 #endif

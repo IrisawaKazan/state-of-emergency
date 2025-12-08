@@ -66,10 +66,10 @@ protected:
 
 private:
 	static CObject* m_apObject[MAX_PRI][MAX_OBJ];
-	static int m_nNumAll; // オブジェクトの総数
-	int m_nID;            // 自分自身のID
+	static int m_nNumAll;	// オブジェクトの総数
+	int m_nID;				// 自分自身のID
 	TYPE m_type;
-	int m_nPriority; // 優先順位の位置
+	int m_nPriority;		// 優先順位の位置
 };
 
 #endif

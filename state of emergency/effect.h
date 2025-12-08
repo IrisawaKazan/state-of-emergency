@@ -33,10 +33,10 @@ public:
 
 private:
 	static LPDIRECT3DTEXTURE9 m_pTexture;
-	D3DXVECTOR3 m_pos; // 位置
-	D3DXCOLOR m_col;   // 色
-	float m_fRedius;   // 半径(大きさ)
-	int m_nLife;       // 寿命
+	D3DXVECTOR3 m_pos;	// 位置
+	D3DXCOLOR m_col;	// 色
+	float m_fRedius;	// 半径(大きさ)
+	int m_nLife;		// 寿命
 };
 
 #endif

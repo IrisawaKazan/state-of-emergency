@@ -33,10 +33,10 @@ public:
 	// 画面(モード)の種類
 	typedef enum
 	{
-		MODE_TITLE = 0, // タイトル(最高スコア)画面
-		MODE_GAME,      // ゲーム画面
-		MODE_TUTORIAL,  // チュートリアル画面
-		MODE_RESULT,    // リザルト(ゲームオーバー, スコア)画面
+		MODE_TITLE = 0,	// タイトル(最高スコア)画面
+		MODE_GAME,		// ゲーム画面
+		MODE_TUTORIAL,	// チュートリアル画面
+		MODE_RESULT,	// リザルト(ゲームオーバー, スコア)画面
 
 		MODE_MAX
 	}MODE;

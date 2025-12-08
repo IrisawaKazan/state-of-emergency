@@ -37,9 +37,9 @@ public:
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
 	LPDIRECT3DVERTEXBUFFER9 m_pVtxBuff;
-	D3DXVECTOR3 m_pos;     // 位置
-	D3DXVECTOR3 m_rot;     // 向き
-	D3DXMATRIX m_mtxWorld; // ワールドマトリックス
+	D3DXVECTOR3 m_pos;		// 位置
+	D3DXVECTOR3 m_rot;		// 向き
+	D3DXMATRIX m_mtxWorld;	// ワールドマトリックス
 	float m_fLength;
 	float m_fAngle;
 	float m_faUV;

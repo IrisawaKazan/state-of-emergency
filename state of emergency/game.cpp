@@ -83,10 +83,10 @@ HRESULT CGame::Init(void)
 	CDoor::Create(D3DXVECTOR3(GOAL_POS_X, 0.0f, GOAL_POS_Z));
 
 	// パイプ型トンネル
-	CTunnel::Create(D3DXVECTOR3(0.0f, -150.0f, BALL_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CTunnel::Create(D3DXVECTOR3(BALL_POS_X, -150.0f, BALL_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
 
 	// ボール
-	CBall::Create(D3DXVECTOR3(0.0f, BALL_POS_Y, BALL_POS_Z));
+	CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
 
 	// ボトル
 	CBottle::Create(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
@@ -165,7 +165,7 @@ void CGame::Update(void)
 		if (m_nCnt >= 60 * 5)
 		{
 			// ボール
-			CBall::Create(D3DXVECTOR3(0.0f, BALL_POS_Y, BALL_POS_Z));
+			CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
 
 			m_nCnt = 0;
 		}

@@ -17,6 +17,7 @@ class CPlayer;
 // マクロ定義
 #define NUM_WALL_X (300.0f)				// 見えない壁(X)
 #define NUM_WALL_Z (200.0f)				// 見えない壁(Z)
+#define BALL_POS_X (0.0f)				// ボールが生成される位置(X)
 #define BALL_POS_Y (-100.0f)			// ボールが生成される位置(Y)
 #define BALL_POS_Z (275.0f)				// ボールが生成される位置(Z)
 #define GOAL_POS_X (NUM_WALL_X - 10.0f)	// ドアの位置(X)

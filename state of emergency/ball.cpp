@@ -31,8 +31,6 @@ CBall::CBall(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_fRotation = 0.0f;
-
-	//m_fSlow = 0.0f;
 }
 
 //----------------------------------------
@@ -82,7 +80,6 @@ HRESULT CBall::Init(void)
 
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	//m_fSlow = 1.0f;
 
 	// Xファイルの読み込み
 	D3DXLoadMeshFromX("data\\MODEL\\ball.x",
@@ -224,7 +221,7 @@ void CBall::Update(void)
 	m_rot.x = m_fRotation / 15.0f;
 
 	// 外に出ると消す
-	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z)
+	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z || m_pos.x > 400.0f || m_pos.x < -400.0f)
 	{
 		Uninit();
 

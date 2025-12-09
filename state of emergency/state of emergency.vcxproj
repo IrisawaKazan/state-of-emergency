@@ -174,6 +174,7 @@
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="titleOBJ.cpp" />
+    <ClCompile Include="tunnel.cpp" />
     <ClCompile Include="tutorial.cpp" />
     <ClCompile Include="tutorialOBJ.cpp" />
     <ClCompile Include="wall.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="timer.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="titleOBJ.h" />
+    <ClInclude Include="tunnel.h" />
     <ClInclude Include="tutorial.h" />
     <ClInclude Include="tutorialOBJ.h" />
     <ClInclude Include="wall.h" />

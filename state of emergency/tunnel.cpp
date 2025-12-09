@@ -1,21 +1,20 @@
 //==============================================================
 //
-// [ball.cpp]
+// [tunnel.cpp]
 // Author: Irisawa Kazan
 //
 //==============================================================
 // インクルード
-#include"ball.h"
+#include"tunnel.h"
 #include"manager.h"
 #include"renderer.h"
-#include"input.h"
 #include"player.h"
 #include"game.h"
 
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CBall::CBall(int nPriority) : CObject(nPriority)
+CTunnel::CTunnel(int nPriority) : CObject(nPriority)
 {
 	m_pTexture = nullptr;
 	m_pMesh = nullptr;
@@ -29,16 +28,12 @@ CBall::CBall(int nPriority) : CObject(nPriority)
 	m_size = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMin = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-
-	m_fRotation = 0.0f;
-
-	//m_fSlow = 0.0f;
 }
 
 //----------------------------------------
 // デストラクタ
 //----------------------------------------
-CBall::~CBall()
+CTunnel::~CTunnel()
 {
 
 }
@@ -46,46 +41,38 @@ CBall::~CBall()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CBall* CBall::Create(D3DXVECTOR3 pos)
+CTunnel* CTunnel::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
-	CBall* pBall;
+	CTunnel* pTunnel;
 
-	int nNumAll = CObject::GetNumAll();
+	// 生成
+	pTunnel = new CTunnel;
 
-	if (nNumAll <= MAX_OBJ)
-	{
-		// 生成
-		pBall = new CBall;
+	// 初期化処理
+	pTunnel->Init();
 
-		// 初期化処理
-		pBall->Init();
+	// 位置の設定
+	pTunnel->SetPosition(pos);
 
-		// 位置の設定
-		pBall->SetPosition(pos);
+	// 向きの取得
+	pTunnel->SetRotation(rot);
 
-		return pBall;
-	}
-
-	return nullptr;
+	return pTunnel;
 }
 
 //----------------------------------------
 // 初期化処理
 //----------------------------------------
-HRESULT CBall::Init(void)
+HRESULT CTunnel::Init(void)
 {
 	// 種類の設定処理
-	CObject::SetType(TYPE_BALL);
+	CObject::SetType(TYPE_TUNNEL);
 
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
-	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
-	//m_fSlow = 1.0f;
-
 	// Xファイルの読み込み
-	D3DXLoadMeshFromX("data\\MODEL\\ball.x",
+	D3DXLoadMeshFromX("data\\MODEL\\pipe_tunnel.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -177,12 +164,11 @@ HRESULT CBall::Init(void)
 //----------------------------------------
 // 終了処理
 //----------------------------------------
-void CBall::Uninit(void)
+void CTunnel::Uninit(void)
 {
-	// テクスチャへのポインタの破棄
+	// テクスチャの破棄
 	if (m_pTexture != nullptr)
 	{
-		m_pTexture->Release();
 		m_pTexture = nullptr;
 	}
 
@@ -207,38 +193,15 @@ void CBall::Uninit(void)
 //----------------------------------------
 // 更新処理
 //----------------------------------------
-void CBall::Update(void)
+void CTunnel::Update(void)
 {
-	if (m_pos.y == 0.0f)
-	{
-		m_pos.z -= 2.0f;
-	}
-	else
-	{
-		m_pos.y += 2.0f;
-	}
 
-	// ローテーション
-	m_fRotation -= 1.0f;
-
-	m_rot.x = m_fRotation / 15.0f;
-
-	// 外に出ると消す
-	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z)
-	{
-		Uninit();
-
-		return;
-	}
-
-	// 当たり判定
-	Collision();
 }
 
 //----------------------------------------
 // 描画処理
 //----------------------------------------
-void CBall::Draw(void)
+void CTunnel::Draw(void)
 {
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
@@ -289,7 +252,7 @@ void CBall::Draw(void)
 //----------------------------------------
 // 位置の設定処理
 //----------------------------------------
-void CBall::SetPosition(D3DXVECTOR3 pos)
+void CTunnel::SetPosition(D3DXVECTOR3 pos)
 {
 	m_pos = pos;
 }
@@ -297,7 +260,7 @@ void CBall::SetPosition(D3DXVECTOR3 pos)
 //----------------------------------------
 // 前回の位置の設定処理
 //----------------------------------------
-void CBall::SetPositionOld(D3DXVECTOR3 posOld)
+void CTunnel::SetPositionOld(D3DXVECTOR3 posOld)
 {
 	m_posOld = posOld;
 }
@@ -305,7 +268,7 @@ void CBall::SetPositionOld(D3DXVECTOR3 posOld)
 //----------------------------------------
 // 向きの設定処理
 //----------------------------------------
-void CBall::SetRotation(D3DXVECTOR3 rot)
+void CTunnel::SetRotation(D3DXVECTOR3 rot)
 {
 	m_rot = rot;
 }
@@ -313,7 +276,7 @@ void CBall::SetRotation(D3DXVECTOR3 rot)
 //----------------------------------------
 // サイズの設定処理
 //----------------------------------------
-void CBall::SetSize(D3DXVECTOR3 size)
+void CTunnel::SetSize(D3DXVECTOR3 size)
 {
 	m_size = size;
 }
@@ -321,7 +284,7 @@ void CBall::SetSize(D3DXVECTOR3 size)
 //----------------------------------------
 // 位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CBall::GetPos(void)
+D3DXVECTOR3 CTunnel::GetPos(void)
 {
 	return m_pos;
 }
@@ -329,7 +292,7 @@ D3DXVECTOR3 CBall::GetPos(void)
 //----------------------------------------
 // 前回の位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CBall::GetPosOld(void)
+D3DXVECTOR3 CTunnel::GetPosOld(void)
 {
 	return m_posOld;
 }
@@ -337,7 +300,7 @@ D3DXVECTOR3 CBall::GetPosOld(void)
 //----------------------------------------
 // 向きの取得処理
 //----------------------------------------
-D3DXVECTOR3 CBall::GetRot(void)
+D3DXVECTOR3 CTunnel::GetRot(void)
 {
 	return m_rot;
 }
@@ -345,71 +308,7 @@ D3DXVECTOR3 CBall::GetRot(void)
 //----------------------------------------
 // サイズの取得処理
 //----------------------------------------
-D3DXVECTOR3 CBall::GetSize(void)
+D3DXVECTOR3 CTunnel::GetSize(void)
 {
 	return m_size;
-}
-
-//----------------------------------------
-// 当たり判定の処理
-//----------------------------------------
-void CBall::Collision(void)
-{
-	CPlayer* pPlayer = CGame::GetPlayer();
-
-	// プレイヤーの位置の取得
-	D3DXVECTOR3 pos = pPlayer->GetPos();
-
-	// プレイヤーの前回の位置の取得
-	D3DXVECTOR3 posOld = pPlayer->GetPosOld();
-
-	// プレイヤーの移動量の取得
-	D3DXVECTOR3 move = pPlayer->GetMove();
-
-	// プレイヤーのサイズの取得
-	D3DXVECTOR3 size = pPlayer->GetSize();
-
-	// 左右のめり込み判定
-	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
-		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
-	{
-		// 左から右へ
-		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
-			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
-		{
-			pPlayer->SetEnable(false);
-
-			return;
-		}
-		// 右から左へ
-		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
-			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
-		{
-			pPlayer->SetEnable(false);
-
-			return;
-		}
-	}
-
-	// 奥行のめり込み判定
-	if (pos.x + size.x / 2.0f > m_pos.x + m_vtxMax.x &&
-		pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x * 2.0f)
-	{
-		// 手前から奥へ
-		if (posOld.z + size.z / 2.0f > m_pos.z + m_vtxMin.z &&
-			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z)
-		{
-			pPlayer->SetEnable(false);
-
-			return;
-		}
-		// 奥から手前へ
-		if (posOld.z - size.z / 2.0f < m_pos.z - m_vtxMax.z &&
-			pos.z - size.z / 2.0f > m_pos.z + m_vtxMax.z)
-		{
-			pPlayer->SetEnable(false);
-
-			return;
-		}
-	}
 }

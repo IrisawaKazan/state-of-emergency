@@ -29,14 +29,13 @@
 #pragma comment(lib,"xinput.lib")	// ジョイパッド処理に必要
 
 // マクロ定義
-#define CLASS_NAME "WindowClass"	// ウィンドウクラスの名前
-#define WINDOW_NAME "個人制作"		// ウィンドウの名前
-#define SCREEN_WIDTH (1280)			// ウィンドウの幅
-#define SCREEN_HEIGHT (720)			// ウィンドウの高さ
+#define CLASS_NAME "WindowClass"		// ウィンドウクラスの名前
+#define WINDOW_NAME "C++ 後期個人制作"	// ウィンドウの名前
+#define SCREEN_WIDTH (1280)				// ウィンドウの幅
+#define SCREEN_HEIGHT (720)				// ウィンドウの高さ
 #define FVF_VERTEX_2D (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
 #define FVF_VERTEX_3D (D3DFVF_XYZ | D3DFVF_NORMAL | D3DFVF_DIFFUSE | D3DFVF_TEX1)
-
-#define NULLf (0.0f)				// float用のNULL
+#define NULLf (0.0f)					// float用のNULL
 
 // 頂点情報[2D]の構造体を定義
 typedef struct

@@ -28,6 +28,8 @@
 #include"wall.h"
 #include"meshfield.h"
 #include"tunnel.h"
+#include"key.h"
+#include"door_center.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -81,18 +83,10 @@ HRESULT CGame::Init(void)
 
 	// ドア
 	CDoor::Create(D3DXVECTOR3(GOAL_POS_X, 0.0f, GOAL_POS_Z));
+	CDoorCenter::Create(D3DXVECTOR3(GOAL_POS_X - 14.0f, 0.0f, GOAL_POS_Z));
 
 	// パイプ型トンネル
 	CTunnel::Create(D3DXVECTOR3(BALL_POS_X, -150.0f, BALL_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
-
-	// ボール
-	CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
-
-	// ボトル
-	CBottle::Create(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
-
-	// レアボトル
-	CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -100,6 +94,20 @@ HRESULT CGame::Init(void)
 	// フィールド
 	CMeshfield::Create(D3DXVECTOR3(0.0f, -25.0f, 0.0f));
 
+	// テスト配置
+	{
+		// ボール
+		CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
+
+		// ボトル
+		CBottle::Create(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
+
+		// レアボトル
+		CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
+
+		// 鍵
+		CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
+	}
 
 #ifdef _DEBUG // Debug時のみ
 
@@ -249,7 +257,7 @@ void CGame::Update(void)
 
 	// ゴール
 	if (m_pPlayer->GetPos().x >= GOAL_POS_X - 25.0f && m_pPlayer->GetPos().x <= GOAL_POS_X + 25.0f &&
-		m_pPlayer->GetPos().z >= GOAL_POS_Z - 25.0f && m_pPlayer->GetPos().z <= GOAL_POS_Z + 25.0f)
+		m_pPlayer->GetPos().z >= GOAL_POS_Z - 25.0f && m_pPlayer->GetPos().z <= GOAL_POS_Z + 25.0f && m_pPlayer->GetKey() == true)
 	{// 決定キー(ENTERキー)が押された
 		CManager::SetMode(MODE_RESULT);
 	}

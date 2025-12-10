@@ -150,10 +150,12 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="debugproc.cpp" />
     <ClCompile Include="door.cpp" />
+    <ClCompile Include="door_center.cpp" />
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="floorBox.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="input.cpp" />
+    <ClCompile Include="key.cpp" />
     <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="manager.cpp" />
@@ -186,10 +188,12 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="debugproc.h" />
     <ClInclude Include="door.h" />
+    <ClInclude Include="door_center.h" />
     <ClInclude Include="effect.h" />
     <ClInclude Include="floorBox.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="input.h" />
+    <ClInclude Include="key.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="manager.h" />

@@ -40,6 +40,8 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 
 	m_fDash = 0.0f;
 	m_bDash = false;
+
+	m_bKey = false;
 }
 
 //----------------------------------------
@@ -275,6 +277,18 @@ void CPlayer::Update(void)
 		if (m_pos.z > NUM_WALL_Z)
 		{
 			m_pos.z = NUM_WALL_Z;
+		}
+		// Œ®‚ðŽ‚Á‚Ä‚¢‚È‚¢‚Æ‚«
+		if (m_bKey == false)
+		{
+			if (m_pos.x > GOAL_POS_X - 25.0f && m_pos.z > GOAL_POS_Z)
+			{
+				m_pos.x = GOAL_POS_X - 25.0f;
+			}
+			if (m_pos.z > GOAL_POS_Z - 25.0f && m_pos.x > GOAL_POS_X)
+			{
+				m_pos.z = GOAL_POS_Z - 25.0f;
+			}
 		}
 
 		//-----------------

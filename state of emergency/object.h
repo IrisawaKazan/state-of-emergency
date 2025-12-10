@@ -39,6 +39,7 @@ public:
 		TYPE_TUNNEL,
 		TYPE_KEY,
 		TYPE_DOORCENTER,
+		TYPE_PIPE,
 
 		TYPE_MAX
 	}TYPE;

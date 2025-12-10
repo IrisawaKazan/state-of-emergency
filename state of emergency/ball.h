@@ -13,16 +13,27 @@
 #include"game.h"
 
 // マクロ定義
-#define UNINIT_POS_Z (BALL_POS_Z + 25.0f)
+#define UNINIT_POS_X (BALL_BESIDE_POS_X - 75.0f)
+#define UNINIT_POS_Z (BALL_DEPTH_POS_Z + 25.0f)
 
 // ボールクラス
 class CBall : public CObject
 {
 public:
+	// ボールの種類
+	typedef enum
+	{
+		BALL_NONE = 0,
+		BALL_000_A, // 奥から
+		BALL_000_B, // 左から
+
+		BALL_MAX
+	}BALL;
+
 	CBall(int nPriority = 3);
 	~CBall();
 
-	static CBall* Create(D3DXVECTOR3 pos);
+	static CBall* Create(D3DXVECTOR3 pos, BALL type);
 
 	HRESULT Init(void);
 	void Uninit(void);
@@ -38,6 +49,9 @@ public:
 	D3DXVECTOR3 GetPosOld(void);
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
+
+	void SetType(BALL type) { m_type = type; }
+	BALL GetType(void) { return m_type; }
 
 	void Collision(void);
 
@@ -57,7 +71,7 @@ private:
 
 	float m_fRotation;			// ローテーション
 
-	//float m_fSlow;				// スローデバフ
+	BALL m_type;				// ボールの種類の管理
 };
 
 #endif

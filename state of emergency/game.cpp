@@ -39,7 +39,11 @@ CPlayer* CGame::m_pPlayer = nullptr;
 //----------------------------------------
 CGame::CGame() : CScene(CScene::MODE_GAME)
 {
-	m_nCnt = NULL;
+	for (int nCnt = 0; nCnt < MAX_BALLCOUNTER; nCnt++)
+	{
+		m_nCnt[nCnt] = NULL;
+	}
+
 	m_nSpawn = NULL;
 
 	for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
@@ -86,7 +90,8 @@ HRESULT CGame::Init(void)
 	CDoorCenter::Create(D3DXVECTOR3(GOAL_POS_X - 14.0f, 0.0f, GOAL_POS_Z));
 
 	// パイプ型トンネル
-	CTunnel::Create(D3DXVECTOR3(BALL_POS_X, -150.0f, BALL_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CTunnel::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, -150.0f, BALL_DEPTH_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CTunnel::Create(D3DXVECTOR3(BALL_BESIDE_POS_X - 20.0f, -150.0f, BALL_BESIDE_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 0.5f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -97,7 +102,8 @@ HRESULT CGame::Init(void)
 	// テスト配置
 	{
 		// ボール
-		CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
+		CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
+		CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z), CBall::BALL_000_B);
 
 		// ボトル
 		CBottle::Create(D3DXVECTOR3(-100.0f, 0.0f, 0.0f));
@@ -168,14 +174,24 @@ void CGame::Update(void)
 	if (m_pPlayer->GetEnable() == true)
 	{
 		// ボール生成用カウンターのインクリメント
-		m_nCnt++;
+		for (int nCnt = 0; nCnt < MAX_BALLCOUNTER; nCnt++)
+		{
+			m_nCnt[nCnt]++;
+		}
 
-		if (m_nCnt >= 60 * 5)
+		if (m_nCnt[0] >= 60 * 5)
 		{
 			// ボール
-			CBall::Create(D3DXVECTOR3(BALL_POS_X, BALL_POS_Y, BALL_POS_Z));
+			CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
 
-			m_nCnt = 0;
+			m_nCnt[0] = 0;
+		}
+		if (m_nCnt[1] >= 60 * 10)
+		{
+			// ボール
+			CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z), CBall::BALL_000_B);
+
+			m_nCnt[1] = 0;
 		}
 
 		// ランダム生成

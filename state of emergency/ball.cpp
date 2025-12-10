@@ -31,6 +31,8 @@ CBall::CBall(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_fRotation = 0.0f;
+
+	m_type = BALL_NONE;
 }
 
 //----------------------------------------
@@ -44,7 +46,7 @@ CBall::~CBall()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CBall* CBall::Create(D3DXVECTOR3 pos)
+CBall* CBall::Create(D3DXVECTOR3 pos, BALL type)
 {
 	CBall* pBall;
 
@@ -57,6 +59,9 @@ CBall* CBall::Create(D3DXVECTOR3 pos)
 
 		// 初期化処理
 		pBall->Init();
+
+		// タイプの設定
+		pBall->SetType(type);
 
 		// 位置の設定
 		pBall->SetPosition(pos);
@@ -206,22 +211,39 @@ void CBall::Uninit(void)
 //----------------------------------------
 void CBall::Update(void)
 {
-	if (m_pos.y == 0.0f)
+	switch (m_type)
 	{
-		m_pos.z -= 2.0f;
-	}
-	else
-	{
-		m_pos.y += 2.0f;
-	}
+	case BALL_000_A:
+		if (m_pos.y == 0.0f)
+		{
+			m_pos.z -= 2.0f;
+		}
+		else
+		{
+			m_pos.y += 2.0f;
+		}
 
-	// ローテーション
-	m_fRotation -= 1.0f;
+		// ローテーション
+		m_fRotation -= 1.0f;
 
-	m_rot.x = m_fRotation / 15.0f;
+		m_rot.x = m_fRotation / 15.0f;
+		break;
+
+	case BALL_000_B:
+		m_pos.x += 2.0f;
+
+		// ローテーション
+		m_fRotation -= 1.0f;
+
+		m_rot.z = m_fRotation / 15.0f;
+		break;
+
+	default:
+		break;
+	}
 
 	// 外に出ると消す
-	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z || m_pos.x > 400.0f || m_pos.x < -400.0f)
+	if (m_pos.z > UNINIT_POS_Z || m_pos.z < -UNINIT_POS_Z || m_pos.x < UNINIT_POS_X || m_pos.x > -UNINIT_POS_X)
 	{
 		Uninit();
 

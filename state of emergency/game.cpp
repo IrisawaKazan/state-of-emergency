@@ -82,8 +82,8 @@ HRESULT CGame::Init(void)
 	// プレイヤー
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
 
-	//// フロアボックス
-	//CFloorBox::Create(D3DXVECTOR3(-250.0f, 0.0f, -75.0f));
+	// フロアボックス
+	//CFloorBox::Create(D3DXVECTOR3(-200.0f, 0.0f, -100.0f));
 	
 
 	// ドア
@@ -204,9 +204,6 @@ void CGame::Update(void)
 
 		float fPosX = (float)(rand() % (int)NUM_WALL_X - 25/* 出てくる範囲 */);
 		float fPosZ = (float)(rand() % (int)NUM_WALL_Z - 25/* 出てくる範囲 */);
-
-		// 現在の時刻を種として設定
-		srand((unsigned int)time(nullptr));
 
 		// 多段で出ないように制限するカウンター
 		for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)

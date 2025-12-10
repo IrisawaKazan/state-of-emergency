@@ -515,7 +515,6 @@ void CPlayer::Draw(void)
 		CDebugProc::Draw();
 
 #endif
-
 	}
 }
 

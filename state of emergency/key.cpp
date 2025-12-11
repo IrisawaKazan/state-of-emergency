@@ -355,14 +355,16 @@ void CKey::Collision(void)
 	D3DXVECTOR3 size = pPlayer->GetSize();
 
 	// 左右のめり込み判定
-	if (pos.z + size.z / 2.0f <	// (奥から手前)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の分が
-		m_pos.z + m_vtxMax.z &&	// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時と,
-		pos.z + size.z / 2.0f >	// (手前から奥)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の分が
+	if (pos.z + size.z / 2.0f <	// (奥から手前)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+		m_pos.z + m_vtxMax.z &&	// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時且つ,
+		pos.z + size.z / 2.0f >	// (手前から奥)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
 		m_pos.z + m_vtxMin.z)	// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時はめり込んでいる
 	{
 		// 左から右へ
-		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
-			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+		if (posOld.x + size.x / 2.0f >	// プレイヤーの以前いた場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMin.x &&		// このモデルの今ある場所から見て, モデルの原点から見た左へのサイズ分よりX軸の数値が大きい(右にいる)時且つ,
+			pos.x + size.x / 2.0f <		// プレイヤーのいる場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMax.x)		// このモデルの今ある場所から見て, モデルの原点から見た右へのサイズ分よりX軸の数値が小さい(左にいる)時はめり込んでいる
 		{
 			pPlayer->SetKey(true);
 
@@ -375,8 +377,10 @@ void CKey::Collision(void)
 			return;
 		}
 		// 右から左へ
-		if (posOld.x - size.x / 2.0f > m_pos.x - m_vtxMax.x &&
-			pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x)
+		if (posOld.x - size.x / 2.0f >	// 
+			m_pos.x - m_vtxMax.x &&		// 
+			pos.x - size.x / 2.0f <		// 
+			m_pos.x + m_vtxMax.x)		// 
 		{
 			pPlayer->SetKey(true);
 

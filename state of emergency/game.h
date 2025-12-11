@@ -32,6 +32,9 @@ class CPlayer;
 #define MAX_FRAMECOUNTER (12)			// フレームカウンターの数
 #define MAX_BALLCOUNTER (4)				// ボールのカウンターの数
 
+#define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
+#define NUM_BOTTLE_RARE_SCORE (50)		// レアボトルのスコア
+
 // ゲーム画面クラス
 class CGame : public CScene
 {

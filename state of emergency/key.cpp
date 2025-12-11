@@ -401,10 +401,10 @@ void CKey::Collision(void)
 		m_pos.x + m_vtxMin.x)	// このモデルの今ある場所から見て, モデルの原点から見た左へのサイズ分よりX軸の数値が大きい(右にいる)時はめり込んでいる
 	{
 		// 奥から手前へ
-		if (posOld.z + size.z / 2.0f >	// 
-			m_pos.z + m_vtxMin.z &&		// 
-			pos.z + size.z / 2.0f <		// 
-			m_pos.z - m_vtxMin.z)		// 
+		if (posOld.z + size.z / 2.0f >	// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMin.z &&		// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時且つ,
+			pos.z + size.z / 2.0f <		// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMax.z)		// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時はめり込んでいる
 		{
 			pPlayer->SetKey(true);
 
@@ -417,8 +417,10 @@ void CKey::Collision(void)
 			return;
 		}
 		// 手前から奥へ
-		if (posOld.z - size.z / 2.0f > m_pos.z - m_vtxMax.z &&
-			pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z)
+		if (posOld.z + size.z / 2.0f <	// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMax.z &&		// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時且つ,
+			pos.z + size.z / 2.0f >		// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMin.z)		// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時はめり込んでいる
 		{
 			pPlayer->SetKey(true);
 

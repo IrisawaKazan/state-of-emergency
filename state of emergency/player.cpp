@@ -292,6 +292,20 @@ void CPlayer::Update(void)
 			}
 		}
 
+		//// テレポータル
+		//if (m_pos.x == NUM_WALL_X && m_pos.z <= 10.0f && m_pos.z >= -10.0f)
+		//{
+		//	m_pos.x = -NUM_WALL_X;
+		//	m_pos.y = 10.0f;
+		//	m_pos.z = 0.0f;
+		//}
+		//if (m_pos.z == -NUM_WALL_Z && m_pos.x <= 10.0f && m_pos.x >= -10.0f)
+		//{
+		//	m_pos.x = 0.0f;
+		//	m_pos.y = 10.0f;
+		//	m_pos.z = NUM_WALL_Z;
+		//}
+
 		//-----------------
 		// プレイヤー移動
 		//-----------------

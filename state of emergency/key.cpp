@@ -81,6 +81,7 @@ HRESULT CKey::Init(void)
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
 	m_pos = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
+	//m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 	m_rot = D3DXVECTOR3(D3DX_PI - 2.25f, 0.0f, 0.0f);
 
 	// XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›

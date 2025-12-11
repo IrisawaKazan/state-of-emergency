@@ -339,29 +339,52 @@ void CFloorBox::Collision(void)
 	// プレイヤーの最大値の取得
 	D3DXVECTOR3 max = pPlayer->GetMax();
 
-	if (pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z && pos.z + size.z / 2.0f > m_pos.z + m_vtxMin.z)
+	// 左右のめり込み判定
+	if (pos.z + size.z / 2.0f <	// (奥から手前)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+		m_pos.z + m_vtxMax.z &&	// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時且つ,
+		pos.z + size.z / 2.0f >	// (手前から奥)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+		m_pos.z + m_vtxMin.z)	// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時はめり込んでいる
 	{
-		if (posOld.x + size.x / 2.0f <= m_pos.x + m_vtxMin.x && pos.x + size.x / 2.0f > m_pos.x + m_vtxMin.x)
+		// 左から右へ
+		if (posOld.x + size.x / 2.0f >	// プレイヤーの以前いた場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMin.x &&		// このモデルの今ある場所から見て, モデルの原点から見た左へのサイズ分よりX軸の数値が大きい(右にいる)時且つ,
+			pos.x + size.x / 2.0f <		// プレイヤーのいる場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMax.x)		// このモデルの今ある場所から見て, モデルの原点から見た右へのサイズ分よりX軸の数値が小さい(左にいる)時はめり込んでいる
 		{
 			pos.x = m_pos.x + m_vtxMin.x - size.x / 2.0f;
 			move.x = 0.0f;
 		}
-		else if (posOld.x - size.x / 2.0f >= m_pos.x + m_vtxMax.x && pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x)
+		// 右から左へ
+		if (posOld.x + size.x / 2.0f <	// プレイヤーの以前いた場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMax.x &&		// このモデルの今ある場所から見て, モデルの原点から見た右へのサイズ分よりX軸の数値が小さい(左にいる)時且つ,
+			pos.x + size.x / 2.0f >		// プレイヤーのいる場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+			m_pos.x + m_vtxMin.x)		// このモデルの今ある場所から見て, モデルの原点から見た左へのサイズ分よりX軸の数値が大きい(右にいる)時はめり込んでいる
 		{
 			pos.x = m_pos.x + m_vtxMax.x + size.x / 2.0f;
 			move.x = 0.0f;
 		}
-
 	}
 
-	if (pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x && pos.x + size.x / 2.0f > m_pos.x + m_vtxMin.x)
+	// 奥行のめり込み判定
+	if (pos.x + size.x / 2.0f <	// (左から右)プレイヤーの今いる場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+		m_pos.x + m_vtxMax.x &&	// このモデルの今ある場所から見て, モデルの原点から見た右へのサイズ分よりX軸の数値が小さい(左にいる)時且つ,
+		pos.x + size.x / 2.0f >	// (右から左)プレイヤーの今いる場所から見て, プレイヤーの左右(X)のサイズの半分の数値が
+		m_pos.x + m_vtxMin.x)	// このモデルの今ある場所から見て, モデルの原点から見た左へのサイズ分よりX軸の数値が大きい(右にいる)時はめり込んでいる
 	{
-		if (posOld.z + size.z / 2.0f <= m_pos.z + m_vtxMin.z && pos.z + size.z / 2.0 > m_pos.z + m_vtxMin.z)
+		// 手前から奥へ
+		if (posOld.z + size.z / 2.0f >	// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMin.z &&		// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時且つ,
+			pos.z + size.z / 2.0f <		// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMax.z)		// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時はめり込んでいる
 		{
 			pos.z = m_pos.z + m_vtxMin.z - size.z / 2.0f;
 			move.z = 0.0f;
 		}
-		else if (posOld.z - size.z / 2.0f >= m_pos.z + m_vtxMax.z && pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z)
+		// 奥から手前へ
+		if (posOld.z + size.z / 2.0f <	// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMax.z &&		// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時且つ,
+			pos.z + size.z / 2.0f >		// プレイヤーの以前いた場所から見て, プレイヤーの奥行(Z)のサイズの半分の数値が
+			m_pos.z + m_vtxMin.z)		// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時はめり込んでいる
 		{
 			pos.z = m_pos.z + m_vtxMax.z + size.z / 2.0f;
 			move.z = 0.0f;

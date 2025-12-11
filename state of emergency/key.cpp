@@ -355,8 +355,10 @@ void CKey::Collision(void)
 	D3DXVECTOR3 size = pPlayer->GetSize();
 
 	// 左右のめり込み判定
-	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
-		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+	if (pos.z + size.z / 2.0f <	// (奥から手前)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の分が
+		m_pos.z + m_vtxMax.z &&	// このモデルの今ある場所から見て, モデルの原点から見た奥へのサイズ分よりZ軸の数値が小さい(手前にいる)時と,
+		pos.z + size.z / 2.0f >	// (手前から奥)プレイヤーの今いる場所から見て, プレイヤーの奥行(Z)のサイズの半分の分が
+		m_pos.z + m_vtxMin.z)	// このモデルの今ある場所から見て, モデルの原点から見た手前へのサイズ分よりZ軸の数値が大きい(奥にいる)時はめり込んでいる
 	{
 		// 左から右へ
 		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
@@ -373,8 +375,8 @@ void CKey::Collision(void)
 			return;
 		}
 		// 右から左へ
-		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
-			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+		if (posOld.x - size.x / 2.0f > m_pos.x - m_vtxMax.x &&
+			pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x)
 		{
 			pPlayer->SetKey(true);
 
@@ -390,9 +392,9 @@ void CKey::Collision(void)
 
 	// 奥行のめり込み判定
 	if (pos.x + size.x / 2.0f > m_pos.x + m_vtxMax.x &&
-		pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x * 2.0f)
+		pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
 	{
-		// 手前から奥へ
+		// 奥から手前へ
 		if (posOld.z + size.z / 2.0f > m_pos.z + m_vtxMin.z &&
 			pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z)
 		{
@@ -406,9 +408,9 @@ void CKey::Collision(void)
 
 			return;
 		}
-		// 奥から手前へ
-		if (posOld.z - size.z / 2.0f < m_pos.z - m_vtxMax.z &&
-			pos.z - size.z / 2.0f > m_pos.z + m_vtxMax.z)
+		// 手前から奥へ
+		if (posOld.z - size.z / 2.0f > m_pos.z - m_vtxMax.z &&
+			pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z)
 		{
 			pPlayer->SetKey(true);
 

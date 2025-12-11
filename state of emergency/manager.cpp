@@ -23,6 +23,7 @@
 #include"debugproc.h"
 #include"effect.h"
 #include"pause.h"
+//#include"fade.h"
 
 // 静的メンバ変数宣言
 CRenderer* CManager::m_pRenderer = nullptr;
@@ -457,17 +458,14 @@ CScene* CScene::Create(MODE mode)
 	{
 	case MODE_TITLE:    // タイトル画面
 		pScene = new CTitle;
-		//pScene->Init();
 		break;
 
 	case MODE_GAME:     // ゲーム画面
 		pScene = new CGame;
-		//pScene->Init();
 		break;
 
 	case MODE_TUTORIAL: // チュートリアル画面
 		pScene = new CTutorial;
-		//pScene->Init();
 		break;
 
 	case MODE_RESULT:   // リザルト画面
@@ -493,8 +491,6 @@ CScene* CScene::Create(MODE mode)
 //----------------------------------------
 HRESULT CScene::Init(void)
 {
-
-
 	return S_OK;
 }
 

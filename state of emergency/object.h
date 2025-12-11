@@ -40,6 +40,7 @@ public:
 		TYPE_KEY,
 		TYPE_DOORCENTER,
 		TYPE_PIPE,
+		TYPE_FADE,
 
 		TYPE_MAX
 	}TYPE;

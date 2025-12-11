@@ -152,6 +152,7 @@
     <ClCompile Include="door.cpp" />
     <ClCompile Include="door_center.cpp" />
     <ClCompile Include="effect.cpp" />
+    <ClCompile Include="fade.cpp" />
     <ClCompile Include="floorBox.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="input.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="door.h" />
     <ClInclude Include="door_center.h" />
     <ClInclude Include="effect.h" />
+    <ClInclude Include="fade.h" />
     <ClInclude Include="floorBox.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="input.h" />

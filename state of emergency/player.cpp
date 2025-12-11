@@ -444,9 +444,9 @@ void CPlayer::Update(void)
 			m_bDash = false;
 		}
 
-		// ローテーション
-		m_fRotation -= 1.0f;
-		m_rot.z = m_fRotation / 50.0f;
+		//// ローテーション
+		//m_fRotation -= 1.0f;
+		//m_rot.z = m_fRotation / 50.0f;
 	}
 }
 

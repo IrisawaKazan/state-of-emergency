@@ -36,6 +36,9 @@ public:
 	void SetRotation(D3DXVECTOR3 rot);
 	void SetSize(D3DXVECTOR3 size);
 
+	void SetMin(D3DXVECTOR3 min) { m_vtxMin = min; }
+	void SetMax(D3DXVECTOR3 max) { m_vtxMax = max; }
+
 	void SetEnable(bool enable) { m_bUse = enable; }
 	void SetKey(bool key) { m_bKey = key; }
 
@@ -44,6 +47,9 @@ public:
 	D3DXVECTOR3 GetMove(void);
 	D3DXVECTOR3 GetRot(void);
 	D3DXVECTOR3 GetSize(void);
+
+	D3DXVECTOR3 GetMin(void) { return m_vtxMin; }
+	D3DXVECTOR3 GetMax(void) { return m_vtxMax; }
 
 	bool GetEnable(void) { return m_bUse; }
 	bool GetKey(void) { return m_bKey; }

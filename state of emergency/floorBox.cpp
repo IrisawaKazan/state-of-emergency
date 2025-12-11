@@ -333,27 +333,38 @@ void CFloorBox::Collision(void)
 	// プレイヤーのサイズの取得
 	D3DXVECTOR3 size = pPlayer->GetSize();
 
-	// 左右のめり込み判定
-	if (pos.z + size.z / 2.0f > m_pos.z + m_vtxMax.z &&
-		pos.z + size.z / 2.0f < m_pos.z - m_vtxMin.z * 2.0f)
+	// プレイヤーの最小値の取得
+	D3DXVECTOR3 min = pPlayer->GetMin();
+
+	// プレイヤーの最大値の取得
+	D3DXVECTOR3 max = pPlayer->GetMax();
+
+	if (pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z && pos.z + size.z / 2.0f > m_pos.z + m_vtxMin.z)
 	{
-		// 左から右へ
-		if (posOld.x + size.x / 2.0f > m_pos.x + m_vtxMin.x &&
-			pos.x + size.x / 2.0f < m_pos.x - m_vtxMin.x)
+		if (posOld.x + size.x / 2.0f <= m_pos.x + m_vtxMin.x && pos.x + size.x / 2.0f > m_pos.x + m_vtxMin.x)
 		{
-			pos.x = pos.x / 2.0f + m_pos.x / 2.0f - size.x + m_pos.x / 2.0f + m_vtxMin.x / 2.0f - posOld.x / 2.0f;
+			pos.x = m_pos.x + m_vtxMin.x - size.x / 2.0f;
 			move.x = 0.0f;
-
-			return;
 		}
-		// 右から左へ
-		if (posOld.x - size.x / 2.0f < m_pos.x - m_vtxMax.x &&
-			pos.x - size.x / 2.0f > m_pos.x + m_vtxMax.x)
+		else if (posOld.x - size.x / 2.0f >= m_pos.x + m_vtxMax.x && pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x)
 		{
-			pos.x = m_pos.x / 2.0f - m_pos.x / 2.0f - size.x / 2.0f - m_vtxMin.x / 2.0f + posOld.x / 2.0f;
+			pos.x = m_pos.x + m_vtxMax.x + size.x / 2.0f;
 			move.x = 0.0f;
+		}
 
-			return;
+	}
+
+	if (pos.x - size.x / 2.0f < m_pos.x + m_vtxMax.x && pos.x + size.x / 2.0f > m_pos.x + m_vtxMin.x)
+	{
+		if (posOld.z + size.z / 2.0f <= m_pos.z + m_vtxMin.z && pos.z + size.z / 2.0 > m_pos.z + m_vtxMin.z)
+		{
+			pos.z = m_pos.z + m_vtxMin.z - size.z / 2.0f;
+			move.z = 0.0f;
+		}
+		else if (posOld.z - size.z / 2.0f >= m_pos.z + m_vtxMax.z && pos.z - size.z / 2.0f < m_pos.z + m_vtxMax.z)
+		{
+			pos.z = m_pos.z + m_vtxMax.z + size.z / 2.0f;
+			move.z = 0.0f;
 		}
 	}
 }

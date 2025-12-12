@@ -270,7 +270,6 @@ void CGame::Update(void)
 			m_nSpawn = 0;
 			m_nFrameCounter[7] = 0;
 		}
-
 	}
 
 	// ゴール
@@ -286,20 +285,20 @@ void CGame::Update(void)
 	CSound* pSound = CManager::GetSound();
 
 	// 確認用
-	// スコア加算(+1)
+	// スコア加算(+10)
 	if (pInputKeyboard->GetTrigger(DIK_1) == true)
 	{
 		// スコア加算
-		CScore::AddScore(1);
+		CScore::AddScore(10);
 
 		// SE
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 	}
-	// スコア減算(-1)
+	// スコア減算(-10)
 	if (pInputKeyboard->GetTrigger(DIK_0) == true)
 	{
 		// スコア加算
-		CScore::AddScore(-1);
+		CScore::AddScore(-10);
 
 		// SE
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);

@@ -203,7 +203,6 @@ void CPlayer::Uninit(void)
 	}
 
 	CObject::Release();
-	//this->Release();
 }
 
 //----------------------------------------
@@ -211,8 +210,6 @@ void CPlayer::Uninit(void)
 //----------------------------------------
 void CPlayer::Update(void)
 {
-	//m_bUse = GetEnable();
-
 	if (m_bUse == true)
 	{
 		// キーボードの取得

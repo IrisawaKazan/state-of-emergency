@@ -11,6 +11,7 @@
 #include"input.h"
 #include"debugproc.h"
 #include"game.h"
+#include"sound.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -224,8 +225,8 @@ void CPlayer::Update(void)
 		CInputJoypad* pInputJoypad;
 		pInputJoypad = CManager::GetInputJoypad();
 
-		//// サウンドの取得
-		//CSound* pSound = CManager::GetSound();
+		// サウンドの取得
+		CSound* pSound = CManager::GetSound();
 
 		// 位置の取得
 		D3DXVECTOR3 pos = GetPos();
@@ -419,6 +420,12 @@ void CPlayer::Update(void)
 		// ジャンプ
 		if ((pInputKeyboard->GetTrigger(DIK_SPACE) == true || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_A) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON)) && m_bJump == false)
 		{
+			if (m_bJump == false)
+			{
+				// SE
+				pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			}
+
 			m_bJump = true;
 
 			m_bJumpCnt = true;

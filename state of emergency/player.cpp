@@ -235,7 +235,7 @@ void CPlayer::Update(void)
 
 		// 位置を更新
 		m_pos.x += m_move.x; // 左右移動
-		m_pos.y += m_move.y; // 落下
+		m_pos.y += m_move.y; // 上下移動(落下)
 		m_pos.z += m_move.z; // 奥行移動
 
 		if (m_bDash == false)

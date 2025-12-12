@@ -30,7 +30,7 @@ class CPlayer;
 #define NUM_FRAME_CNT (60 * 2)			// ボトルがどれだけ連続して沸くか
 #define NUM_FRAME_CNT_RARE (60 * 10)	// レアボトルがどれだけ連続して沸くか
 #define MAX_FRAMECOUNTER (12)			// フレームカウンターの数
-#define MAX_BALLCOUNTER (4)				// ボールのカウンターの数
+#define MAX_BALLCOUNTER (6)				// ボールのカウンターの数
 
 #define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
 #define NUM_BOTTLE_RARE_SCORE (50)		// レアボトルのスコア

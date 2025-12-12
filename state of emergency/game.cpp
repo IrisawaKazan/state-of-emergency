@@ -93,10 +93,14 @@ HRESULT CGame::Init(void)
 	// パイプ型トンネル
 	CTunnel::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, -150.0f, BALL_DEPTH_POS_Z + 10.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
 	CTunnel::Create(D3DXVECTOR3(BALL_BESIDE_POS_X - 20.0f, -150.0f, BALL_BESIDE_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 0.5f, 0.0f));
+	CTunnel::Create(D3DXVECTOR3(BALL_DEPTH_POS_X - 175.0f, -150.0f, BALL_DEPTH_POS_Z), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CTunnel::Create(D3DXVECTOR3(BALL_BESIDE_POS_X - 20.0f, -150.0f, BALL_BESIDE_POS_Z - 75.0f), D3DXVECTOR3(0.0f, D3DX_PI / 0.5f, 0.0f));
 
 	// パイプ
 	CPipe::Create(D3DXVECTOR3(0.0f, -150.0f, -360.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
 	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+	CPipe::Create(D3DXVECTOR3(-175.0f, -150.0f, -360.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
+	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z - 75.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -191,12 +195,26 @@ void CGame::Update(void)
 
 			m_nCnt[0] = 0;
 		}
-		if (m_nCnt[1] >= 60 * 10)
+		if (m_nCnt[1] >= 60 * 7)
 		{
 			// ボール
 			CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z), CBall::BALL_000_B);
 
 			m_nCnt[1] = 0;
+		}
+		if (m_nCnt[2] >= 60 * 11)
+		{
+			// ボール
+			CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X - 175.0f, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
+
+			m_nCnt[2] = 0;
+		}
+		if (m_nCnt[3] >= 60 * 13)
+		{
+			// ボール
+			CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z - 75.0f), CBall::BALL_000_B);
+
+			m_nCnt[3] = 0;
 		}
 
 		// ランダム生成

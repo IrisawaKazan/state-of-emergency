@@ -31,6 +31,7 @@
 #include"key.h"
 #include"door_center.h"
 #include"pipe.h"
+#include"traffic_lights.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -101,6 +102,9 @@ HRESULT CGame::Init(void)
 	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	CPipe::Create(D3DXVECTOR3(-175.0f, -150.0f, -360.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
 	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z - 75.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	//// 信号機
+	//CTrafficLights::Create(D3DXVECTOR3(-250.0f, 0.0f, -200.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -293,7 +297,7 @@ void CGame::Update(void)
 	// ゴール
 	if (m_pPlayer->GetPos().x >= GOAL_POS_X - 25.0f && m_pPlayer->GetPos().x <= GOAL_POS_X + 25.0f &&
 		m_pPlayer->GetPos().z >= GOAL_POS_Z - 25.0f && m_pPlayer->GetPos().z <= GOAL_POS_Z + 25.0f && m_pPlayer->GetKey() == true)
-	{// 決定キー(ENTERキー)が押された
+	{
 		CManager::SetMode(MODE_RESULT);
 	}
 

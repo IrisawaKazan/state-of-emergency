@@ -84,7 +84,7 @@ HRESULT CGame::Init(void)
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
 
 	// フロアボックス
-	//CFloorBox::Create(D3DXVECTOR3(-200.0f, 0.0f, -100.0f));
+	//CFloorBox::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
 
 	// ドア

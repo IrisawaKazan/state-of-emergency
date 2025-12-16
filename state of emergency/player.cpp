@@ -252,7 +252,7 @@ void CPlayer::Update(void)
 			m_move.z += (0.0f - m_move.z) * 0.2f;
 		}
 
-		// 最終的には消す(床)
+		// 床
 		if (m_pos.y <= 0.0f)
 		{
 			m_pos.y = 0.0f;
@@ -523,18 +523,61 @@ void CPlayer::Draw(void)
 
 #ifdef _DEBUG // Debug時のみ
 
-		// プレイヤーのpos, rot, moveをデバッグ表示
-		CDebugProc::Print("\nPlayer pos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
+		// プレイヤーのpos, rot, move......をデバッグ表示
+		CDebugProc::Print("\n\n\nPlayer pos: %.4f, %.4f, %.4f", m_pos.x, m_pos.y, m_pos.z);
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\nPlayer pos: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
+		CDebugProc::Print("\n\n\n\nPlayer rot: %.4f, %.4f, %.4f", m_rot.x, m_rot.y, m_rot.z);
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\n\nPlayer move: %.4f, %.4f, %.4f", m_move.x, m_move.y, m_move.z);
+		CDebugProc::Print("\n\n\n\n\nPlayer move: %.4f, %.4f, %.4f", m_move.x, m_move.y, m_move.z);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\nJump counter: %d", m_nJumpCnt);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\nPlayerの移動速度の倍率: %.1f", m_fDash);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n*-------------------------------------------*");
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\nDash [使用: 1, 未使用: 0]: %d", m_bDash);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\nJump [使用: 1, 未使用: 0]: %d", m_bJump);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\nKey [所持: 1, 未所持: 0]: %d", m_bKey);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayer size: %.4f, %.4f, %.4f", m_size.x, m_size.y, m_size.z);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最大値: %.4f, %.4f, %.4f", m_vtxMax.x, m_vtxMax.y, m_vtxMax.z);
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最小値: %.4f, %.4f, %.4f", m_vtxMin.x, m_vtxMin.y, m_vtxMin.z);
 		CDebugProc::Draw();
 
 #endif
 	}
+
+#ifdef _DEBUG // Debug時のみ
+
+	CDebugProc::Print("\n*-------------------------------------------*");
+	CDebugProc::Draw();
+
+	CDebugProc::Print("\n\nPlayer Use [使用: 1, 未使用: 0]: %d", m_bUse);
+	CDebugProc::Draw();
+
+#endif
 }
 
 //----------------------------------------

@@ -73,7 +73,7 @@ private:
 	bool m_bJump;				// ジャンプしているかどうか
 	int m_nJumpCnt;				// ジャンプカウンター
 	bool m_bJumpCnt;			// ジャンプカウンターの抑制
-	float m_fDash;				// 走る
+	float m_fDash;				// 走りの倍率
 	bool m_bDash;				// 走っているかどうか
 
 	bool m_bUse;				// 使用しているか

@@ -55,6 +55,7 @@ private:
 	int m_nCnt[MAX_BALLCOUNTER];			// ボールカウンター
 	int m_nSpawn;							// 湧くスピード
 	int m_nFrameCounter[MAX_FRAMECOUNTER];	// フレイムカウンター
+	int m_nKeyCnt;							// 鍵が出るまでカウンター
 };
 
 #endif

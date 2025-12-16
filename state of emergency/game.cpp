@@ -52,6 +52,8 @@ CGame::CGame() : CScene(CScene::MODE_GAME)
 	{
 		m_nFrameCounter[nCnt] = NULL;
 	}
+
+	m_nKeyCnt = NULL;
 }
 
 //----------------------------------------
@@ -123,9 +125,6 @@ HRESULT CGame::Init(void)
 
 		// レアボトル
 		CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
-
-		// 鍵
-		CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
 	}
 
 #ifdef _DEBUG // Debug時のみ
@@ -292,6 +291,17 @@ void CGame::Update(void)
 			m_nSpawn = 0;
 			m_nFrameCounter[7] = 0;
 		}
+	}
+
+	if (m_nKeyCnt <= 60 * 15)
+	{
+		m_nKeyCnt++;
+	}
+
+	if (m_nKeyCnt == 60 * 15)
+	{
+		// 鍵
+		CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
 	}
 
 	// ゴール

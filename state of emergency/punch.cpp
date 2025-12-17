@@ -253,6 +253,42 @@ void CPunch::Update(void)
 
 		break;
 
+	case PUNCH_000_C:
+		// インクリメント
+		m_nMovingCounter[2]++;
+
+		// パンチの動き
+		if (m_nMovingCounter[2] >= 60 * 0 && m_nMovingCounter[2] < 60 * 15) // 0秒から15秒の間は
+		{
+			// 動かない
+		}
+		if (m_nMovingCounter[2] >= 60 * 15 && m_nMovingCounter[2] < 60 * 17) // 15秒から17秒の間は
+		{
+			// 少し勢いをつけるように動く
+			m_pos.x += 0.1f;
+			m_pos.z -= 0.1f;
+		}
+		if (m_nMovingCounter[2] >= 60 * 17 && m_nMovingCounter[2] < 60 * 18 - 50) // 17秒から18秒と5/6秒の間は
+		{
+			// 一気に進む
+			m_pos.x -= 30.0f;
+			m_pos.z += 30.0f;
+		}
+		if (m_nMovingCounter[2] >= 60 * 15 - 50 && m_nMovingCounter[2] < 60 * 16) // 18秒と5/6秒から19秒の間は
+		{
+			// 動かない
+		}
+		if (m_nMovingCounter[2] >= 60 * 19) // 19秒に
+		{
+			// ワープして戻る
+			m_pos = D3DXVECTOR3(350.0f, 0.0f, -250.0f);
+
+			// カウンターリセット
+			m_nMovingCounter[2] = /*0*/60 * 6;
+		}
+
+		break;
+
 	case PUNCH_000_D:
 		// インクリメント
 		m_nMovingCounter[1]++;

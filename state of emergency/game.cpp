@@ -291,17 +291,18 @@ void CGame::Update(void)
 			m_nSpawn = 0;
 			m_nFrameCounter[7] = 0;
 		}
-	}
 
-	if (m_nKeyCnt <= 60 * 15)
-	{
-		m_nKeyCnt++;
-	}
+		// 鍵のカウンター
+		if (m_nKeyCnt <= 60 * KEY_TIME)
+		{
+			m_nKeyCnt++;
+		}
 
-	if (m_nKeyCnt == 60 * 15)
-	{
-		// 鍵
-		CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
+		if (m_nKeyCnt == 60 * KEY_TIME)
+		{
+			// 鍵
+			CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
+		}
 	}
 
 	// ゴール
@@ -371,6 +372,15 @@ void CGame::Update(void)
 void CGame::Draw(void)
 {
 #ifdef _DEBUG // Debug時のみ
+
+	if (m_pPlayer->GetEnable() == true)
+	{
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
+		CDebugProc::Draw();
+
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
+		CDebugProc::Draw();
+	}
 
 	// 現在のモードをデバッグ表示
 	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Game");

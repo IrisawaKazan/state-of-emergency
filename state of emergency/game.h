@@ -35,6 +35,8 @@ class CPlayer;
 #define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
 #define NUM_BOTTLE_RARE_SCORE (50)		// レアボトルのスコア
 
+#define KEY_TIME (15)					// 鍵が出る時間
+
 // ゲーム画面クラス
 class CGame : public CScene
 {

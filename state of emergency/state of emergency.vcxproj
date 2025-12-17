@@ -170,6 +170,7 @@
     <ClCompile Include="pause.cpp" />
     <ClCompile Include="pipe.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="punch.cpp" />
     <ClCompile Include="renderer.cpp" />
     <ClCompile Include="result.cpp" />
     <ClCompile Include="resultOBJ.cpp" />
@@ -211,6 +212,7 @@
     <ClInclude Include="pause.h" />
     <ClInclude Include="pipe.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="punch.h" />
     <ClInclude Include="renderer.h" />
     <ClInclude Include="result.h" />
     <ClInclude Include="resultOBJ.h" />

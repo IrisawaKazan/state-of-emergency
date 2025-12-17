@@ -32,6 +32,7 @@
 #include"door_center.h"
 #include"pipe.h"
 #include"traffic_lights.h"
+#include"punch.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -104,6 +105,9 @@ HRESULT CGame::Init(void)
 	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	CPipe::Create(D3DXVECTOR3(-175.0f, -150.0f, -360.0f), D3DXVECTOR3(0.0f, D3DX_PI / 2.0f, 0.0f));
 	CPipe::Create(D3DXVECTOR3(460.0f, -150.0f, BALL_BESIDE_POS_Z - 75.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+	// パンチ
+	CPunch::Create(D3DXVECTOR3(350.0f, 0.0f, 250.0f), D3DXVECTOR3(0.0f, D3DX_PI / 4.0f, 0.0f), CPunch::PUNCH_000_A);
 
 	//// 信号機
 	//CTrafficLights::Create(D3DXVECTOR3(-250.0f, 0.0f, -200.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
@@ -378,6 +382,7 @@ void CGame::Draw(void)
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
 		CDebugProc::Draw();
 
+		// 鍵が出るまでのカウンターをデバッグ表示
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
 		CDebugProc::Draw();
 	}

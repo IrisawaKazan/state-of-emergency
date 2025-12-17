@@ -55,6 +55,8 @@ CGame::CGame() : CScene(CScene::MODE_GAME)
 	}
 
 	m_nKeyCnt = NULL;
+
+	m_nEscapeCnt = NULL;
 }
 
 //----------------------------------------
@@ -140,11 +142,18 @@ HRESULT CGame::Init(void)
 
 #endif
 
+#ifdef NDEBUG // Release時のみ
+
+	// タイマー
+	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 200.0f, 675.0f, 0.0f), 30.0f, 90.0f);
+
+#endif
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_TITLE_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
 
 	return S_OK;
 }
@@ -303,11 +312,22 @@ void CGame::Update(void)
 		{
 			m_nKeyCnt++;
 		}
-
 		if (m_nKeyCnt == 60 * KEY_TIME)
 		{
 			// 鍵
-			CKey::Create(D3DXVECTOR3(NUM_WALL_X - 25.0f, 0.0f, -NUM_WALL_Z + 25.0f));
+			CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		}
+
+		// 強制終了までのカウンター
+		if (m_nEscapeCnt <= 60 * TIME_OUT)
+		{
+			m_nEscapeCnt++;
+		}
+		if (m_nEscapeCnt == 60 * TIME_OUT)
+		{
+			CManager::SetMode(MODE_RESULT);
+
+			return;
 		}
 	}
 
@@ -316,6 +336,8 @@ void CGame::Update(void)
 		m_pPlayer->GetPos().z >= GOAL_POS_Z - 25.0f && m_pPlayer->GetPos().z <= GOAL_POS_Z + 25.0f && m_pPlayer->GetKey() == true)
 	{
 		CManager::SetMode(MODE_RESULT);
+
+		return;
 	}
 
 #ifdef _DEBUG // Debug時のみ
@@ -355,6 +377,8 @@ void CGame::Update(void)
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 	{// 決定キー(ENTERキー)が押された
 		CManager::SetMode(MODE_RESULT);
+
+		return;
 	}
 
 #endif
@@ -366,6 +390,8 @@ void CGame::Update(void)
 		if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) == true)
 		{// 決定キー(ENTERキー)が押された
 			CManager::SetMode(MODE_RESULT);
+
+			return;
 		}
 	}
 
@@ -386,6 +412,10 @@ void CGame::Draw(void)
 
 		// 鍵が出るまでのカウンターをデバッグ表示
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
+		CDebugProc::Draw();
+
+		// 鍵が出るまでのカウンターをデバッグ表示
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n強制終了 [%dで遷移]: %d", TIME_OUT, m_nEscapeCnt / 60);
 		CDebugProc::Draw();
 	}
 

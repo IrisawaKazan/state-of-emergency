@@ -18,7 +18,7 @@ public:
 	typedef enum
 	{
 		SOUND_LABEL_SAMPLE_BGM = 0,			// サンプルのBGM
-		SOUND_LABEL_SAMPLE_TITLE_BGM,		// サンプルのBGM
+		//SOUND_LABEL_SAMPLE_TITLE_BGM,		// サンプルのBGM
 		//SOUND_LABEL_TITLE_BGM,			// タイトルのBGM
 		//SOUND_LABEL_GAME_BGM,				// ゲームのBGM
 		//SOUND_LABEL_RESULT_BGM,			// リザルトのBGM
@@ -54,7 +54,7 @@ private:
 	SOUNDINFO m_aSoundInfo[SOUND_LABEL_MAX] =
 	{
 		{"data/BGM/sample_bgm.wav", -1},		// サンプルメインBGM
-		{"data/BGM/sample_bgm_game.wav", -1},		// サンプルタイトルBGM
+		//{"data/BGM/sample_bgm_game.wav", -1},		// サンプルタイトルBGM
 		//{"data/BGM/titleBGM.wav", -1},			// タイトルBGM
 		//{"data/BGM/M_M_I.wav", -1},				// ゲームBGM
 		//{"data/BGM/M_b_I_lastpart.wav", -1},	// リザルトBGM

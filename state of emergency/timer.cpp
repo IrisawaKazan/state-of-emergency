@@ -9,6 +9,7 @@
 #include"number.h"
 #include"renderer.h"
 #include"manager.h"
+#include"game.h"
 
 // 静的メンバ変数宣言
 LPDIRECT3DTEXTURE9 CTimer::m_pTexture = nullptr;
@@ -89,7 +90,17 @@ CTimer* CTimer::Create(D3DXVECTOR3 pos, float xsize, float ysize)
 //----------------------------------------
 HRESULT CTimer::Init(void)
 {
+#ifdef _DEBUG // Debug時のみ
+
 	m_nContTimer = 0; // 初期タイム
+
+#endif
+
+#ifdef NDEBUG // Release時のみ
+
+	m_nContTimer = 60; // 初期タイム
+
+#endif
 
 	float fTexPos = m_fySize / MAX_TIMER;
 
@@ -177,14 +188,36 @@ void CTimer::AddTimer(void)
 
 	if (m_nTimer >= 60)
 	{
-		//m_nContTimer--; // カウントダウン
+#ifdef _DEBUG // Debug時のみ
+
 		m_nContTimer++; // カウントアップ
+
+#endif
+
+#ifdef NDEBUG // Release時のみ
+
+		m_nContTimer--; // カウントダウン
+
+#endif
+
 		m_nTimer = 0;
 	}
+
+#ifdef _DEBUG // Debug時のみ
 
 	texU[0] = m_nContTimer % 1000 / 100;
 	texU[1] = m_nContTimer % 100 / 10;
 	texU[2] = m_nContTimer % 10 / 1;
+
+#endif
+
+#ifdef NDEBUG // Release時のみ
+
+	texU[0] = m_nContTimer % 1000 / 100;
+	texU[1] = m_nContTimer % 100 / 10;
+	texU[2] = m_nContTimer % 10 / 1;
+
+#endif
 
 	for (int nCnt = 0; nCnt < MAX_TIMER; nCnt++)
 	{

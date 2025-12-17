@@ -1,1 +1,2 @@
 ・ゲームオーバー000(You're dead)と、ゲームオーバー100(You're greedy)
+・

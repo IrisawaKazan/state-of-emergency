@@ -31,6 +31,11 @@ CPunch::CPunch(int nPriority) : CObject(nPriority)
 	m_vtxMax = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	m_type = PUNCH_NONE;
+
+	for (int nCnt = 0; nCnt < MAX_PUNCH_CNT; nCnt++)
+	{
+		m_nMovingCounter[nCnt] = NULL;
+	}
 }
 
 //----------------------------------------
@@ -213,30 +218,73 @@ void CPunch::Update(void)
 	switch (m_type)
 	{
 	case PUNCH_000_A:
-		m_nMovingCounter++;
-		if (m_nMovingCounter >= 60 * 0 && m_nMovingCounter < 60 * 8)
-		{
+		// ÉCÉìÉNÉäÉÅÉìÉg
+		m_nMovingCounter[0]++;
 
-		}
-		if (m_nMovingCounter >= 60 * 8 && m_nMovingCounter < 60 * 10)
+		// ÉpÉìÉ`ÇÃìÆÇ´
+		if (m_nMovingCounter[0] >= 60 * 0 && m_nMovingCounter[0] < 60 * 8) // 0ïbÇ©ÇÁ8ïbÇÃä‘ÇÕ
 		{
+			// ìÆÇ©Ç»Ç¢
+		}
+		if (m_nMovingCounter[0] >= 60 * 8 && m_nMovingCounter[0] < 60 * 10) // 8ïbÇ©ÇÁ10ïbÇÃä‘ÇÕ
+		{
+			// è≠Çµê®Ç¢ÇÇ¬ÇØÇÈÇÊÇ§Ç…ìÆÇ≠
 			m_pos.x += 0.1f;
 			m_pos.z += 0.1f;
 		}
-		if (m_nMovingCounter >= 60 * 10 && m_nMovingCounter < 60 * 11 - 50)
+		if (m_nMovingCounter[0] >= 60 * 10 && m_nMovingCounter[0] < 60 * 11 - 50) // 10ïbÇ©ÇÁ11ïbÇ∆5/6ïbÇÃä‘ÇÕ
 		{
+			// àÍãCÇ…êiÇﬁ
 			m_pos.x -= 30.0f;
 			m_pos.z -= 30.0f;
 		}
-		if (m_nMovingCounter >= 60 * 11 - 50 && m_nMovingCounter < 60 * 13)
+		if (m_nMovingCounter[0] >= 60 * 11 - 50 && m_nMovingCounter[0] < 60 * 12) // 11ïbÇ∆5/6ïbÇ©ÇÁ12ïbÇÃä‘ÇÕ
 		{
-
+			// ìÆÇ©Ç»Ç¢
 		}
-		if (m_nMovingCounter >= 60 * 13)
+		if (m_nMovingCounter[0] >= 60 * 12) // 13ïbÇ…
 		{
+			// ÉèÅ[ÉvÇµÇƒñﬂÇÈ
 			m_pos = D3DXVECTOR3(350.0f, 0.0f, 250.0f);
 
-			m_nMovingCounter = 0;
+			// ÉJÉEÉìÉ^Å[ÉäÉZÉbÉg
+			m_nMovingCounter[0] = 0;
+		}
+
+		break;
+
+	case PUNCH_000_D:
+		// ÉCÉìÉNÉäÉÅÉìÉg
+		m_nMovingCounter[1]++;
+
+		// ÉpÉìÉ`ÇÃìÆÇ´
+		if (m_nMovingCounter[1] >= 60 * 0 && m_nMovingCounter[1] < 60 * 12) // 0ïbÇ©ÇÁ12ïbÇÃä‘ÇÕ
+		{
+			// ìÆÇ©Ç»Ç¢
+		}
+		if (m_nMovingCounter[1] >= 60 * 12 && m_nMovingCounter[1] < 60 * 14) // 12ïbÇ©ÇÁ14ïbÇÃä‘ÇÕ
+		{
+			// è≠Çµê®Ç¢ÇÇ¬ÇØÇÈÇÊÇ§Ç…ìÆÇ≠
+			m_pos.x -= 0.1f;
+			m_pos.z -= 0.1f;
+		}
+		if (m_nMovingCounter[1] >= 60 * 14 && m_nMovingCounter[1] < 60 * 15 - 50) // 14ïbÇ©ÇÁ15ïbÇ∆5/6ïbÇÃä‘ÇÕ
+		{
+			// àÍãCÇ…êiÇﬁ
+			m_pos.x += 30.0f;
+			m_pos.z += 30.0f;
+		}
+		if (m_nMovingCounter[1] >= 60 * 15 - 50 && m_nMovingCounter[1] < 60 * 16) // 15ïbÇ∆5/6ïbÇ©ÇÁ16ïbÇÃä‘ÇÕ
+		{
+			// ìÆÇ©Ç»Ç¢
+		}
+		if (m_nMovingCounter[1] >= 60 * 16) // 16ïbÇ…
+		{
+			// ÉèÅ[ÉvÇµÇƒñﬂÇÈ
+			m_pos = D3DXVECTOR3(-350.0f, 0.0f, -250.0f);
+
+			// ÉJÉEÉìÉ^Å[ÉäÉZÉbÉg
+			m_nMovingCounter[1] = 0/*60 * 5*/;
 		}
 
 		break;

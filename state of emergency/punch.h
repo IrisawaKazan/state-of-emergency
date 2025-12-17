@@ -13,7 +13,7 @@
 #include"game.h"
 
 // マクロ定義
-
+#define MAX_PUNCH_CNT (5)
 
 // パンチクラス
 class CPunch : public CObject
@@ -26,7 +26,7 @@ public:
 		PUNCH_000_A, // 右奥から
 		//PUNCH_000_B, // 左奥から
 		//PUNCH_000_C, // 右手前から
-		//PUNCH_000_D, // 左手前から
+		PUNCH_000_D, // 左手前から
 
 		PUNCH_MAX
 	}PUNCH;
@@ -58,21 +58,21 @@ public:
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
-	LPD3DXMESH m_pMesh;			// メッシュ(頂点座標)へのポインタ
-	LPD3DXBUFFER m_pBuffMat;	// マテリアルへのポインタ
-	DWORD m_dwNumMat;			// マテリアルの数
-	D3DXVECTOR3 m_pos;			// 位置
-	D3DXVECTOR3 m_posOld;		// 前回の位置
-	D3DXVECTOR3 m_rot;			// 向き
-	D3DXMATRIX m_mtxWorld;		// ワールドマトリックス
+	LPD3DXMESH m_pMesh;						// メッシュ(頂点座標)へのポインタ
+	LPD3DXBUFFER m_pBuffMat;				// マテリアルへのポインタ
+	DWORD m_dwNumMat;						// マテリアルの数
+	D3DXVECTOR3 m_pos;						// 位置
+	D3DXVECTOR3 m_posOld;					// 前回の位置
+	D3DXVECTOR3 m_rot;						// 向き
+	D3DXMATRIX m_mtxWorld;					// ワールドマトリックス
 
-	D3DXVECTOR3 m_size;			// 大きさ
-	D3DXVECTOR3 m_vtxMin;		// モデルの最小値
-	D3DXVECTOR3 m_vtxMax;		// モデルの最大値
+	D3DXVECTOR3 m_size;						// 大きさ
+	D3DXVECTOR3 m_vtxMin;					// モデルの最小値
+	D3DXVECTOR3 m_vtxMax;					// モデルの最大値
 
-	PUNCH m_type;				// パンチの種類の管理
+	PUNCH m_type;							// パンチの種類の管理
 
-	int m_nMovingCounter;		// ムーブメントカウンター
+	int m_nMovingCounter[MAX_PUNCH_CNT];	// ムーブメントカウンター
 };
 
 #endif

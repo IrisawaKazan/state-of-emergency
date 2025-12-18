@@ -42,6 +42,8 @@ public:
 	void SetEnable(bool enable) { m_bUse = enable; }
 	void SetKey(bool key) { m_bKey = key; }
 
+	void SetPoint(int point) { m_nPoint += point; }
+
 	D3DXVECTOR3 GetPos(void);
 	D3DXVECTOR3 GetPosOld(void);
 	D3DXVECTOR3 GetMove(void);
@@ -53,6 +55,8 @@ public:
 
 	bool GetEnable(void) { return m_bUse; }
 	bool GetKey(void) { return m_bKey; }
+
+	int GetPoint(void) { return m_nPoint; }
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
@@ -79,6 +83,8 @@ private:
 	bool m_bUse;				// 使用しているか
 
 	bool m_bKey;				// 鍵所持の有無
+
+	int m_nPoint;				// ゲットしたポイント
 };
 
 #endif

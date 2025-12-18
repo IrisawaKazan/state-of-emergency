@@ -43,6 +43,8 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_bDash = false;
 
 	m_bKey = false;
+
+	m_nPoint = NULL;
 }
 
 //----------------------------------------
@@ -564,6 +566,10 @@ void CPlayer::Draw(void)
 		CDebugProc::Draw();
 
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最小値: %.4f, %.4f, %.4f", m_vtxMin.x, m_vtxMin.y, m_vtxMin.z);
+		CDebugProc::Draw();
+
+		// 鍵が出るまでのポイントカウンターをデバッグ表示
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey point [%dで鍵出現]: %d", KEY_POINT, m_nPoint);
 		CDebugProc::Draw();
 
 #endif

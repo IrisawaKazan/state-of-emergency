@@ -57,6 +57,8 @@ CGame::CGame() : CScene(CScene::MODE_GAME)
 	m_nKeyCnt = NULL;
 
 	m_nEscapeCnt = NULL;
+
+	m_nKeyNum = NULL;
 }
 
 //----------------------------------------
@@ -308,15 +310,27 @@ void CGame::Update(void)
 			m_nFrameCounter[7] = 0;
 		}
 
-		// 鍵のカウンター
-		if (m_nKeyCnt <= 60 * KEY_TIME)
+		//// 鍵のカウンター
+		//if (m_nKeyCnt <= 60 * KEY_TIME)
+		//{
+		//	m_nKeyCnt++;
+		//}
+		//if (m_nKeyCnt == 60 * KEY_TIME)
+		//{
+		//	// 鍵
+		//	CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+		//}
+
+		// 1000ポイントで鍵が出る
+		if (m_pPlayer->GetPoint() >= KEY_POINT)
 		{
-			m_nKeyCnt++;
-		}
-		if (m_nKeyCnt == 60 * KEY_TIME)
-		{
-			// 鍵
-			CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+			if (m_nKeyNum == 0)
+			{
+				// 鍵
+				CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+				m_nKeyNum = 1;
+			}
 		}
 
 		// 強制終了までのカウンター
@@ -372,6 +386,8 @@ void CGame::Update(void)
 		if (pInputKeyboard->GetTrigger(DIK_NUMPADPLUS) == true)
 		{// 10キーの+
 			m_pPlayer = CPlayer::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
+
+			m_nKeyNum = 0;
 		}
 	}
 
@@ -411,9 +427,9 @@ void CGame::Draw(void)
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
 		CDebugProc::Draw();
 
-		// 鍵が出るまでのカウンターをデバッグ表示
-		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
-		CDebugProc::Draw();
+		//// 鍵が出るまでのカウンターをデバッグ表示
+		//CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
+		//CDebugProc::Draw();
 
 		// 鍵が出るまでのカウンターをデバッグ表示
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n強制終了 [%dで遷移]: %d", TIME_OUT, m_nEscapeCnt / 60);

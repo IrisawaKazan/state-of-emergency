@@ -35,8 +35,9 @@ class CPlayer;
 #define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
 #define NUM_BOTTLE_RARE_SCORE (50)		// レアボトルのスコア
 
-#define KEY_TIME (15)					// 鍵が出る時間
-#define TIME_OUT (60)					// 強制終了する時間
+//#define KEY_TIME (15)					// 鍵が出る時間
+#define KEY_POINT (500)					// 鍵が出るポイント
+#define TIME_OUT (120)					// 強制終了する時間
 
 // ゲーム画面クラス
 class CGame : public CScene
@@ -61,6 +62,8 @@ private:
 	int m_nKeyCnt;							// 鍵が出るまでカウンター
 
 	int m_nEscapeCnt;						// 脱出までの制限時間
+
+	int m_nKeyNum;							// 鍵の多段生成防止
 };
 
 #endif

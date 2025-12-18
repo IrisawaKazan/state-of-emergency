@@ -386,6 +386,9 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(NUM_BOTTLE_SCORE);
 
+			// 鍵が出るまでのポイント加算
+			pPlayer->SetPoint(NUM_BOTTLE_SCORE);
+
 			// 消す
 			Uninit();
 
@@ -402,6 +405,9 @@ void CBottle::Collision(void)
 		{
 			// スコア加算
 			CScore::AddScore(NUM_BOTTLE_SCORE);
+
+			// 鍵が出るまでのポイント加算
+			pPlayer->SetPoint(NUM_BOTTLE_SCORE);
 
 			// 消す
 			Uninit();
@@ -428,6 +434,9 @@ void CBottle::Collision(void)
 			// スコア加算
 			CScore::AddScore(NUM_BOTTLE_SCORE);
 
+			// 鍵が出るまでのポイント加算
+			pPlayer->SetPoint(NUM_BOTTLE_SCORE);
+
 			// 消す
 			Uninit();
 
@@ -444,6 +453,9 @@ void CBottle::Collision(void)
 		{
 			// スコア加算
 			CScore::AddScore(NUM_BOTTLE_SCORE);
+
+			// 鍵が出るまでのポイント加算
+			pPlayer->SetPoint(NUM_BOTTLE_SCORE);
 
 			// 消す
 			Uninit();

@@ -98,7 +98,7 @@ HRESULT CTimer::Init(void)
 
 #ifdef NDEBUG // Release時のみ
 
-	m_nContTimer = 60; // 初期タイム
+	m_nContTimer = TIME_OUT; // 初期タイム
 
 #endif
 

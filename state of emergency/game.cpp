@@ -361,11 +361,13 @@ void CGame::Update(void)
 	CSound* pSound = CManager::GetSound();
 
 	// 確認用
-	// スコア加算(+10)
+	// スコア加算(+100)
 	if (pInputKeyboard->GetTrigger(DIK_1) == true)
 	{
 		// スコア加算
-		CScore::AddScore(10);
+		CScore::AddScore(100);
+
+		m_pPlayer->SetPoint(100);
 
 		// SE
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
@@ -375,6 +377,8 @@ void CGame::Update(void)
 	{
 		// スコア加算
 		CScore::AddScore(-10);
+
+		m_pPlayer->SetPoint(-10);
 
 		// SE
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);

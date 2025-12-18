@@ -10,6 +10,8 @@
 #include"renderer.h"
 #include"manager.h"
 #include"object.h"
+#include"game.h"
+#include"player.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 LPDIRECT3DTEXTURE9 CScore::m_pTexture = nullptr;
@@ -141,11 +143,16 @@ void CScore::Update(void)
 //----------------------------------------
 void CScore::Draw(void)
 {
-	for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
+	CPlayer* pPlayer = CGame::GetPlayer();
+
+	if (pPlayer->GetPoint() < KEY_POINT)
 	{
-		if (m_apNumber[nCnt] != nullptr)
+		for (int nCnt = 0; nCnt < MAX_SCORE; nCnt++)
 		{
-			m_apNumber[nCnt]->Draw();
+			if (m_apNumber[nCnt] != nullptr)
+			{
+				m_apNumber[nCnt]->Draw();
+			}
 		}
 	}
 }

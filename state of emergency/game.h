@@ -33,10 +33,10 @@ class CPlayer;
 #define MAX_BALLCOUNTER (6)				// ボールのカウンターの数
 
 #define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
-#define NUM_BOTTLE_RARE_SCORE (50)		// レアボトルのスコア
+#define NUM_BOTTLE_RARE_SCORE (100)		// レアボトルのスコア
 
 //#define KEY_TIME (15)					// 鍵が出る時間
-#define KEY_POINT (500)					// 鍵が出るポイント
+#define KEY_POINT (1000)				// 鍵が出るポイント
 #define TIME_OUT (120)					// 強制終了する時間
 
 // ゲーム画面クラス

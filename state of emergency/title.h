@@ -30,7 +30,8 @@ public:
 	void Draw(void);
 
 private:
-
+	int m_nEnterCnt;	// エンターを押した後の処理のためのカウンター
+	bool m_bEnter;		// エンターを押したかどうか
 };
 
 #endif

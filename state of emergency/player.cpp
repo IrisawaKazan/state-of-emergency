@@ -559,13 +559,13 @@ void CPlayer::Draw(void)
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayer size: %.4f, %.4f, %.4f", m_size.x, m_size.y, m_size.z);
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayer size: %.1f, %.1f, %.1f", m_size.x, m_size.y, m_size.z);
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最大値: %.4f, %.4f, %.4f", m_vtxMax.x, m_vtxMax.y, m_vtxMax.z);
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最大値: %.1f, %.1f, %.1f", m_vtxMax.x, m_vtxMax.y, m_vtxMax.z);
 		CDebugProc::Draw();
 
-		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最小値: %.4f, %.4f, %.4f", m_vtxMin.x, m_vtxMin.y, m_vtxMin.z);
+		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nPlayerモデルの最小値: %.1f, %.1f, %.1f", m_vtxMin.x, m_vtxMin.y, m_vtxMin.z);
 		CDebugProc::Draw();
 
 		// 鍵が出るまでのポイントカウンターをデバッグ表示

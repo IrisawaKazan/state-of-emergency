@@ -30,7 +30,8 @@
 //----------------------------------------
 CResult::CResult() : CScene(CScene::MODE_RESULT)
 {
-
+	m_nEnterCnt = NULL;
+	m_bEnter = false;
 }
 
 //----------------------------------------
@@ -86,10 +87,34 @@ void CResult::Update(void)
 	//// サウンドの取得
 	//CSound* pSound = CManager::GetSound();
 
-	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true)
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true && m_bEnter == false)
 	{// 決定キー(ENTERキー)が押された
-		CManager::SetMode(MODE_TITLE);
+		m_bEnter = true;
 	}
+
+	if (m_bEnter == true)
+	{
+		// インクリメント
+		m_nEnterCnt++;
+
+		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
+		{
+			if (m_nEnterCnt == 60 * 0 + 10)
+			{
+				// ---の生成
+				//CResultObjX::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f)); // テスト
+			}
+		}
+		if (m_nEnterCnt >= 60 * 2)
+		{
+			CManager::SetMode(MODE_TITLE);
+
+			m_bEnter = false;
+
+			m_nEnterCnt = 0;
+		}
+	}
+
 }
 
 //----------------------------------------

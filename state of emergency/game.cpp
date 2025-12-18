@@ -321,7 +321,7 @@ void CGame::Update(void)
 		//	CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 		//}
 
-		// 1000ポイントで鍵が出る
+		// 基準のポイントで鍵が出る
 		if (m_pPlayer->GetPoint() >= KEY_POINT)
 		{
 			if (m_nKeyNum == 0)

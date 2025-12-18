@@ -110,6 +110,7 @@ HRESULT CGame::Init(void)
 
 	// ƒpƒ“ƒ`
 	CPunch::Create(D3DXVECTOR3(350.0f, 0.0f, 250.0f), D3DXVECTOR3(0.0f, D3DX_PI / 4.0f, 0.0f), CPunch::PUNCH_000_A);
+	CPunch::Create(D3DXVECTOR3(-350.0f, 0.0f, 250.0f), D3DXVECTOR3(0.0f, -D3DX_PI / 4.0f, 0.0f), CPunch::PUNCH_000_B);
 	CPunch::Create(D3DXVECTOR3(350.0f, 0.0f, -250.0f), D3DXVECTOR3(0.0f, D3DX_PI / -0.75f, 0.0f), CPunch::PUNCH_000_C);
 	CPunch::Create(D3DXVECTOR3(-350.0f, 0.0f, -250.0f), D3DXVECTOR3(0.0f, D3DX_PI / 0.75f, 0.0f), CPunch::PUNCH_000_D);
 

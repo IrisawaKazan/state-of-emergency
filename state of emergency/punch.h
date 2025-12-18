@@ -24,7 +24,7 @@ public:
 	{
 		PUNCH_NONE = 0,
 		PUNCH_000_A, // 右奥から
-		//PUNCH_000_B, // 左奥から
+		PUNCH_000_B, // 左奥から
 		PUNCH_000_C, // 右手前から
 		PUNCH_000_D, // 左手前から
 

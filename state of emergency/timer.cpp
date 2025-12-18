@@ -203,21 +203,9 @@ void CTimer::AddTimer(void)
 		m_nTimer = 0;
 	}
 
-#ifdef _DEBUG // DebugŽž‚Ì‚Ý
-
 	texU[0] = m_nContTimer % 1000 / 100;
 	texU[1] = m_nContTimer % 100 / 10;
 	texU[2] = m_nContTimer % 10 / 1;
-
-#endif
-
-#ifdef NDEBUG // ReleaseŽž‚Ì‚Ý
-
-	texU[0] = m_nContTimer % 1000 / 100;
-	texU[1] = m_nContTimer % 100 / 10;
-	texU[2] = m_nContTimer % 10 / 1;
-
-#endif
 
 	for (int nCnt = 0; nCnt < MAX_TIMER; nCnt++)
 	{

@@ -24,6 +24,7 @@ public:
 		//SOUND_LABEL_RESULT_BGM,			// リザルトのBGM
 
 		SOUND_LABEL_SAMPLE_SE,				// サンプルSE
+		SOUND_LABEL_JUMP_SE,				// ジャンプSE
 
 		SOUND_LABEL_MAX,
 	} SOUND_LABEL;
@@ -60,6 +61,7 @@ private:
 		//{"data/BGM/M_b_I_lastpart.wav", -1},	// リザルトBGM
 
 		{"data/SE/sample_se.wav", 0},			// サンプルSE
+		{"data/SE/Jump_SE.wav", 0},				// ジャンプSE
 	};
 };
 

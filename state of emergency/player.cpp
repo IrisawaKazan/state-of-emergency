@@ -425,7 +425,7 @@ void CPlayer::Update(void)
 			if (m_bJump == false)
 			{
 				// SE
-				pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+				pSound->PlaySoundA(CSound::SOUND_LABEL_JUMP_SE);
 			}
 
 			m_bJump = true;

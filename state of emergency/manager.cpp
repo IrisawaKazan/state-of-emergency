@@ -23,6 +23,7 @@
 #include"debugproc.h"
 #include"effect.h"
 #include"pause.h"
+#include"tutorialTex.h"
 //#include"fade.h"
 
 // 静的メンバ変数宣言
@@ -39,6 +40,7 @@ CScore* CManager::m_pScore = nullptr;
 CTimer* CManager::m_pTimer = nullptr;
 CEffect* CManager::m_pEffect = nullptr;
 CPause* CManager::m_pPause = nullptr;
+CTutorialTex* CManager::m_pTutorialTex = nullptr;
 
 CScene* CManager::m_pScene = nullptr;
 
@@ -131,6 +133,9 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	// ポーズのテクスチャの読み込み
 	CPause::Load();
 
+	// チュートリアルのテクスチャの読み込み
+	CTutorialTex::Load();
+
 	SetMode(CScene::MODE_TITLE);
 
 	return S_OK;
@@ -155,6 +160,9 @@ void CManager::Uninit(void)
 
 	// ポーズのテクスチャの破棄
 	CPause::Unload();
+
+	// チュートリアルのテクスチャの破棄
+	CTutorialTex::Unload();
 
 	// キーボードの破棄
 	if (m_pInputKeyboard != nullptr)
@@ -372,6 +380,14 @@ CEffect* CManager::GetEffect(void)
 CPause* CManager::GetPause(void)
 {
 	return m_pPause;
+}
+
+//----------------------------------------
+// チュートリアルテクスチャの取得処理
+//----------------------------------------
+CTutorialTex* CManager::GetTutorialTex(void)
+{
+	return m_pTutorialTex;
 }
 
 //----------------------------------------

@@ -24,6 +24,7 @@ class CScore;
 class CTimer;
 class CEffect;
 class CPause;
+class CTutorialTex;
 //class CFade;
 
 // シーンクラス
@@ -86,6 +87,7 @@ public:
 	static CTimer* GetTimer(void);
 	static CEffect* GetEffect(void);
 	static CPause* GetPause(void);
+	static CTutorialTex* GetTutorialTex(void);
 
 	static void SetMode(CScene::MODE mode);
 	static CScene::MODE GetMode(void);
@@ -108,6 +110,7 @@ private:
 	static CTimer* m_pTimer;
 	static CEffect* m_pEffect;
 	static CPause* m_pPause;
+	static CTutorialTex* m_pTutorialTex;
 
 	static CScene* m_pScene;
 

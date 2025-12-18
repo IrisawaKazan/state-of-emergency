@@ -184,6 +184,7 @@
     <ClCompile Include="tunnel.cpp" />
     <ClCompile Include="tutorial.cpp" />
     <ClCompile Include="tutorialOBJ.cpp" />
+    <ClCompile Include="tutorialTex.cpp" />
     <ClCompile Include="wall.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +228,7 @@
     <ClInclude Include="tunnel.h" />
     <ClInclude Include="tutorial.h" />
     <ClInclude Include="tutorialOBJ.h" />
+    <ClInclude Include="tutorialTex.h" />
     <ClInclude Include="wall.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

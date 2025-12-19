@@ -250,64 +250,67 @@ void CGame::Update(void)
 			m_nFrameCounter[nCnt]++;
 		}
 
-		// ボトル
-		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[0] >= NUM_FRAME_CNT)
+		//if (m_pPlayer->GetKey() == false) // 追加したらエフェクトのテクスチャ破棄で例外スローを吐いた(一回だけ)
 		{
-			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
+			// ボトル
+			if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[0] >= NUM_FRAME_CNT)
+			{
+				CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[0] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[1] >= NUM_FRAME_CNT)
-		{
-			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[0] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[1] >= NUM_FRAME_CNT)
+			{
+				CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[1] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[2] >= NUM_FRAME_CNT)
-		{
-			CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[1] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[2] >= NUM_FRAME_CNT)
+			{
+				CBottle::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[2] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[3] >= NUM_FRAME_CNT)
-		{
-			CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[2] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[3] >= NUM_FRAME_CNT)
+			{
+				CBottle::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[3] = 0;
-		}
+				m_nSpawn = 0;
+				m_nFrameCounter[3] = 0;
+			}
 
-		// レアボトル
-		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[4] >= NUM_FRAME_CNT_RARE)
-		{
-			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
+			// レアボトル
+			if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[4] >= NUM_FRAME_CNT_RARE)
+			{
+				CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[4] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[5] >= NUM_FRAME_CNT_RARE)
-		{
-			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[4] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[5] >= NUM_FRAME_CNT_RARE)
+			{
+				CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[5] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[6] >= NUM_FRAME_CNT_RARE)
-		{
-			CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[5] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[6] >= NUM_FRAME_CNT_RARE)
+			{
+				CBottleRare::Create(D3DXVECTOR3(fPosX, 0.0f, -fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[6] = 0;
-		}
-		if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[7] >= NUM_FRAME_CNT_RARE)
-		{
-			CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
+				m_nSpawn = 0;
+				m_nFrameCounter[6] = 0;
+			}
+			if (m_nSpawn >= rand() / MAX_SPAWN_RARE && m_nFrameCounter[7] >= NUM_FRAME_CNT_RARE)
+			{
+				CBottleRare::Create(D3DXVECTOR3(-fPosX, 0.0f, -fPosZ));
 
-			m_nSpawn = 0;
-			m_nFrameCounter[7] = 0;
+				m_nSpawn = 0;
+				m_nFrameCounter[7] = 0;
+			}
 		}
 
 		//// 鍵のカウンター

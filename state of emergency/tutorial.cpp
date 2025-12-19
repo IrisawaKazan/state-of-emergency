@@ -24,6 +24,7 @@
 #include"game.h"
 #include"tutorialOBJ.h"
 #include"tutorialTex.h"
+#include"playerTex.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -102,7 +103,11 @@ void CTutorial::Update(void)
 
 		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
 		{
-
+			if (m_nEnterCnt == 60 * 0 + 1)
+			{
+				// プレイヤーのテクスチャ生成
+				CPlayerTex::Create(D3DXVECTOR3(-50.0f, (float)SCREEN_HEIGHT - 150.0f, 0.0f), 200.0f, 250.0f);
+			}
 		}
 		if (m_nEnterCnt >= 60 * 2)
 		{

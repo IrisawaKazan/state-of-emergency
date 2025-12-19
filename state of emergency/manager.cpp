@@ -24,6 +24,7 @@
 #include"effect.h"
 #include"pause.h"
 #include"tutorialTex.h"
+#include"playerTex.h"
 //#include"fade.h"
 
 // 静的メンバ変数宣言
@@ -41,6 +42,7 @@ CTimer* CManager::m_pTimer = nullptr;
 CEffect* CManager::m_pEffect = nullptr;
 CPause* CManager::m_pPause = nullptr;
 CTutorialTex* CManager::m_pTutorialTex = nullptr;
+CPlayerTex* CManager::m_pPlayerTex = nullptr;
 
 CScene* CManager::m_pScene = nullptr;
 
@@ -136,6 +138,9 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	// チュートリアルのテクスチャの読み込み
 	CTutorialTex::Load();
 
+	// プレイヤーのテクスチャの読み込み
+	CPlayerTex::Load();
+
 	SetMode(CScene::MODE_TITLE);
 
 	return S_OK;
@@ -163,6 +168,9 @@ void CManager::Uninit(void)
 
 	// チュートリアルのテクスチャの破棄
 	CTutorialTex::Unload();
+
+	// プレイヤーのテクスチャの破棄
+	CPlayerTex::Unload();
 
 	// キーボードの破棄
 	if (m_pInputKeyboard != nullptr)
@@ -388,6 +396,14 @@ CPause* CManager::GetPause(void)
 CTutorialTex* CManager::GetTutorialTex(void)
 {
 	return m_pTutorialTex;
+}
+
+//----------------------------------------
+// プレイヤーテクスチャの取得処理
+//----------------------------------------
+CPlayerTex* CManager::GetPlayerTex(void)
+{
+	return m_pPlayerTex;
 }
 
 //----------------------------------------

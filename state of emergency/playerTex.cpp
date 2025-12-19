@@ -8,6 +8,7 @@
 #include"manager.h"
 #include"renderer.h"
 #include"object.h"
+#include"tutorial.h"
 
 // 静的メンバ変数宣言
 LPDIRECT3DTEXTURE9 CPlayerTex::m_pTexture = nullptr;
@@ -125,7 +126,7 @@ void CPlayerTex::Update(void)
 	// 位置を更新
 	pos.x += m_move.x;
 
-	m_move.x = 20.0f;
+	m_move.x = NUM_PLAYERYEX_MOVE;
 
 	CPlayerTex::SetPosition(pos);
 }

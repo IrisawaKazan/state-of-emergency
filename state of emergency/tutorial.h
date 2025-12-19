@@ -12,7 +12,7 @@
 #include"manager.h"
 
 // マクロ定義
-
+#define NUM_PLAYERYEX_MOVE (20.0f)	// チュートリアルのプレイヤーのムーブスピード
 
 // チュートリアル画面クラス
 class CTutorial : public CScene

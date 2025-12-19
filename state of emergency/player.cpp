@@ -89,7 +89,8 @@ HRESULT CPlayer::Init(void)
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	// XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
-	D3DXLoadMeshFromX("data\\MODEL\\player_demonstration.x",
+	D3DXLoadMeshFromX("data\\MODEL\\player.x",
+	//D3DXLoadMeshFromX("data\\MODEL\\player_demonstration.x",
 	//D3DXLoadMeshFromX("data\\MODEL\\rot_tester.x",
 	//D3DXLoadMeshFromX("data\\MODEL\\floorBox000.x",
 		D3DXMESH_SYSTEMMEM,

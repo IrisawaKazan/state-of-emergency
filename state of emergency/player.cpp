@@ -464,6 +464,13 @@ void CPlayer::Update(void)
 			m_fDash = 1.0f;
 
 			m_bDash = false;
+
+			m_rot.x = 0.0f;
+		}
+
+		if (m_bDash == true)
+		{
+			m_rot.x = -0.25f;
 		}
 
 		//// ローテーション

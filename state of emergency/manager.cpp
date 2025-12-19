@@ -25,6 +25,7 @@
 #include"pause.h"
 #include"tutorialTex.h"
 #include"playerTex.h"
+#include"gameover.h"
 //#include"fade.h"
 
 // 静的メンバ変数宣言
@@ -502,7 +503,10 @@ CScene* CScene::Create(MODE mode)
 
 	case MODE_RESULT:   // リザルト画面
 		pScene = new CResult;
+		break;
 
+	case MODE_GAMEOVER:   // ゲームオーバー画面
+		pScene = new CGameover;
 		break;
 	}
 

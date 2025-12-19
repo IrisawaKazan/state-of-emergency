@@ -1,0 +1,126 @@
+//==============================================================
+//
+// [gameover.cpp]
+// Author: Irisawa Kazan
+//
+//==============================================================
+// インクルード
+#include"gameover.h"
+#include"result.h"
+#include"tutorial.h"
+#include"title.h"
+#include"object2D.h"
+#include"renderer.h"
+#include"input.h"
+#include"sound.h"
+#include"score.h"
+#include"camera.h"
+#include"light.h"
+#include"object3D.h"
+#include"timer.h"
+#include"objectX.h"
+#include"objectBillboard.h"
+#include"debugproc.h"
+#include"effect.h"
+#include"pause.h"
+#include"game.h"
+#include"resultOBJ.h"
+
+//----------------------------------------
+// コンストラクタ
+//----------------------------------------
+CGameover::CGameover() : CScene(CScene::MODE_RESULT)
+{
+	m_nEnterCnt = NULL;
+	m_bEnter = false;
+}
+
+//----------------------------------------
+// デストラクタ
+//----------------------------------------
+CGameover::~CGameover()
+{
+
+}
+
+//----------------------------------------
+// 初期化処理
+//----------------------------------------
+HRESULT CGameover::Init(void)
+{
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
+
+	// BGM
+	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
+
+	return S_OK;
+}
+
+//----------------------------------------
+// 終了処理
+//----------------------------------------
+void CGameover::Uninit(void)
+{
+	CObject::Release();
+}
+
+//----------------------------------------
+// 更新処理
+//----------------------------------------
+void CGameover::Update(void)
+{
+	// キーボードの取得
+	CInputKeyboard* pInputKeyboard;
+	pInputKeyboard = CManager::GetInputKeyboard();
+
+	// マウスの取得
+	CInputMouse* pInputMouse;
+	pInputMouse = CManager::GetInputMouse();
+
+	// パッドの取得
+	CInputJoypad* pInputJoypad;
+	pInputJoypad = CManager::GetInputJoypad();
+
+	//// サウンドの取得
+	//CSound* pSound = CManager::GetSound();
+
+	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true && m_bEnter == false)
+	{// 決定キー(ENTERキー)が押された
+		m_bEnter = true;
+	}
+
+	if (m_bEnter == true)
+	{
+		// インクリメント
+		m_nEnterCnt++;
+
+		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
+		{
+
+		}
+		if (m_nEnterCnt >= 60 * 2)
+		{
+			CManager::SetMode(MODE_TITLE);
+
+			m_bEnter = false;
+
+			m_nEnterCnt = 0;
+		}
+	}
+
+}
+
+//----------------------------------------
+// 描画処理
+//----------------------------------------
+void CGameover::Draw(void)
+{
+#ifdef _DEBUG // Debug時のみ
+
+	// 現在のモードをデバッグ表示
+	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Game Over");
+	CDebugProc::Draw();
+
+#endif
+}

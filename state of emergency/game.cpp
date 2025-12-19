@@ -33,6 +33,7 @@
 #include"pipe.h"
 #include"traffic_lights.h"
 #include"punch.h"
+#include"blood.h"
 
 // 静的メンバ変数宣言
 CPlayer* CGame::m_pPlayer = nullptr;
@@ -81,6 +82,9 @@ HRESULT CGame::Init(void)
 
 	// タイマーのテクスチャの読み込み
 	CTimer::Load();
+
+	// 血のテクスチャの読み込み
+	CBlood::Load();
 
 
 	// プレイヤー
@@ -167,6 +171,9 @@ void CGame::Uninit(void)
 
 	// タイマーのテクスチャの破棄
 	CTimer::Unload();
+
+	// 血のテクスチャの破棄
+	CBlood::Unload();
 
 	CObject::Release();
 }
@@ -407,7 +414,7 @@ void CGame::Update(void)
 		{
 			if (m_nGameOverCnt == 60 * 0 + 10)
 			{
-
+				CBlood::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
 			}
 		}
 		if (m_nGameOverCnt >= 60 * 2)

@@ -26,6 +26,7 @@
 #include"tutorialTex.h"
 #include"playerTex.h"
 #include"gameover.h"
+#include"blood.h"
 //#include"fade.h"
 
 // 静的メンバ変数宣言
@@ -44,6 +45,7 @@ CEffect* CManager::m_pEffect = nullptr;
 CPause* CManager::m_pPause = nullptr;
 CTutorialTex* CManager::m_pTutorialTex = nullptr;
 CPlayerTex* CManager::m_pPlayerTex = nullptr;
+CBlood* CManager::m_pBlood = nullptr;
 
 CScene* CManager::m_pScene = nullptr;
 
@@ -142,6 +144,9 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	// プレイヤーのテクスチャの読み込み
 	CPlayerTex::Load();
 
+	// 血のテクスチャの読み込み
+	CBlood::Load();
+
 	SetMode(CScene::MODE_TITLE);
 
 	return S_OK;
@@ -172,6 +177,9 @@ void CManager::Uninit(void)
 
 	// プレイヤーのテクスチャの破棄
 	CPlayerTex::Unload();
+
+	// 血のテクスチャの破棄
+	CBlood::Unload();
 
 	// キーボードの破棄
 	if (m_pInputKeyboard != nullptr)
@@ -405,6 +413,14 @@ CTutorialTex* CManager::GetTutorialTex(void)
 CPlayerTex* CManager::GetPlayerTex(void)
 {
 	return m_pPlayerTex;
+}
+
+//----------------------------------------
+// 血のテクスチャの取得処理
+//----------------------------------------
+CBlood* CManager::GetBlood(void)
+{
+	return m_pBlood;
 }
 
 //----------------------------------------

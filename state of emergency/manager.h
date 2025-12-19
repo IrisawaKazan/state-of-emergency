@@ -26,6 +26,7 @@ class CEffect;
 class CPause;
 class CTutorialTex;
 class CPlayerTex;
+class CBlood;
 //class CFade;
 
 // シーンクラス
@@ -91,6 +92,7 @@ public:
 	static CPause* GetPause(void);
 	static CTutorialTex* GetTutorialTex(void);
 	static CPlayerTex* GetPlayerTex(void);
+	static CBlood* GetBlood(void);
 
 	static void SetMode(CScene::MODE mode);
 	static CScene::MODE GetMode(void);
@@ -115,6 +117,7 @@ private:
 	static CPause* m_pPause;
 	static CTutorialTex* m_pTutorialTex;
 	static CPlayerTex* m_pPlayerTex;
+	static CBlood* m_pBlood;
 
 	static CScene* m_pScene;
 

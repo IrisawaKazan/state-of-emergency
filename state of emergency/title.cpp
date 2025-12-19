@@ -90,7 +90,7 @@ void CTitle::Update(void)
 	pInputJoypad = CManager::GetInputJoypad();
 
 	// サウンドの取得
-	//CSound* pSound = CManager::GetSound();
+	CSound* pSound = CManager::GetSound();
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true && m_bEnter == false)
 	{// 決定キー(ENTERキー)が押された
@@ -104,7 +104,11 @@ void CTitle::Update(void)
 
 		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
 		{
-
+			if (m_nEnterCnt == 60 * 0 + 1)
+			{
+				// SE
+				pSound->PlaySoundA(CSound::SOUND_LABEL_ARROW_SE);
+			}
 		}
 		if (m_nEnterCnt >= 60 * 2)
 		{

@@ -195,6 +195,9 @@ void CGame::Update(void)
 	CInputJoypad* pInputJoypad;
 	pInputJoypad = CManager::GetInputJoypad();
 
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
+
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
@@ -357,9 +360,6 @@ void CGame::Update(void)
 
 #ifdef _DEBUG // Debug時のみ
 
-	// サウンドの取得
-	CSound* pSound = CManager::GetSound();
-
 	// 確認用
 	// スコア加算(+100)
 	if (pInputKeyboard->GetTrigger(DIK_1) == true)
@@ -412,6 +412,12 @@ void CGame::Update(void)
 
 		if (m_nGameOverCnt >= 60 * 0 && m_nGameOverCnt < 60 * 2)
 		{
+			if (m_nGameOverCnt == 60 * 0 + 1)
+			{
+				// SE
+				pSound->PlaySoundA(CSound::SOUND_LABEL_DEAD_SE);
+			}
+
 			if (m_nGameOverCnt == 60 * 0 + 10)
 			{
 				CBlood::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);

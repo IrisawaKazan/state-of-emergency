@@ -24,6 +24,11 @@ public:
 
 		SOUND_LABEL_SAMPLE_SE,			// サンプルSE
 		SOUND_LABEL_JUMP_SE,			// ジャンプSE
+		SOUND_LABEL_ARROW_SE,			// 矢印SE
+		SOUND_LABEL_BOTTLE_SE,			// ボトルSE
+		SOUND_LABEL_DEAD_SE,			// 死亡SE
+		SOUND_LABEL_KEY_SE,				// 鍵SE
+		SOUND_LABEL_TUTORIAL_PLAYER_SE,	// チュートリアルのプレイヤーSE
 
 		SOUND_LABEL_MAX,
 	} SOUND_LABEL;
@@ -60,6 +65,11 @@ private:
 
 		{"data/SE/sample_se.wav", 0},			// サンプルSE
 		{"data/SE/Jump_SE.wav", 0},				// ジャンプSE
+		{"data/SE/arrow_SE.wav", 0},			// 矢印SE
+		{"data/SE/bottle_SE.wav", 0},			// ボトルSE
+		{"data/SE/dead_SE.wav", 0},				// 死亡SE
+		{"data/SE/key_SE.wav", 0},				// 鍵SE
+		{"data/SE/tutorial_SE.wav", 0},			// チュートリアルのプレイヤーSE
 	};
 };
 

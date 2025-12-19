@@ -373,7 +373,7 @@ void CKey::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_KEY_SE);
 
 			return;
 		}
@@ -389,7 +389,7 @@ void CKey::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_KEY_SE);
 
 			return;
 		}
@@ -413,7 +413,7 @@ void CKey::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_KEY_SE);
 
 			return;
 		}
@@ -429,7 +429,7 @@ void CKey::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_KEY_SE);
 
 			return;
 		}

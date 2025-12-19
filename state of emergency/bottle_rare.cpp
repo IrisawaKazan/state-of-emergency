@@ -393,7 +393,7 @@ void CBottleRare::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_BOTTLE_SE);
 
 			return;
 		}
@@ -413,7 +413,7 @@ void CBottleRare::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_BOTTLE_SE);
 
 			return;
 		}
@@ -441,7 +441,7 @@ void CBottleRare::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_BOTTLE_SE);
 
 			return;
 		}
@@ -461,7 +461,7 @@ void CBottleRare::Collision(void)
 			Uninit();
 
 			// SE
-			pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
+			pSound->PlaySoundA(CSound::SOUND_LABEL_BOTTLE_SE);
 
 			return;
 		}

@@ -88,8 +88,8 @@ void CTutorial::Update(void)
 	CInputJoypad* pInputJoypad;
 	pInputJoypad = CManager::GetInputJoypad();
 
-	//// サウンドの取得
-	//CSound* pSound = CManager::GetSound();
+	// サウンドの取得
+	CSound* pSound = CManager::GetSound();
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true && m_bEnter == false)
 	{// 決定キー(ENTERキー)が押された
@@ -105,6 +105,9 @@ void CTutorial::Update(void)
 		{
 			if (m_nEnterCnt == 60 * 0 + 1)
 			{
+				// SE
+				pSound->PlaySoundA(CSound::SOUND_LABEL_TUTORIAL_PLAYER_SE);
+
 				// プレイヤーのテクスチャ生成
 				CPlayerTex::Create(D3DXVECTOR3(-50.0f, (float)SCREEN_HEIGHT - 150.0f, 0.0f), 200.0f, 250.0f);
 			}

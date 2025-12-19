@@ -59,7 +59,7 @@ HRESULT CTitle::Init(void)
 	CSound* pSound = CManager::GetSound();
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_TITLE_RESULT_BGM);
 
 	return S_OK;
 }

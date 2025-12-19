@@ -52,7 +52,7 @@ HRESULT CGameover::Init(void)
 	CSound* pSound = CManager::GetSound();
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_GAMEOVER_BGM);
 
 	return S_OK;
 }

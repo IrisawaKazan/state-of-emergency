@@ -17,14 +17,13 @@ public:
 	// サウンド一覧
 	typedef enum
 	{
-		SOUND_LABEL_SAMPLE_BGM = 0,			// サンプルのBGM
-		//SOUND_LABEL_SAMPLE_TITLE_BGM,		// サンプルのBGM
-		//SOUND_LABEL_TITLE_BGM,			// タイトルのBGM
-		//SOUND_LABEL_GAME_BGM,				// ゲームのBGM
-		//SOUND_LABEL_RESULT_BGM,			// リザルトのBGM
+		SOUND_LABEL_SAMPLE_BGM = 0,		// サンプルのBGM
+		SOUND_LABEL_TITLE_RESULT_BGM,	// タイトル, リザルトのBGM
+		SOUND_LABEL_GAME_BGM,			// ゲームのBGM
+		SOUND_LABEL_GAMEOVER_BGM,		// ゲームオーバーのBGM
 
-		SOUND_LABEL_SAMPLE_SE,				// サンプルSE
-		SOUND_LABEL_JUMP_SE,				// ジャンプSE
+		SOUND_LABEL_SAMPLE_SE,			// サンプルSE
+		SOUND_LABEL_JUMP_SE,			// ジャンプSE
 
 		SOUND_LABEL_MAX,
 	} SOUND_LABEL;
@@ -55,10 +54,9 @@ private:
 	SOUNDINFO m_aSoundInfo[SOUND_LABEL_MAX] =
 	{
 		{"data/BGM/sample_bgm.wav", -1},		// サンプルメインBGM
-		//{"data/BGM/sample_bgm_game.wav", -1},		// サンプルタイトルBGM
-		//{"data/BGM/titleBGM.wav", -1},			// タイトルBGM
-		//{"data/BGM/M_M_I.wav", -1},				// ゲームBGM
-		//{"data/BGM/M_b_I_lastpart.wav", -1},	// リザルトBGM
+		{"data/BGM/title_result_BGM.wav", -1},	// タイトル, リザルトBGM
+		{"data/BGM/game_BGM.wav", -1},			// ゲームBGM
+		{"data/BGM/gameover_BGM.wav", -1},		// ゲームオーバーBGM
 
 		{"data/SE/sample_se.wav", 0},			// サンプルSE
 		{"data/SE/Jump_SE.wav", 0},				// ジャンプSE

@@ -59,6 +59,8 @@ CGame::CGame() : CScene(CScene::MODE_GAME)
 	m_nEscapeCnt = NULL;
 
 	m_nKeyNum = NULL;
+
+	m_nGameOverCnt = NULL;
 }
 
 //----------------------------------------
@@ -74,17 +76,11 @@ CGame::~CGame()
 //----------------------------------------
 HRESULT CGame::Init(void)
 {
-	// エフェクトのテクスチャの読み込み
-	CEffect::Load();
-
 	// スコアのテクスチャの読み込み
 	CScore::Load();
 
 	// タイマーのテクスチャの読み込み
 	CTimer::Load();
-
-	// ポーズのテクスチャの読み込み
-	CPause::Load();
 
 
 	// プレイヤー
@@ -166,17 +162,11 @@ HRESULT CGame::Init(void)
 //----------------------------------------
 void CGame::Uninit(void)
 {
-	// エフェクトのテクスチャの破棄
-	CEffect::Unload();
-
 	// スコアのテクスチャの破棄
 	CScore::Unload();
 
 	// タイマーのテクスチャの破棄
 	CTimer::Unload();
-
-	// ポーズのテクスチャの破棄
-	CPause::Unload();
 
 	CObject::Release();
 }
@@ -250,7 +240,7 @@ void CGame::Update(void)
 			m_nFrameCounter[nCnt]++;
 		}
 
-		//if (m_pPlayer->GetKey() == false) // 追加したらエフェクトのテクスチャ破棄で例外スローを吐いた(一回だけ)
+		if (m_pPlayer->GetKey() == false)
 		{
 			// ボトル
 			if (m_nSpawn >= rand() / MAX_SPAWN && m_nFrameCounter[0] >= NUM_FRAME_CNT)
@@ -411,9 +401,21 @@ void CGame::Update(void)
 
 	if (m_pPlayer->GetEnable() == false)
 	{
-		CManager::SetMode(MODE_GAMEOVER);
+		m_nGameOverCnt++;
 
-		return;
+		if (m_nGameOverCnt >= 60 * 0 && m_nGameOverCnt < 60 * 2)
+		{
+			if (m_nGameOverCnt == 60 * 0 + 10)
+			{
+
+			}
+		}
+		if (m_nGameOverCnt >= 60 * 2)
+		{
+			CManager::SetMode(MODE_GAMEOVER);
+
+			return;
+		}
 	}
 
 #endif

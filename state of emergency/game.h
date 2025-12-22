@@ -25,8 +25,8 @@ class CPlayer;
 #define BALL_BESIDE_POS_Z (0.0f)		// ボールBesideが生成される位置(Z)
 #define GOAL_POS_X (NUM_WALL_X - 25.0f)	// ドアの位置(X)
 #define GOAL_POS_Z (NUM_WALL_Z - 25.0f)	// ドアの位置(Z)
-#define MAX_SPAWN (30)					// ボトルの湧く率(数字が小さいと出現しにくくなる)
-#define MAX_SPAWN_RARE (5)				// レアボトルの湧く率(数字が小さいと出現しにくくなる)
+#define MAX_SPAWN (50)					// ボトルの湧く率(数字が小さいと出現しにくくなる)
+#define MAX_SPAWN_RARE (10)				// レアボトルの湧く率(数字が小さいと出現しにくくなる)
 #define NUM_FRAME_CNT (60 * 2)			// ボトルがどれだけ連続して沸くか
 #define NUM_FRAME_CNT_RARE (60 * 10)	// レアボトルがどれだけ連続して沸くか
 #define MAX_FRAMECOUNTER (12)			// フレームカウンターの数

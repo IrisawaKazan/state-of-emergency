@@ -72,7 +72,7 @@ HRESULT CTitleObjX::Init(void)
 	m_rot = D3DXVECTOR3(D3DX_PI / -4.0f, 0.0f, 0.0f);
 
 	// XÉtÉ@ÉCÉãÇÃì«Ç›çûÇ›
-	D3DXLoadMeshFromX("data\\MODEL\\title_sample.x",
+	D3DXLoadMeshFromX("data\\MODEL\\title.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,

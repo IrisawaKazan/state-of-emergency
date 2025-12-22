@@ -123,6 +123,7 @@ void CObject2D::Uninit(void)
 	// テクスチャの破棄
 	if (m_pTexture != nullptr)
 	{
+		m_pTexture->Release();
 		m_pTexture = nullptr;
 	}
 

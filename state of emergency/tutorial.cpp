@@ -6,22 +6,9 @@
 //==============================================================
 // インクルード
 #include"tutorial.h"
-#include"title.h"
-#include"object2D.h"
-#include"renderer.h"
 #include"input.h"
 #include"sound.h"
-#include"score.h"
-#include"camera.h"
-#include"light.h"
-#include"object3D.h"
-#include"timer.h"
-#include"objectX.h"
-#include"objectBillboard.h"
 #include"debugproc.h"
-#include"effect.h"
-#include"pause.h"
-#include"game.h"
 #include"tutorialOBJ.h"
 #include"tutorialTex.h"
 #include"playerTex.h"
@@ -48,14 +35,17 @@ CTutorial::~CTutorial()
 //----------------------------------------
 HRESULT CTutorial::Init(void)
 {
+	// チュートリアルのテクスチャの読み込み
+	CTutorialTex::Load();
+
+	// プレイヤーのテクスチャの読み込み
+	CPlayerTex::Load();
+
 	// チュートリアルテクスチャ生成
 	CTutorialTex::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
 
 	//// チュートリアルオブジェクトの生成
 	//CTutorialObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
-
-	// プレイヤーのテクスチャの読み込み
-	CPlayerTex::Load();
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
@@ -71,6 +61,9 @@ HRESULT CTutorial::Init(void)
 //----------------------------------------
 void CTutorial::Uninit(void)
 {
+	// チュートリアルのテクスチャの破棄
+	CTutorialTex::Unload();
+
 	// プレイヤーのテクスチャの破棄
 	CPlayerTex::Unload();
 

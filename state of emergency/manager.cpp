@@ -126,9 +126,6 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	m_pDebugProc = new CDebugProc;
 	m_pDebugProc->Init();
 
-	// チュートリアルのテクスチャの読み込み
-	CTutorialTex::Load();
-
 	SetMode(CScene::MODE_TITLE);
 
 	return S_OK;
@@ -141,9 +138,6 @@ void CManager::Uninit(void)
 {
 	// 全てのオブジェクトの破棄
 	CObject::ReleaseAll();
-
-	// チュートリアルのテクスチャの破棄
-	CTutorialTex::Unload();
 
 	// キーボードの破棄
 	if (m_pInputKeyboard != nullptr)

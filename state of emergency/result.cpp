@@ -6,23 +6,9 @@
 //==============================================================
 // インクルード
 #include"result.h"
-#include"tutorial.h"
-#include"title.h"
-#include"object2D.h"
-#include"renderer.h"
 #include"input.h"
 #include"sound.h"
-#include"score.h"
-#include"camera.h"
-#include"light.h"
-#include"object3D.h"
-#include"timer.h"
-#include"objectX.h"
-#include"objectBillboard.h"
 #include"debugproc.h"
-#include"effect.h"
-#include"pause.h"
-#include"game.h"
 #include"resultOBJ.h"
 
 //----------------------------------------

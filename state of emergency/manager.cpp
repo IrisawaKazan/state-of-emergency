@@ -26,6 +26,7 @@
 #include"tutorialTex.h"
 #include"playerTex.h"
 #include"gameover.h"
+#include"timeover.h"
 #include"blood.h"
 //#include"fade.h"
 
@@ -481,6 +482,10 @@ CScene* CScene::Create(MODE mode)
 
 	case MODE_GAMEOVER:   // ゲームオーバー画面
 		pScene = new CGameover;
+		break;
+
+	case MODE_TIMEOVER:   // タイムオーバー画面
+		pScene = new CTimeover;
 		break;
 	}
 

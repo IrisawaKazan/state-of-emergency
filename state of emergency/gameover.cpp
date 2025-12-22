@@ -6,30 +6,14 @@
 //==============================================================
 // インクルード
 #include"gameover.h"
-#include"result.h"
-#include"tutorial.h"
-#include"title.h"
-#include"object2D.h"
-#include"renderer.h"
 #include"input.h"
 #include"sound.h"
-#include"score.h"
-#include"camera.h"
-#include"light.h"
-#include"object3D.h"
-#include"timer.h"
-#include"objectX.h"
-#include"objectBillboard.h"
 #include"debugproc.h"
-#include"effect.h"
-#include"pause.h"
-#include"game.h"
-#include"resultOBJ.h"
 
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CGameover::CGameover() : CScene(CScene::MODE_RESULT)
+CGameover::CGameover() : CScene(CScene::MODE_GAMEOVER)
 {
 	m_nEnterCnt = NULL;
 	m_bEnter = false;
@@ -81,9 +65,6 @@ void CGameover::Update(void)
 	// パッドの取得
 	CInputJoypad* pInputJoypad;
 	pInputJoypad = CManager::GetInputJoypad();
-
-	//// サウンドの取得
-	//CSound* pSound = CManager::GetSound();
 
 	if (pInputKeyboard->GetTrigger(DIK_RETURN) || pInputJoypad->GetTrigger(pInputJoypad->JOYKEY_START) || pInputMouse->GetTrigger(pInputMouse->MOUSE_LEFTBUTTON) == true && m_bEnter == false)
 	{// 決定キー(ENTERキー)が押された

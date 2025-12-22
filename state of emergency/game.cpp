@@ -9,23 +9,18 @@
 #include"input.h"
 #include"sound.h"
 #include"score.h"
-#include"object3D.h"
 #include"timer.h"
 #include"player.h"
 #include"debugproc.h"
-#include"effect.h"
-#include"floorBox.h"
 #include"ball.h"
 #include"door.h"
 #include"bottle.h"
 #include"bottle_rare.h"
-#include"wall.h"
 #include"meshfield.h"
 #include"tunnel.h"
 #include"key.h"
 #include"door_center.h"
 #include"pipe.h"
-#include"traffic_lights.h"
 #include"punch.h"
 #include"blood.h"
 
@@ -83,9 +78,6 @@ HRESULT CGame::Init(void)
 
 	// プレイヤー
 	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
-
-	// フロアボックス
-	//CFloorBox::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 	
 
 	// ドア
@@ -110,8 +102,6 @@ HRESULT CGame::Init(void)
 	CPunch::Create(D3DXVECTOR3(350.0f, 0.0f, -250.0f), D3DXVECTOR3(0.0f, D3DX_PI / -0.75f, 0.0f), CPunch::PUNCH_000_C);
 	CPunch::Create(D3DXVECTOR3(-350.0f, 0.0f, -250.0f), D3DXVECTOR3(0.0f, D3DX_PI / 0.75f, 0.0f), CPunch::PUNCH_000_D);
 
-	//// 信号機
-	//CTrafficLights::Create(D3DXVECTOR3(-250.0f, 0.0f, -200.0f), D3DXVECTOR3(0.0f, 0.0f, 0.0f));
 
 	// スコア
 	CScore::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f - 67.5f, 35.0f, 0.0f), 30.0f, 90.0f);
@@ -119,7 +109,7 @@ HRESULT CGame::Init(void)
 	// フィールド
 	CMeshfield::Create(D3DXVECTOR3(0.0f, -25.0f, 0.0f));
 
-	// テスト配置
+	// 初期配置
 	{
 		// ボール
 		CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
@@ -307,17 +297,6 @@ void CGame::Update(void)
 			}
 		}
 
-		//// 鍵のカウンター
-		//if (m_nKeyCnt <= 60 * KEY_TIME)
-		//{
-		//	m_nKeyCnt++;
-		//}
-		//if (m_nKeyCnt == 60 * KEY_TIME)
-		//{
-		//	// 鍵
-		//	CKey::Create(D3DXVECTOR3(0.0f, 0.0f, 0.0f));
-		//}
-
 		// 基準のポイントで鍵が出る
 		if (m_pPlayer->GetPoint() >= KEY_POINT)
 		{
@@ -337,7 +316,7 @@ void CGame::Update(void)
 		}
 		if (m_nEscapeCnt == 60 * TIME_OUT)
 		{
-			CManager::SetMode(MODE_GAMEOVER);
+			CManager::SetMode(MODE_TIMEOVER);
 
 			return;
 		}
@@ -448,10 +427,6 @@ void CGame::Draw(void)
 	{
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");
 		CDebugProc::Draw();
-
-		//// 鍵が出るまでのカウンターをデバッグ表示
-		//CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nKey counter [%dで出現]: %d", KEY_TIME, m_nKeyCnt / 60);
-		//CDebugProc::Draw();
 
 		// 鍵が出るまでのカウンターをデバッグ表示
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n強制終了 [%dで遷移]: %d", TIME_OUT, m_nEscapeCnt / 60);

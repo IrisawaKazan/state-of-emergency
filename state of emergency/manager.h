@@ -41,6 +41,7 @@ public:
 		MODE_TUTORIAL,	// チュートリアル画面
 		MODE_RESULT,	// リザルト(クリア)画面
 		MODE_GAMEOVER,	// ゲームオーバー画面
+		MODE_TIMEOVER,	// タイムオーバー画面
 
 		MODE_MAX
 	}MODE;

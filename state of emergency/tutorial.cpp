@@ -9,7 +9,6 @@
 #include"input.h"
 #include"sound.h"
 #include"debugproc.h"
-#include"tutorialOBJ.h"
 #include"tutorialTex.h"
 #include"playerTex.h"
 
@@ -43,9 +42,6 @@ HRESULT CTutorial::Init(void)
 
 	// チュートリアルテクスチャ生成
 	CTutorialTex::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
-
-	//// チュートリアルオブジェクトの生成
-	//CTutorialObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();

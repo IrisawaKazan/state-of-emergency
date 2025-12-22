@@ -1,20 +1,19 @@
 //==============================================================
 //
-// [result.cpp]
+// [timeover.cpp]
 // Author: Irisawa Kazan
 //
 //==============================================================
 // インクルード
-#include"result.h"
+#include"timeover.h"
 #include"input.h"
 #include"sound.h"
 #include"debugproc.h"
-#include"resultOBJ.h"
 
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CResult::CResult() : CScene(CScene::MODE_RESULT)
+CTimeover::CTimeover() : CScene(CScene::MODE_TIMEOVER)
 {
 	m_nEnterCnt = NULL;
 	m_bEnter = false;
@@ -23,7 +22,7 @@ CResult::CResult() : CScene(CScene::MODE_RESULT)
 //----------------------------------------
 // デストラクタ
 //----------------------------------------
-CResult::~CResult()
+CTimeover::~CTimeover()
 {
 
 }
@@ -31,16 +30,13 @@ CResult::~CResult()
 //----------------------------------------
 // 初期化処理
 //----------------------------------------
-HRESULT CResult::Init(void)
+HRESULT CTimeover::Init(void)
 {
-	// リザルトオブジェクトの生成
-	CResultObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
-
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 
 	// BGM
-	pSound->PlaySoundA(CSound::SOUND_LABEL_TITLE_RESULT_BGM);
+	pSound->PlaySoundA(CSound::SOUND_LABEL_GAMEOVER_BGM);
 
 	return S_OK;
 }
@@ -48,7 +44,7 @@ HRESULT CResult::Init(void)
 //----------------------------------------
 // 終了処理
 //----------------------------------------
-void CResult::Uninit(void)
+void CTimeover::Uninit(void)
 {
 	CObject::Release();
 }
@@ -56,7 +52,7 @@ void CResult::Uninit(void)
 //----------------------------------------
 // 更新処理
 //----------------------------------------
-void CResult::Update(void)
+void CTimeover::Update(void)
 {
 	// キーボードの取得
 	CInputKeyboard* pInputKeyboard;
@@ -82,10 +78,7 @@ void CResult::Update(void)
 
 		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
 		{
-			if (m_nEnterCnt == 60 * 0 + 10)
-			{
 
-			}
 		}
 		if (m_nEnterCnt >= 60 * 2)
 		{
@@ -102,12 +95,12 @@ void CResult::Update(void)
 //----------------------------------------
 // 描画処理
 //----------------------------------------
-void CResult::Draw(void)
+void CTimeover::Draw(void)
 {
 #ifdef _DEBUG // Debug時のみ
 
 	// 現在のモードをデバッグ表示
-	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Result");
+	CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nScene: Time Over");
 	CDebugProc::Draw();
 
 #endif

@@ -126,26 +126,8 @@ HRESULT CManager::Init(HINSTANCE nInstance, HWND hWnd)
 	m_pDebugProc = new CDebugProc;
 	m_pDebugProc->Init();
 
-	// エフェクトのテクスチャの読み込み
-	CEffect::Load();
-
-	// スコアのテクスチャの読み込み
-	CScore::Load();
-
-	// タイマーのテクスチャの読み込み
-	CTimer::Load();
-
-	// ポーズのテクスチャの読み込み
-	CPause::Load();
-
 	// チュートリアルのテクスチャの読み込み
 	CTutorialTex::Load();
-
-	// プレイヤーのテクスチャの読み込み
-	CPlayerTex::Load();
-
-	// 血のテクスチャの読み込み
-	CBlood::Load();
 
 	SetMode(CScene::MODE_TITLE);
 
@@ -160,26 +142,8 @@ void CManager::Uninit(void)
 	// 全てのオブジェクトの破棄
 	CObject::ReleaseAll();
 
-	// エフェクトのテクスチャの破棄
-	CEffect::Unload();
-
-	// スコアのテクスチャの破棄
-	CScore::Unload();
-
-	// タイマーのテクスチャの破棄
-	CTimer::Unload();
-
-	// ポーズのテクスチャの破棄
-	CPause::Unload();
-
 	// チュートリアルのテクスチャの破棄
 	CTutorialTex::Unload();
-
-	// プレイヤーのテクスチャの破棄
-	CPlayerTex::Unload();
-
-	// 血のテクスチャの破棄
-	CBlood::Unload();
 
 	// キーボードの破棄
 	if (m_pInputKeyboard != nullptr)

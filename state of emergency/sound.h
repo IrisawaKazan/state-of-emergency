@@ -30,6 +30,7 @@ public:
 		SOUND_LABEL_KEY_SE,				// 鍵SE
 		SOUND_LABEL_TUTORIAL_PLAYER_SE,	// チュートリアルのプレイヤーSE
 		SOUND_LABEL_DOOR_SE,			// ドアSE
+		SOUND_LABEL_COUNTDOWN_SE,		// カウントダウンSE
 
 		SOUND_LABEL_MAX,
 	} SOUND_LABEL;
@@ -72,6 +73,7 @@ private:
 		{"data/SE/key_SE.wav", 0},				// 鍵SE
 		{"data/SE/tutorial_SE.wav", 0},			// チュートリアルのプレイヤーSE
 		{"data/SE/door_SE.wav", 0},				// ドアSE
+		{"data/SE/caveat_SE.wav", 0},			// ドアSE
 	};
 };
 

@@ -347,6 +347,15 @@ void CGame::Update(void)
 
 			return;
 		}
+		// c‚èŠÔ‚ÌŒx
+		for (int nCnt = 0; nCnt <= 5; nCnt++)
+		{
+			if (m_nEscapeCnt == 60 * TIME_OUT - 60 * nCnt)
+			{
+				// SE
+				pSound->PlaySoundA(CSound::SOUND_LABEL_COUNTDOWN_SE);
+			}
+		}
 	}
 
 	// ƒS[ƒ‹

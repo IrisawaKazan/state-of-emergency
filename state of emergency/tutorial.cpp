@@ -54,6 +54,9 @@ HRESULT CTutorial::Init(void)
 	//// チュートリアルオブジェクトの生成
 	//CTutorialObjX::Create(D3DXVECTOR3(0.0f, 100.0f, 0.0f));
 
+	// プレイヤーのテクスチャの読み込み
+	CPlayerTex::Load();
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 
@@ -68,6 +71,9 @@ HRESULT CTutorial::Init(void)
 //----------------------------------------
 void CTutorial::Uninit(void)
 {
+	// プレイヤーのテクスチャの破棄
+	CPlayerTex::Unload();
+
 	CObject::Release();
 }
 

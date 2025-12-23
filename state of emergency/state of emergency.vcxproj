@@ -181,6 +181,7 @@
     <ClCompile Include="score.cpp" />
     <ClCompile Include="sound.cpp" />
     <ClCompile Include="timeover.cpp" />
+    <ClCompile Include="timeoverOBJ.cpp" />
     <ClCompile Include="timer.cpp" />
     <ClCompile Include="title.cpp" />
     <ClCompile Include="titleOBJ.cpp" />
@@ -230,6 +231,7 @@
     <ClInclude Include="score.h" />
     <ClInclude Include="sound.h" />
     <ClInclude Include="timeover.h" />
+    <ClInclude Include="timeoverOBJ.h" />
     <ClInclude Include="timer.h" />
     <ClInclude Include="title.h" />
     <ClInclude Include="titleOBJ.h" />

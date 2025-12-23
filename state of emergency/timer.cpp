@@ -90,17 +90,7 @@ CTimer* CTimer::Create(D3DXVECTOR3 pos, float xsize, float ysize)
 //----------------------------------------
 HRESULT CTimer::Init(void)
 {
-#ifdef _DEBUG // Debug時のみ
-
-	m_nContTimer = 0; // 初期タイム
-
-#endif
-
-#ifdef NDEBUG // Release時のみ
-
 	m_nContTimer = TIME_OUT; // 初期タイム
-
-#endif
 
 	float fTexPos = m_fySize / MAX_TIMER;
 
@@ -188,17 +178,7 @@ void CTimer::AddTimer(void)
 
 	if (m_nTimer >= 60)
 	{
-#ifdef _DEBUG // Debug時のみ
-
-		m_nContTimer++; // カウントアップ
-
-#endif
-
-#ifdef NDEBUG // Release時のみ
-
 		m_nContTimer--; // カウントダウン
-
-#endif
 
 		m_nTimer = 0;
 	}

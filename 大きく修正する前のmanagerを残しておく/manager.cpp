@@ -10,14 +10,25 @@
 #include"title.h"
 #include"tutorial.h"
 #include"result.h"
-#include"gameover.h"
-#include"timeover.h"
+#include"object2D.h"
 #include"renderer.h"
 #include"input.h"
 #include"sound.h"
+#include"score.h"
 #include"camera.h"
 #include"light.h"
+#include"object3D.h"
+#include"timer.h"
+#include"objectBillboard.h"
 #include"debugproc.h"
+#include"effect.h"
+#include"pause.h"
+#include"tutorialTex.h"
+#include"playerTex.h"
+#include"gameover.h"
+#include"timeover.h"
+#include"blood.h"
+//#include"fade.h"
 
 // 静的メンバ変数宣言
 CRenderer* CManager::m_pRenderer = nullptr;
@@ -29,7 +40,17 @@ CCamera* CManager::m_pCamera = nullptr;
 CLight* CManager::m_pLight = nullptr;
 CDebugProc* CManager::m_pDebugProc = nullptr;
 
+CScore* CManager::m_pScore = nullptr;
+CTimer* CManager::m_pTimer = nullptr;
+CEffect* CManager::m_pEffect = nullptr;
+CPause* CManager::m_pPause = nullptr;
+CTutorialTex* CManager::m_pTutorialTex = nullptr;
+CPlayerTex* CManager::m_pPlayerTex = nullptr;
+CBlood* CManager::m_pBlood = nullptr;
+
 CScene* CManager::m_pScene = nullptr;
+
+//CFade* CManager::m_pFade = nullptr;
 
 //----------------------------------------
 // コンストラクタ
@@ -303,6 +324,62 @@ CDebugProc* CManager::GetDebugProc(void)
 CSound* CManager::GetSound(void)
 {
 	return m_pSound;
+}
+
+//----------------------------------------
+// スコアの取得処理
+//----------------------------------------
+CScore* CManager::GetScore(void)
+{
+	return m_pScore;
+}
+
+//----------------------------------------
+// タイマーの取得処理
+//----------------------------------------
+CTimer* CManager::GetTimer(void)
+{
+	return m_pTimer;
+}
+
+//----------------------------------------
+// エフェクトの取得処理
+//----------------------------------------
+CEffect* CManager::GetEffect(void)
+{
+	return m_pEffect;
+}
+
+//----------------------------------------
+// ポーズの取得処理
+//----------------------------------------
+CPause* CManager::GetPause(void)
+{
+	return m_pPause;
+}
+
+//----------------------------------------
+// チュートリアルテクスチャの取得処理
+//----------------------------------------
+CTutorialTex* CManager::GetTutorialTex(void)
+{
+	return m_pTutorialTex;
+}
+
+//----------------------------------------
+// プレイヤーテクスチャの取得処理
+//----------------------------------------
+CPlayerTex* CManager::GetPlayerTex(void)
+{
+	return m_pPlayerTex;
+}
+
+//----------------------------------------
+// 血のテクスチャの取得処理
+//----------------------------------------
+CBlood* CManager::GetBlood(void)
+{
+	return m_pBlood;
 }
 
 //----------------------------------------

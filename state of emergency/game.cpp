@@ -122,19 +122,8 @@ HRESULT CGame::Init(void)
 		CBottleRare::Create(D3DXVECTOR3(100.0f, 0.0f, 0.0f));
 	}
 
-#ifdef _DEBUG // Debug時のみ
-
 	// タイマー
 	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 200.0f, 675.0f, 0.0f), 30.0f, 90.0f);
-
-#endif
-
-#ifdef NDEBUG // Release時のみ
-
-	// タイマー
-	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 200.0f, 675.0f, 0.0f), 30.0f, 90.0f);
-
-#endif
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();

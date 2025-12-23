@@ -20,6 +20,14 @@ class CSound;
 class CCamera;
 class CLight;
 class CDebugProc;
+class CScore;
+class CTimer;
+class CEffect;
+class CPause;
+class CTutorialTex;
+class CPlayerTex;
+class CBlood;
+//class CFade;
 
 // シーンクラス
 class CScene : public CObject
@@ -79,10 +87,20 @@ public:
 	static CLight* GetLight(void);
 	static CDebugProc* GetDebugProc(void);
 
+	static CScore* GetScore(void);
+	static CTimer* GetTimer(void);
+	static CEffect* GetEffect(void);
+	static CPause* GetPause(void);
+	static CTutorialTex* GetTutorialTex(void);
+	static CPlayerTex* GetPlayerTex(void);
+	static CBlood* GetBlood(void);
+
 	static void SetMode(CScene::MODE mode);
 	static CScene::MODE GetMode(void);
 
 	static CScene* GetScene(void);
+
+	//static CFade* GetFade(void);
 
 private:
 	static CRenderer* m_pRenderer;
@@ -94,7 +112,17 @@ private:
 	static CLight* m_pLight;
 	static CDebugProc* m_pDebugProc;
 
+	static CScore* m_pScore;
+	static CTimer* m_pTimer;
+	static CEffect* m_pEffect;
+	static CPause* m_pPause;
+	static CTutorialTex* m_pTutorialTex;
+	static CPlayerTex* m_pPlayerTex;
+	static CBlood* m_pBlood;
+
 	static CScene* m_pScene;
+
+	//static CFade* m_pFade;
 };
 
 #endif

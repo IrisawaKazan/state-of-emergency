@@ -9,6 +9,7 @@
 #include"input.h"
 #include"sound.h"
 #include"debugproc.h"
+#include"gameoverTex.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -32,6 +33,12 @@ CGameover::~CGameover()
 //----------------------------------------
 HRESULT CGameover::Init(void)
 {
+	// ゲームオーバーのテクスチャの読み込み
+	CGameoverTex::Load();
+
+	// ゲームオーバーテクスチャ生成
+	CGameoverTex::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
+
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();
 
@@ -46,6 +53,9 @@ HRESULT CGameover::Init(void)
 //----------------------------------------
 void CGameover::Uninit(void)
 {
+	// ゲームオーバーのテクスチャの破棄
+	CGameoverTex::Unload();
+
 	CObject::Release();
 }
 

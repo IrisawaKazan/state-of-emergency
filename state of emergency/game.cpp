@@ -123,7 +123,7 @@ HRESULT CGame::Init(void)
 	}
 
 	// タイマー
-	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 200.0f, 675.0f, 0.0f), 30.0f, 90.0f);
+	CTimer::Create(D3DXVECTOR3((float)SCREEN_WIDTH - 300.0f, 675.0f, 0.0f), 30.0f, 90.0f);
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();

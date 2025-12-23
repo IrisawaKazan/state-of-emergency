@@ -157,6 +157,7 @@
     <ClCompile Include="floorBox.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="gameover.cpp" />
+    <ClCompile Include="gameoverTex.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="key.cpp" />
     <ClCompile Include="light.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="floorBox.h" />
     <ClInclude Include="game.h" />
     <ClInclude Include="gameover.h" />
+    <ClInclude Include="gameoverTex.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="key.h" />
     <ClInclude Include="light.h" />

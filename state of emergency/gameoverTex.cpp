@@ -38,7 +38,7 @@ HRESULT CGameoverTex::Load(void)
 
 	// テクスチャの初期化処理
 	D3DXCreateTextureFromFile(pDevice,
-		"data\\TEXTURE\\gameover.jpg",
+		"data\\TEXTURE\\gameover.png",
 		&m_pTexture);
 
 	return S_OK;

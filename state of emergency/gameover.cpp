@@ -37,7 +37,7 @@ HRESULT CGameover::Init(void)
 	CGameoverTex::Load();
 
 	// ゲームオーバーテクスチャ生成
-	CGameoverTex::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f - 200.0f, 0.0f), (float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 3.5f);
+	CGameoverTex::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();

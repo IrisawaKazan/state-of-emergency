@@ -1,10 +1,10 @@
 //==============================================================
 //
-// [timeoverOBJ.cpp]
+// [oshirase.cpp]
 // Author: Irisawa Kazan
 //
 //==============================================================
-#include"timeoverOBJ.h"
+#include"oshirase.h"
 #include"manager.h"
 #include"renderer.h"
 #include"input.h"
@@ -12,7 +12,7 @@
 //----------------------------------------
 // コンストラクタ
 //----------------------------------------
-CTimeoverObj::CTimeoverObj(int nPriority) : CObject(nPriority)
+COshirase::COshirase(int nPriority) : CObject(nPriority)
 {
 	m_pTexture = nullptr;
 	m_pMesh = nullptr;
@@ -26,7 +26,7 @@ CTimeoverObj::CTimeoverObj(int nPriority) : CObject(nPriority)
 //----------------------------------------
 // デストラクタ
 //----------------------------------------
-CTimeoverObj::~CTimeoverObj()
+COshirase::~COshirase()
 {
 
 }
@@ -34,38 +34,38 @@ CTimeoverObj::~CTimeoverObj()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CTimeoverObj* CTimeoverObj::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
+COshirase* COshirase::Create(D3DXVECTOR3 pos, D3DXVECTOR3 rot)
 {
-	CTimeoverObj* pTimeoverObj;
+	COshirase* pOshirase;
 
 	// オブジェクトXの生成
-	pTimeoverObj = new CTimeoverObj;
+	pOshirase = new COshirase;
 
 	// 初期化処理
-	pTimeoverObj->Init();
+	pOshirase->Init();
 
 	// 位置の設定
-	pTimeoverObj->SetPosition(pos);
+	pOshirase->SetPosition(pos);
 
 	// 向きの設定
-	pTimeoverObj->SetRotation(rot);
+	pOshirase->SetRotation(rot);
 
-	return pTimeoverObj;
+	return pOshirase;
 }
 
 //----------------------------------------
 // 初期化処理
 //----------------------------------------
-HRESULT CTimeoverObj::Init(void)
+HRESULT COshirase::Init(void)
 {
 	// 種類の設定処理
-	CObject::SetType(TYPE_TIMEOVER_OBJ);
+	CObject::SetType(TYPE_OSHIRASE);
 
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
 
 	// Xファイルの読み込み
-	D3DXLoadMeshFromX("data\\MODEL\\timeoverOBJ.x",
+	D3DXLoadMeshFromX("data\\MODEL\\oshirase.x",
 		D3DXMESH_SYSTEMMEM,
 		pDevice,
 		NULL,
@@ -99,11 +99,12 @@ HRESULT CTimeoverObj::Init(void)
 //----------------------------------------
 // 終了処理
 //----------------------------------------
-void CTimeoverObj::Uninit(void)
+void COshirase::Uninit(void)
 {
 	// テクスチャへのポインタの破棄
 	if (m_pTexture != nullptr)
 	{
+		m_pTexture->Release();
 		m_pTexture = nullptr;
 	}
 
@@ -128,7 +129,7 @@ void CTimeoverObj::Uninit(void)
 //----------------------------------------
 // 更新処理
 //----------------------------------------
-void CTimeoverObj::Update(void)
+void COshirase::Update(void)
 {
 
 }
@@ -136,7 +137,7 @@ void CTimeoverObj::Update(void)
 //----------------------------------------
 // 描画処理
 //----------------------------------------
-void CTimeoverObj::Draw(void)
+void COshirase::Draw(void)
 {
 	// デバイスの取得
 	LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
@@ -187,7 +188,7 @@ void CTimeoverObj::Draw(void)
 //----------------------------------------
 // 位置の設定処理
 //----------------------------------------
-void CTimeoverObj::SetPosition(D3DXVECTOR3 pos)
+void COshirase::SetPosition(D3DXVECTOR3 pos)
 {
 	m_pos = pos;
 }
@@ -195,7 +196,7 @@ void CTimeoverObj::SetPosition(D3DXVECTOR3 pos)
 //----------------------------------------
 // 向きの設定処理
 //----------------------------------------
-void CTimeoverObj::SetRotation(D3DXVECTOR3 rot)
+void COshirase::SetRotation(D3DXVECTOR3 rot)
 {
 	m_rot = rot;
 }
@@ -203,7 +204,7 @@ void CTimeoverObj::SetRotation(D3DXVECTOR3 rot)
 //----------------------------------------
 // 位置の取得処理
 //----------------------------------------
-D3DXVECTOR3 CTimeoverObj::GetPos(void)
+D3DXVECTOR3 COshirase::GetPos(void)
 {
 	return m_pos;
 }
@@ -211,7 +212,7 @@ D3DXVECTOR3 CTimeoverObj::GetPos(void)
 //----------------------------------------
 // 向きの取得処理
 //----------------------------------------
-D3DXVECTOR3 CTimeoverObj::GetRot(void)
+D3DXVECTOR3 COshirase::GetRot(void)
 {
 	return m_rot;
 }

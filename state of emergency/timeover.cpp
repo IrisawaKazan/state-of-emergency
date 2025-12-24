@@ -10,6 +10,8 @@
 #include"sound.h"
 #include"debugproc.h"
 #include"timeoverOBJ.h"
+#include"oshirase.h"
+#include"mpn.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -35,6 +37,12 @@ HRESULT CTimeover::Init(void)
 {
 	// タイムオーバーOBJの生成
 	CTimeoverObj::Create(D3DXVECTOR3(0.0f, 400.0f, -280.0f), D3DXVECTOR3(D3DX_PI / 2.5f, 0.0f, 0.0f));
+
+	// お知らせの生成
+	COshirase::Create(D3DXVECTOR3(0.0f, 400.0f, -280.0f), D3DXVECTOR3(D3DX_PI / 2.5f, 0.0f, 0.0f));
+
+	// MPNの生成
+	CMpn::Create(D3DXVECTOR3(0.0f, 400.0f, -280.0f), D3DXVECTOR3(D3DX_PI / 2.5f, 0.0f, 0.0f));
 
 	// サウンドの取得
 	CSound* pSound = CManager::GetSound();

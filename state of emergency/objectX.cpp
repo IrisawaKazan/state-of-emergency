@@ -8,10 +8,6 @@
 #include"objectX.h"
 #include"manager.h"
 #include"renderer.h"
-#include"input.h"
-#include"effect.h"
-#include"score.h"
-#include"sound.h"
 
 //----------------------------------------
 // コンストラクタ

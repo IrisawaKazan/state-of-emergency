@@ -8,7 +8,6 @@
 #include"object2D.h"
 #include"renderer.h"
 #include"manager.h"
-#include"input.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 

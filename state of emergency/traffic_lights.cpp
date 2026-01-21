@@ -6,10 +6,8 @@
 //==============================================================
 // インクルード
 #include"traffic_lights.h"
-#include"manager.h"
 #include"renderer.h"
-#include"player.h"
-#include"game.h"
+#include"manager.h"
 
 //----------------------------------------
 // コンストラクタ

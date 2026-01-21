@@ -8,7 +8,6 @@
 #include"pause.h"
 #include"manager.h"
 #include"renderer.h"
-#include"input.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 LPDIRECT3DTEXTURE9 CPause::m_pTexture = nullptr;

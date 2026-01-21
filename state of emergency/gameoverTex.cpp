@@ -7,7 +7,6 @@
 #include"gameoverTex.h"
 #include"manager.h"
 #include"renderer.h"
-#include"object.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 LPDIRECT3DTEXTURE9 CGameoverTex::m_pTexture = nullptr;

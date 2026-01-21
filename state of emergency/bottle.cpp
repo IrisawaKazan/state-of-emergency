@@ -6,9 +6,7 @@
 //==============================================================
 // インクルード
 #include"bottle.h"
-#include"manager.h"
 #include"renderer.h"
-#include"input.h"
 #include"player.h"
 #include"game.h"
 #include"score.h"

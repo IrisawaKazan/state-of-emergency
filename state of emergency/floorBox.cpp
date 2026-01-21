@@ -6,7 +6,6 @@
 //==============================================================
 // インクルード
 #include"floorBox.h"
-#include"manager.h"
 #include"renderer.h"
 #include"player.h"
 #include"game.h"

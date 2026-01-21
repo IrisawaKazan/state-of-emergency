@@ -7,7 +7,6 @@
 #include"blood.h"
 #include"manager.h"
 #include"renderer.h"
-#include"object.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾
 LPDIRECT3DTEXTURE9 CBlood::m_pTexture = nullptr;

@@ -6,9 +6,7 @@
 //==============================================================
 // インクルード
 #include"door.h"
-#include"manager.h"
 #include"renderer.h"
-#include"player.h"
 #include"game.h"
 
 //----------------------------------------

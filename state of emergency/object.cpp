@@ -6,8 +6,6 @@
 //==============================================================
 // インクルード
 #include"object.h"
-#include"renderer.h"
-#include"object2D.h"
 #include"camera.h"
 #include"manager.h"
 

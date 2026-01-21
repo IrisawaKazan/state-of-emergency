@@ -6,11 +6,8 @@
 //==============================================================
 // インクルード
 #include"punch.h"
-#include"manager.h"
 #include"renderer.h"
-#include"input.h"
 #include"player.h"
-#include"game.h"
 
 //----------------------------------------
 // コンストラクタ

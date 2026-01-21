@@ -6,11 +6,8 @@
 //==============================================================
 // インクルード
 #include"ball.h"
-#include"manager.h"
 #include"renderer.h"
-#include"input.h"
 #include"player.h"
-#include"game.h"
 
 //----------------------------------------
 // コンストラクタ
@@ -213,14 +210,14 @@ void CBall::Update(void)
 {
 	switch (m_type)
 	{
-	case BALL_000_A:
-		if (m_pos.y == 0.0f)
+	case BALL_000_A: // 奥から手前に転がるボール
+		if (m_pos.y == 0.0f) // 一定の高さになったら
 		{
-			m_pos.z -= 2.0f;
+			m_pos.z -= 2.0f; // 手前に転がる
 		}
 		else
 		{
-			m_pos.y += 2.0f;
+			m_pos.y += 2.0f; // 0.0fまで上昇
 		}
 
 		// ローテーション
@@ -229,8 +226,8 @@ void CBall::Update(void)
 		m_rot.x = m_fRotation / 15.0f;
 		break;
 
-	case BALL_000_B:
-		m_pos.x += 2.0f;
+	case BALL_000_B: // 左から右へ転がるボール
+		m_pos.x += 2.0f; // 右に転がる
 
 		// ローテーション
 		m_fRotation -= 1.0f;

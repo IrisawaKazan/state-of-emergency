@@ -6,9 +6,6 @@
 //==============================================================
 // インクルード
 #include"renderer.h"
-#include"object.h"
-#include"debugproc.h"
-#include"manager.h"
 #include"game.h"
 
 // 静的メンバ変数宣言

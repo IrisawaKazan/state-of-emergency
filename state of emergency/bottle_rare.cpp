@@ -6,7 +6,6 @@
 //==============================================================
 // インクルード
 #include"bottle_rare.h"
-#include"manager.h"
 #include"renderer.h"
 #include"input.h"
 #include"player.h"

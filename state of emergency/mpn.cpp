@@ -7,7 +7,6 @@
 #include"mpn.h"
 #include"manager.h"
 #include"renderer.h"
-#include"input.h"
 
 //----------------------------------------
 // コンストラクタ

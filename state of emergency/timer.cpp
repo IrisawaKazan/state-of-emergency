@@ -8,7 +8,6 @@
 #include"timer.h"
 #include"number.h"
 #include"renderer.h"
-#include"manager.h"
 #include"game.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾

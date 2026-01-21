@@ -5,9 +5,7 @@
 //
 //==============================================================
 #include"playerTex.h"
-#include"manager.h"
 #include"renderer.h"
-#include"object.h"
 #include"tutorial.h"
 
 // Ã“Iƒƒ“ƒo•Ï”éŒ¾

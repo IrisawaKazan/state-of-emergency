@@ -8,8 +8,6 @@
 #include"score.h"
 #include"number.h"
 #include"renderer.h"
-#include"manager.h"
-#include"object.h"
 #include"game.h"
 #include"player.h"
 

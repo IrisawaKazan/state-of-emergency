@@ -6,11 +6,7 @@
 //==============================================================
 // インクルード
 #include"main.h"
-#include"renderer.h"
-#include"object.h"
-#include"object2D.h"
 #include"manager.h"
-#include"input.h"
 
 // プロトタイプ宣言
 LRESULT CALLBACK WindowProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

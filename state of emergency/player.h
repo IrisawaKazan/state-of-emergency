@@ -23,7 +23,7 @@ public:
 	CPlayer(int nPriority = 3);
 	~CPlayer();
 
-	static CPlayer* Create(D3DXVECTOR3 pos);
+	static CPlayer* Create(D3DXVECTOR3 pos/*, LPCSTR file*/);
 
 	HRESULT Init(void);
 	void Uninit(void);
@@ -44,6 +44,8 @@ public:
 
 	void SetPoint(int point) { m_nPoint += point; }
 
+	//void SetFile(LPCSTR file) { m_pFilename = file; }
+
 	D3DXVECTOR3 GetPos(void);
 	D3DXVECTOR3 GetPosOld(void);
 	D3DXVECTOR3 GetMove(void);
@@ -57,6 +59,8 @@ public:
 	bool GetKey(void) { return m_bKey; }
 
 	int GetPoint(void) { return m_nPoint; }
+
+	//LPCSTR GetFile(void) { return m_pFilename; }
 
 private:
 	LPDIRECT3DTEXTURE9 m_pTexture;
@@ -85,6 +89,8 @@ private:
 	bool m_bKey;				// 鍵所持の有無
 
 	int m_nPoint;				// ゲットしたポイント
+
+	//LPCSTR m_pFilename;			// xファイル
 };
 
 #endif

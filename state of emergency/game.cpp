@@ -77,7 +77,7 @@ HRESULT CGame::Init(void)
 
 
 	// プレイヤー
-	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f));
+	m_pPlayer = CPlayer::Create(D3DXVECTOR3(-NUM_WALL_X + 25.0f, 10.0f, NUM_WALL_Z - 50.0f)/*, "data\\MODEL\\player.x"*/);
 	
 
 	// ドア

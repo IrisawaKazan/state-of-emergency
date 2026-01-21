@@ -44,6 +44,8 @@ CPlayer::CPlayer(int nPriority) : CObject(nPriority)
 	m_bKey = false;
 
 	m_nPoint = NULL;
+
+	//m_pFilename = nullptr;
 }
 
 //----------------------------------------
@@ -57,7 +59,7 @@ CPlayer::~CPlayer()
 //----------------------------------------
 // 生成処理
 //----------------------------------------
-CPlayer* CPlayer::Create(D3DXVECTOR3 pos)
+CPlayer* CPlayer::Create(D3DXVECTOR3 pos/*, LPCSTR file*/)
 {
 	CPlayer* pPlayer;
 
@@ -69,6 +71,9 @@ CPlayer* CPlayer::Create(D3DXVECTOR3 pos)
 
 	// 位置の設定
 	pPlayer->SetPosition(pos);
+
+	//// xファイルの設定
+	//pPlayer->SetFile(file);
 
 	return pPlayer;
 }
@@ -88,6 +93,7 @@ HRESULT CPlayer::Init(void)
 	m_rot = D3DXVECTOR3(0.0f, 0.0f, 0.0f);
 
 	// Xファイルの読み込み
+	//D3DXLoadMeshFromX("m_pFilename",
 	D3DXLoadMeshFromX("data\\MODEL\\player.x",
 	//D3DXLoadMeshFromX("data\\MODEL\\player_demonstration.x",
 	//D3DXLoadMeshFromX("data\\MODEL\\rot_tester.x",

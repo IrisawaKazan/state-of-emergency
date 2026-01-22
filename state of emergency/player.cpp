@@ -248,13 +248,13 @@ void CPlayer::Update(void)
 		m_pos.z += m_move.z; // 奥行移動
 
 		if (m_bDash == false)
-		{
+		{// ダッシュしていないとき
 			// 移動量を更新(減衰させる)
 			m_move.x += (0.0f - m_move.x) * 0.25f;
 			m_move.z += (0.0f - m_move.z) * 0.25f;
 		}
 		else
-		{
+		{// ダッシュしているとき
 			// 移動量を更新(減衰させる)
 			m_move.x += (0.0f - m_move.x) * 0.2f;
 			m_move.z += (0.0f - m_move.z) * 0.2f;

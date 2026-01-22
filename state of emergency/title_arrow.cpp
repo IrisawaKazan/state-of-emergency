@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"title_arrow.h"
 #include"manager.h"
 #include"renderer.h"

@@ -10,7 +10,6 @@
 // インクルード
 #include"main.h"
 #include"object.h"
-#include"game.h"
 
 // マクロ定義
 #define MAX_PUNCH_CNT (5)

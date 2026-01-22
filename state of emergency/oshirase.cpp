@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"oshirase.h"
 #include"manager.h"
 #include"renderer.h"

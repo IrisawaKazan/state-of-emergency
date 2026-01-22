@@ -7,6 +7,7 @@
 // インクルード
 #include"ball.h"
 #include"renderer.h"
+#include"game.h"
 #include"player.h"
 
 //----------------------------------------

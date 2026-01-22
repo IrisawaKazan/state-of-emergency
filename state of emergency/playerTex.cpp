@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"playerTex.h"
 #include"renderer.h"
 #include"tutorial.h"

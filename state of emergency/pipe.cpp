@@ -7,7 +7,7 @@
 // インクルード
 #include"pipe.h"
 #include"renderer.h"
-#include"game.h"
+#include"manager.h"
 
 //----------------------------------------
 // コンストラクタ

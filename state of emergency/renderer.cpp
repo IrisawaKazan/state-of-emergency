@@ -6,7 +6,8 @@
 //==============================================================
 // インクルード
 #include"renderer.h"
-#include"game.h"
+#include"manager.h"
+#include"debugproc.h"
 
 // 静的メンバ変数宣言
 int CRenderer::m_nCntFPS = NULL;

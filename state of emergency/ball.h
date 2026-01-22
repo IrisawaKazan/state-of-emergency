@@ -10,7 +10,6 @@
 // インクルード
 #include"main.h"
 #include"object.h"
-#include"game.h"
 
 // マクロ定義
 #define UNINIT_POS_X (BALL_BESIDE_POS_X - 75.0f)

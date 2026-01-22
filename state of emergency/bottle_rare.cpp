@@ -7,7 +7,6 @@
 // インクルード
 #include"bottle_rare.h"
 #include"renderer.h"
-#include"input.h"
 #include"player.h"
 #include"game.h"
 #include"score.h"

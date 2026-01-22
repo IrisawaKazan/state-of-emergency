@@ -8,6 +8,7 @@
 #include"punch.h"
 #include"renderer.h"
 #include"player.h"
+#include"game.h"
 
 //----------------------------------------
 // コンストラクタ

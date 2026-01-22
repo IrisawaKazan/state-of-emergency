@@ -4,6 +4,7 @@
 // Author: Irisawa Kazan
 //
 //==============================================================
+// インクルード
 #include"blood.h"
 #include"manager.h"
 #include"renderer.h"

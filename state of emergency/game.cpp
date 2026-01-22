@@ -174,36 +174,37 @@ void CGame::Update(void)
 	// 現在の時刻を種として設定
 	srand((unsigned int)time(nullptr));
 
+	// プレイヤーがいる時
 	if (m_pPlayer->GetEnable() == true)
 	{
 		// ボール生成用カウンターのインクリメント
 		for (int nCnt = 0; nCnt < MAX_BALLCOUNTER; nCnt++)
 		{
-			m_nCnt[nCnt]++;
+			m_nCnt[nCnt]++; // インクリメント
 		}
 
-		if (m_nCnt[0] >= 60 * 5)
+		if (m_nCnt[0] >= 60 * 5) // 5秒毎に
 		{
 			// ボール
 			CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
 
 			m_nCnt[0] = 0;
 		}
-		if (m_nCnt[1] >= 60 * 7)
+		if (m_nCnt[1] >= 60 * 7) // 7秒毎に
 		{
 			// ボール
 			CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z), CBall::BALL_000_B);
 
 			m_nCnt[1] = 0;
 		}
-		if (m_nCnt[2] >= 60 * 11)
+		if (m_nCnt[2] >= 60 * 11) // 11秒毎に
 		{
 			// ボール
 			CBall::Create(D3DXVECTOR3(BALL_DEPTH_POS_X - 175.0f, BALL_DEPTH_POS_Y, BALL_DEPTH_POS_Z), CBall::BALL_000_A);
 
 			m_nCnt[2] = 0;
 		}
-		if (m_nCnt[3] >= 60 * 13)
+		if (m_nCnt[3] >= 60 * 13) // 13秒毎に
 		{
 			// ボール
 			CBall::Create(D3DXVECTOR3(BALL_BESIDE_POS_X, BALL_BESIDE_POS_Y, BALL_BESIDE_POS_Z - 75.0f), CBall::BALL_000_B);
@@ -212,7 +213,7 @@ void CGame::Update(void)
 		}
 
 		// ランダム生成
-		m_nSpawn++;
+		m_nSpawn++; // インクリメント
 
 		float fPosX = (float)(rand() % (int)NUM_WALL_X - 25/* 出てくる範囲 */);
 		float fPosZ = (float)(rand() % (int)NUM_WALL_Z - 25/* 出てくる範囲 */);
@@ -220,9 +221,10 @@ void CGame::Update(void)
 		// 多段で出ないように制限するカウンター
 		for (int nCnt = 0; nCnt < MAX_FRAMECOUNTER; nCnt++)
 		{
-			m_nFrameCounter[nCnt]++;
+			m_nFrameCounter[nCnt]++; // インクリメント
 		}
 
+		// プレイヤーが鍵を持っていない時
 		if (m_pPlayer->GetKey() == false)
 		{
 			// ボトル
@@ -301,7 +303,7 @@ void CGame::Update(void)
 		// 強制終了までのカウンター
 		if (m_nEscapeCnt <= 60 * TIME_OUT)
 		{
-			m_nEscapeCnt++;
+			m_nEscapeCnt++; // インクリメント
 		}
 		if (m_nEscapeCnt == 60 * TIME_OUT)
 		{
@@ -355,6 +357,7 @@ void CGame::Update(void)
 		pSound->PlaySoundA(CSound::SOUND_LABEL_SAMPLE_SE);
 	}
 
+	// プレイヤーが消えた時
 	if (m_pPlayer->GetEnable() == false)
 	{
 		// デバッグ用プレイヤー復活
@@ -377,24 +380,25 @@ void CGame::Update(void)
 
 #ifdef NDEBUG // Release時のみ(リリースの場合のリザルトの飛び方にバリエーションなどをつけるため)
 
+	// プレイヤーが消えた時
 	if (m_pPlayer->GetEnable() == false)
 	{
-		m_nGameOverCnt++;
+		m_nGameOverCnt++; // インクリメント
 
-		if (m_nGameOverCnt >= 60 * 0 && m_nGameOverCnt < 60 * 2)
+		if (m_nGameOverCnt >= 60 * 0 && m_nGameOverCnt < 60 * 2) // 0秒以上, 2秒未満の時
 		{
-			if (m_nGameOverCnt == 60 * 0 + 1)
+			if (m_nGameOverCnt == 60 * 0 + 1) // 1/60秒の時
 			{
 				// SE
 				pSound->PlaySoundA(CSound::SOUND_LABEL_DEAD_SE);
 			}
 
-			if (m_nGameOverCnt == 60 * 0 + 10)
+			if (m_nGameOverCnt == 60 * 0 + 10) // 1/6(10/60)秒の時
 			{
 				CBlood::Create(D3DXVECTOR3((float)SCREEN_WIDTH / 2.0f, (float)SCREEN_HEIGHT / 2.0f, 0.0f), (float)SCREEN_WIDTH, (float)SCREEN_HEIGHT);
 			}
 		}
-		if (m_nGameOverCnt >= 60 * 2)
+		if (m_nGameOverCnt >= 60 * 2) // 2秒の時
 		{
 			CManager::SetMode(MODE_GAMEOVER);
 
@@ -412,6 +416,7 @@ void CGame::Draw(void)
 {
 #ifdef _DEBUG // Debug時のみ
 
+	// プレイヤーがいる時
 	if (m_pPlayer->GetEnable() == true)
 	{
 		CDebugProc::Print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n*-------------------------------------------*");

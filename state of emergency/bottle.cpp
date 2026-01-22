@@ -212,7 +212,7 @@ void CBottle::Update(void)
 
 	m_rot.y = m_fRotation / 125.0f;
 
-	m_nCnt++;
+	m_nCnt++; // ƒCƒ“ƒNƒŠƒƒ“ƒg
 
 	// 15•b‚ÅÁ‚¦‚é
 	if (m_nCnt >= 60 * 15)

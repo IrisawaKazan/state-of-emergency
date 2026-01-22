@@ -132,7 +132,7 @@ void CEffect::Update(void)
 
 	CObject2D::SetEffect(m_pos, m_col, m_fRedius);
 
-	m_nLife--;
+	m_nLife--; // ƒfƒNƒŠƒƒ“ƒg
 
 	m_fRedius -= 1.5f;
 

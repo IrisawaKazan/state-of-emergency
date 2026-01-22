@@ -81,16 +81,17 @@ void CGameover::Update(void)
 		m_bEnter = true;
 	}
 
+	// ƒGƒ“ƒ^[‚ª‰Ÿ‚³‚ê‚½
 	if (m_bEnter == true)
 	{
 		// ƒCƒ“ƒNƒŠƒƒ“ƒg
 		m_nEnterCnt++;
 
-		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2)
+		if (m_nEnterCnt >= 60 * 0 && m_nEnterCnt < 60 * 2) // 0•bˆÈã, 2•b–¢–ž‚ÌŽž
 		{
 
 		}
-		if (m_nEnterCnt >= 60 * 2)
+		if (m_nEnterCnt >= 60 * 2) // 2•b‚ÌŽž
 		{
 			CManager::SetMode(MODE_TITLE);
 

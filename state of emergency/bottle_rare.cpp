@@ -212,7 +212,7 @@ void CBottleRare::Update(void)
 
 	m_rot.y = m_fRotation / 50.0f;
 
-	m_nCnt++;
+	m_nCnt++; // ƒCƒ“ƒNƒŠƒƒ“ƒg
 	
 	// 5•b‚ÅÁ‚¦‚é
 	if (m_nCnt >= 60 * 5)

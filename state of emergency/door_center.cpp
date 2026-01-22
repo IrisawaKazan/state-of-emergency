@@ -204,7 +204,7 @@ void CDoorCenter::Update(void)
 	{
 		if (m_nCnt <= 60 * 3/* 秒 */)
 		{
-			m_nCnt++;
+			m_nCnt++; // インクリメント
 
 			// ローテーション
 			m_fRotation -= 1.0f;

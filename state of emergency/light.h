@@ -11,7 +11,7 @@
 #include"main.h"
 
 // マクロ定義
-#define MAX_LIGHT (5)
+#define MAX_LIGHT (5) // ライトの最大数
 
 // ライトクラス
 class CLight

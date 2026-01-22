@@ -11,8 +11,8 @@
 #include"main.h"
 
 // マクロ定義
-#define MAX_OBJ (512)
-#define MAX_PRI (8)
+#define MAX_OBJ (512)	// オブジェクトの最大数
+#define MAX_PRI (8)		// プライオリティの層数
 
 // オブジェクトクラス
 class CObject

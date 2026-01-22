@@ -11,7 +11,7 @@
 #include"main.h"
 
 // マクロ定義
-#define MAX_CHARACTER (1024)
+#define MAX_CHARACTER (1024) // 文字の最大数
 
 // デバッグクラス
 class CDebugProc

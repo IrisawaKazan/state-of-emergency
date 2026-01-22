@@ -12,8 +12,8 @@
 #include"object.h"
 
 // マクロ定義
-#define UNINIT_POS_X (BALL_BESIDE_POS_X - 75.0f)
-#define UNINIT_POS_Z (BALL_DEPTH_POS_Z + 25.0f)
+#define UNINIT_POS_X (BALL_BESIDE_POS_X - 75.0f)	// ボールの消える場所(X)
+#define UNINIT_POS_Z (BALL_DEPTH_POS_Z + 25.0f)		// ボールの消える場所(Z)
 
 // ボールクラス
 class CBall : public CObject

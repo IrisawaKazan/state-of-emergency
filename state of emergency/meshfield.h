@@ -13,8 +13,8 @@
 #include"game.h"
 
 // マクロ定義
-#define MAX_POLYGONPOS_X (NUM_WALL_X + 25.0f)
-#define MAX_POLYGONPOS_Z (NUM_WALL_Z + 25.0f)
+#define MAX_POLYGONPOS_X (NUM_WALL_X + 25.0f)	// フィールドの横幅
+#define MAX_POLYGONPOS_Z (NUM_WALL_Z + 25.0f)	// フィールドの立幅
 
 // メッシュフィールドクラス
 class CMeshfield : public CObject

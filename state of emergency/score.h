@@ -15,7 +15,7 @@
 class CNumber;
 
 // マクロ定義
-#define MAX_SCORE (4)
+#define MAX_SCORE (4) // スコアの桁数
 
 // スコアクラス
 class CScore : public CObject

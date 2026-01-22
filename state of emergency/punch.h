@@ -12,7 +12,7 @@
 #include"object.h"
 
 // マクロ定義
-#define MAX_PUNCH_CNT (5)
+#define MAX_PUNCH_CNT (5) // パンチカウンターの最大数
 
 // パンチクラス
 class CPunch : public CObject

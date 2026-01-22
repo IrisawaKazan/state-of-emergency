@@ -15,7 +15,7 @@
 class CNumber;
 
 // マクロ定義
-#define MAX_TIMER (3)
+#define MAX_TIMER (3) // タイマーの桁数
 
 // タイマークラス
 class CTimer : public CObject

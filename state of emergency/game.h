@@ -34,6 +34,8 @@ class CPlayer;
 
 #define NUM_BOTTLE_SCORE (10)			// ボトルのスコア
 #define NUM_BOTTLE_RARE_SCORE (100)		// レアボトルのスコア
+#define TIME_BOTTLE (15)				// ボトルの寿命
+#define TIME_BOTTLE_RARE (5)			// レアボトルの寿命
 
 //#define KEY_TIME (15)					// 鍵が出る時間
 #define KEY_POINT (1000)				// 鍵が出るポイント

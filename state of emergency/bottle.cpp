@@ -215,7 +215,7 @@ void CBottle::Update(void)
 	m_nCnt++; // ƒCƒ“ƒNƒŠƒƒ“ƒg
 
 	// 15•b‚ÅÁ‚¦‚é
-	if (m_nCnt >= 60 * 15)
+	if (m_nCnt >= 60 * TIME_BOTTLE)
 	{
 		Uninit();
 
@@ -234,7 +234,7 @@ void CBottle::Update(void)
 void CBottle::Draw(void)
 {
 	// 0•b‚©‚ç13•b‚Ü‚Å•\Ž¦ & 13•b‚©‚ç15•b‚Ü‚Å“_–Å
-	if (m_nCnt <= 60 * 13 || m_nCnt % 5 == 0)
+	if (m_nCnt <= 60 * (TIME_BOTTLE - 2) || m_nCnt % 5 == 0)
 	{
 		// ƒfƒoƒCƒX‚ÌŽæ“¾
 		LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();

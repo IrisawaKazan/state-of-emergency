@@ -215,7 +215,7 @@ void CBottleRare::Update(void)
 	m_nCnt++; // ƒCƒ“ƒNƒŠƒƒ“ƒg
 	
 	// 5•b‚ÅÁ‚¦‚é
-	if (m_nCnt >= 60 * 5)
+	if (m_nCnt >= 60 * TIME_BOTTLE_RARE)
 	{
 		Uninit();
 
@@ -234,7 +234,7 @@ void CBottleRare::Update(void)
 void CBottleRare::Draw(void)
 {
 	// 0•b‚©‚ç3•b‚Ü‚Å•\Ž¦ & 3•b‚©‚ç5•b‚Ü‚Å“_–Å
-	if (m_nCnt <= 60 * 3 || m_nCnt % 5 == 0)
+	if (m_nCnt <= 60 * (TIME_BOTTLE_RARE - 2) || m_nCnt % 5 == 0)
 	{
 		// ƒfƒoƒCƒX‚ÌŽæ“¾
 		LPDIRECT3DDEVICE9 pDevice = CManager::GetRenderer()->GetDevice();
